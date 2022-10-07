@@ -687,7 +687,7 @@
                       <th class = "text-center"><?php echo $row['tanggal']?></th>
                       <th class = "text-center"><?php echo $row['pembimbing']?></th>
                       <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
-                      <th class = "text-center"><a class="btn btn-primary" href="../pages_dosenkoor/validasi.php?nama=<?php echo $row['nama']; ?>" role="button"><?php echo $tampil ?></a></th>
+                      <th class = "text-center"><a class="btn btn-primary" href="../pages_dosenkoor/validasi.php?id=<?php echo $row['id']; ?>" role="button"><?php echo $tampil ?></a></th>
                     </tr> 
                       <?php }?>
                     
