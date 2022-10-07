@@ -282,11 +282,12 @@ include "../_database/config.php";
                         <div class="row">
                                 <?php
                             include "../_database/config.php";
-                            $nama=$_GET['nama'];
-                            $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE nama='$nama'");
+                            $id=$_GET['id'];
+                            $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE id='$id'");
                             while($row = mysqli_fetch_assoc($query)){
                     
                             ?>
+
                             <div class="form-group col-md-6">
                               <label for="formFile" class="form-label">Nama Mahasiswa</label>
                               <label name="nama" class="form-control" aria-label="default input example"><?php echo $row['nama']?></label>
@@ -328,8 +329,7 @@ include "../_database/config.php";
               <div class = "mx-4">
                 <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
               
-             
-                <a class="btn btn-primary" name="update_validasi" href="../pages_dosenkoor/mahasiswapa.php" role="button">OK</a>
+                <a class="btn btn-primary" name="update_validasi" href="../pages_dosenkoor/update.php?id=<?php echo $row['id']; ?>" role="button">OK</a>
                 <?php }?>
               </form>
               </div>
