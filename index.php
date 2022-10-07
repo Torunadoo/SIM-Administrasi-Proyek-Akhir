@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SIM DTEO</title>
+	<title>SIM Administrasi Proyek Akhir</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -77,7 +77,7 @@
 				</form>	
 				<div style="width: calc(100% - 560px)" class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
 					<img src="assets/images/dteologo.png" >
-					<p class="text-center">SISTEM ADMINISTRASI<br>
+					<p class="text-center">SIM ADMINISTRASI PROYEK AKHIR<br>
 					DEPARTEMEN TEKNIK ELEKTRO OTOMASI <br> INSTITUT TEKNOLOGI SEPULUH NOPEMBER SURABAYA
 					</p>
 				</div>

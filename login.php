@@ -63,7 +63,7 @@ if($cek > 0){
             $_SESSION['status2'] = $data['status2']; //Membuat data status tambahan menjadi session
             $_SESSION['angkatan'] = $data2['angkatan']; //Membuat data angkatan menjadi session
             $_SESSION['alert'] = true;}  //memberikan notifikasi berhasil masuk
-        header("location:./pagesmahasiswa/mahasiswa.php"); //jika user adalah mahasiswa maka akan masuk dashboard mahasiswa
+        header("location:./pages_mahasiswa/mahasiswa.php"); //jika user adalah mahasiswa maka akan masuk dashboard mahasiswa
     }
     elseif ($data['status'] == '4') //ketika login maka user akan membawa status
     {

@@ -19,7 +19,7 @@
         header('location:validasisurat.php'); ?>
         <script>history.pushState({}, "", "")</script><?php
       } else { 
-        header('location:./dosen.php'); ?>
+        header('location:./dosen_uji.php'); ?>
         <script>history.pushState({}, "", "")</script><?php
       } } } }
 
@@ -35,7 +35,7 @@
           header('location:bimbingansurat.php'); ?>
           <script>history.pushState({}, "", "")</script><?php
         } else { 
-          header('location:./dosen.php'); ?>
+          header('location:./dosen_uji.php'); ?>
           <script>history.pushState({}, "", "")</script><?php
         } 
           } 
@@ -54,7 +54,7 @@
           header('location:bimbingansurat.php'); ?>
           <script>history.pushState({}, "", "")</script><?php
         } else { 
-          header('location:./dosen.php'); ?>
+          header('location:./dosen_uji.php'); ?>
           <script>history.pushState({}, "", "")</script><?php
         } 
           } 
@@ -70,7 +70,7 @@
             header('location:validasisurat.php'); ?>
             <script>history.pushState({}, "", "")</script><?php
           } else { 
-            header('location:./dosen.php'); ?>
+            header('location:./dosen_uji.php'); ?>
             <script>history.pushState({}, "", "")</script><?php
           }
         }
@@ -85,7 +85,7 @@
             header('location:validasisurat.php'); ?>
             <script>history.pushState({}, "", "")</script><?php
           } else { 
-            header('location:./dosen.php'); ?>
+            header('location:./dosen_uji.php'); ?>
             <script>history.pushState({}, "", "")</script><?php
           }
         }
@@ -100,7 +100,7 @@
             header('location:validasisurat.php'); ?>
             <script>history.pushState({}, "", "")</script><?php
           } else { 
-            header('location:./dosen.php'); ?>
+            header('location:./dosen_uji.php'); ?>
             <script>history.pushState({}, "", "")</script><?php
           }
         }
@@ -116,7 +116,7 @@
         header('location:validasisurat2.php'); ?>
         <script>history.pushState({}, "", "")</script><?php
       } else { 
-        header('location:./dosen.php'); ?>
+        header('location:./dosen_uji.php'); ?>
         <script>history.pushState({}, "", "")</script><?php
       }
     } }
@@ -129,7 +129,7 @@
           header('location:validasidsn.php'); ?>
           <script>history.pushState({}, "", "")</script><?php
         } else { 
-          header('location:./dosen.php'); ?>
+          header('location:./dosen_uji.php'); ?>
           <script>history.pushState({}, "", "")</script><?php
         }
       } }
@@ -142,7 +142,7 @@
             header('location:validasitndk.php'); ?>
             <script>history.pushState({}, "", "")</script><?php
           } else { 
-            header('location:./dosen.php'); ?>
+            header('location:./dosen_uji.php'); ?>
             <script>history.pushState({}, "", "")</script><?php
           }
         } }
@@ -160,7 +160,7 @@
       <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
       <link rel="icon" type="image/png" href="../assets/img/favicon.png">
       <title>
-        Sistem Administrasi DTEO
+        SIM Administrasi Proyek Akhir
       </title>
       <!--     Fonts and icons     -->
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -215,7 +215,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="">
-              <span class="ms-1 font-weight-bold">Dashboard Dosen Pembimbing</span>
+              <span class="ms-1 font-weight-bold">Dashboard Dosen Penguji</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0">
@@ -223,7 +223,7 @@
           <ul class="navbar-nav">
             <!--home-->
               <li class="nav-item">
-                <a class="nav-link  active" href="./dosen.php">
+                <a class="nav-link  active" href="./dosen_uji.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                   <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
@@ -233,55 +233,140 @@
             </a>
             </li>
 
-            <!--Mahasiswa Bimbingan-->
+            <!-- BAR KHUSUS KADEP  -->
+            <?php if ($_SESSION['status2'] == 5) { ?>
+            <li class="nav-item mt-3">
+              <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Navigasi Kadep</h6>
+            </li>
+
+            <!-- PENGAJUAN MANDAT KADEP -->
+            <?php if($_SESSION['status2'] == '5'){ ?>
             <li class="nav-item">
-              <a class="nav-link  " href="./bimbinganpa.php">
+              <a class="nav-link  " href="./kirimkadep.php">
+                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-exclamation-fill" viewBox="0 0 16 16">
+                    <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47L15.964.686Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1.5a.5.5 0 0 1-1 0V11a.5.5 0 0 1 1 0Zm0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z"/>
+                  </svg>
+                </div>
+                <span class="nav-link-text ms-1">Pengajuan Mandat </span>
+              </a>
+            </li>
+            <?php } ?>          
+            
+            <!--Validasi Surat MAHASISWA-->
+            <?php if ($_SESSION['status2'] == '5') {?>
+            <li class="nav-item">
+              <a class="nav-link  " href="./validasisurat2.php">
+                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-check-fill" viewBox="0 0 16 16">
+                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1.146 6.854-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                  </svg>
+                </div>
+                <span class="nav-link-text ms-1">Validasi Surat Mahasiswa</span>
+              </a>
+            </li>
+            <?php } ?>
+
+            <!-- Validasi Surat Dosen -->
+            <?php if ($_SESSION['status2'] == '5') {?>
+            <li class="nav-item">
+              <a class="nav-link  " href="./validasidsn.php">
+                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-check-fill" viewBox="0 0 16 16">
+                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z"/>
+                    <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
+                  </svg>
+                </div>
+                <span class="nav-link-text ms-1">Validasi Surat Dosen</span>
+              </a>
+            </li>
+            <?php } ?>
+
+            <!-- Validasi Surat Tendik -->
+            <?php if ($_SESSION['status2'] == '5') {?>
+            <li class="nav-item">
+              <a class="nav-link  " href="./validasitndk.php">
+                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check-fill" viewBox="0 0 16 16">
+                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm1.354 4.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                  </svg>
+                </div>
+                <span class="nav-link-text ms-1">Validasi Surat Tendik</span>
+              </a>
+            </li>
+            <?php } ?>
+
+            <!-- BAR DOSEN -->
+            <li class="nav-item mt-3">
+              <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Navigasi Dosen</h6>
+            </li>
+            <?php } ?>
+              
+            <!--Mahasiswa Bimbingan Proyek Akhir-->
+            <li class="nav-item">
+              <a class="nav-link  " href="./mahasiswa_uji.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                     <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                   </svg>
                 </div>
-                <span class="nav-link-text ms-1">Mahasiswa Bimbingan</span>
+                <span class="nav-link-text ms-1">Mahasiswa Uji</span>
               </a>
             </li>
 
-            <!--kalender -->
+            <!--Kalender Proyek Akhir-->
             <li class="nav-item">
-              <a class="nav-link  " href="./kalenderpa.php">
+              <a class="nav-link  " href="./kalender_uji.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="fa-solid fa-calendar-days" viewBox="0 0 448 512">
-                      <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                   </svg>
                 </div>
-                <span class="nav-link-text ms-1">Kalender Evaluasi</span>
+                <span class="nav-link-text ms-1">Kalender Proyek Akhir</span>
               </a>
             </li>
 
             <!-- File Proyek Akhir -->
             <li class="nav-item">
-                <a class="nav-link  " href="./filepa.php">
+                <a class="nav-link  " href="./ujian_pa.php">
                   <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
                       <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
                     </svg>
                   </div>
-                  <span class="nav-link-text ms-1">File Proyek Akhir</span>
+                  <span class="nav-link-text ms-1">Evaluasi Proyek Akhir</span>
                 </a>
               </li>
 
-              <!-- Nilai Proyek Akhir -->
+              <!-- Nilai Akhir Proyek Akhir -->
               <li class="nav-item"> 
-              <a class="nav-link  " href="./nilaipa.php">
+              <a class="nav-link  " href="./nilaipa_uji.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
                   </svg>
                 </div>
-                <span class="nav-link-text ms-1">Nilai Proyek Akhir</span>
+                <span class="nav-link-text ms-1">Nilai Evaluasi Proyek Akhir</span>
               </a>
-            </li>          
+            </li>   
+
+            <!-- DATA MAGANG -->
+            <?php if($_SESSION['status2'] == '2'){ ?>
+            <li class="nav-item"> 
+              <a class="nav-link  " href="./datamagang.php">
+                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
+                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
+                  </svg>
+                </div>
+                <span class="nav-link-text ms-1">Data Magang</span>
+              </a>
+            </li>  
+            <?php } ?>
+          
             <!-- GANTI PASSWORD -->
             <li class="nav-item mt-3">
               <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
@@ -307,7 +392,7 @@
           <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Pembimbing</a></li>
+                <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Penguji</a></li>
                 <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Home</li>
               </ol>
               <h5 class="font-weight-bolder mb-0">Home</h5>
@@ -655,7 +740,39 @@
               </div> -->
 
               <!-- Slide kedua -->
+              <div class="carousel-item">
+                <div class="page-header min-vh-25 m-3 border-radius-xl" style="background-image: url('https://media.istockphoto.com/photos/white-paper-texture-background-picture-id1293996796?b=1&k=20&m=1293996796&s=170667a&w=0&h=ot-Q4dcJynVUxQyjU5P7i4qPZxmoWmPC0M09R53D8j8=');height:250px;">
+                  <!-- <span class="mask bg-gradient-dark"></span> -->
+                  <div class="container">
+                    <div class="row">
+                    <div class="pb-3 px-7">
+                      <h4 class="text-dark p-1 px-0">Informasi</h4>
+                      <figure>
+                      <?php 
+                          include "../_database/config.php";
+                          $no = 1;
+                          $query = mysqli_query($koneksi, "SELECT * FROM adminsurat ORDER BY id_no DESC LIMIT 3");
 
+                          while ($data = mysqli_fetch_array($query)) {
+                            $tujuan = $data['tujuan'];
+                            if( strpos($tujuan, "Dosen") !== false )
+                            { $no++ 
+                            ?>
+                        <blockquote class="blockquote ps-0">
+                        <a href="../pagesadmin/<?php echo $data['dokumen'] ?>" target="_blank">
+                          <p class="ps-3 text-dark" name="fl" id="edit<?php echo $data['id_no'] ?>"><?=$data['perihal']?></p>
+                        </a>
+                        </blockquote>
+                        <figcaption class="blockquote-footer ps-3 text-dark">
+                          <?=$data['keterangan']?>
+                        </figcaption>
+                        <?php }} ?>
+                      </figure>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <!-- SLIDE SATU -->
               <div class="carousel-item active">
@@ -668,7 +785,7 @@
                         <h1 class="text-dark p-0 px-7">Selamat Datang</h1>
                         <h4 class="text-dark p-2 px-7"><?php echo $_SESSION['user'] ?></h4>
                         <a href="./PANDUAN PENGGUNAAN SIM DTEO.pdf" target="_blank" class="pb-5 px-7">
-                        <button type="button" class="btn btn-secondary">Unduh Petunjuk Penggunaan SIM DTEO</button>
+                        <button type="button" class="btn btn-secondary">Unduh Petunjuk Penggunaan </button>
                         </a>
                       </div>
                     </div>
@@ -715,7 +832,273 @@
   
   
   
-  <?php } ?>          
+  <?php } ?>
+
+<!-- surat masuk sebagai dosen --
+  <div class="row">
+   <div  class="col-lg-12 mr-0 pr-0 mb-5 ">
+   <div class="card">
+   <h6 class="mb-0 mx-2 mt-2 pt-1 px-1"></h6>
+     <iframe src="http://administration.org/pages_dosen/tabel/suratmasukdosen.php" frameborder="0" style = "height:500px"></iframe>
+  </div>
+          </div>
+          </div>-->
+
+
+
+
+                       <!-- Bagian Surat Yang Ditolak -->
+      <!<div class="row">
+        <div class="col-md-7 shadow-lg mt-4 p-3 mb-5 bg-body rounded">
+        <div class="card-header pb-4 px-4">       
+              <h6 class="mb-0"></h6>
+                      </div>
+            <div style = "height:500px" class="scrollbar-deep-purple bordered-deep-purple thin">
+            
+              <ul class="list-group">
+                <?php include '../_database/config.php';
+                $no = 1;
+                $query = mysqli_query($koneksi, 'SELECT * FROM suratdosen ORDER BY id_no DESC');
+                while ($data = mysqli_fetch_array($query)) {
+                  if ($data['nama'] == $_SESSION  ['user'] && $data['status_kadep'] == 1) {
+                    $no++
+                ?>
+                    <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-3 text-sm">  </h6>
+                        <span class="mb-2 text-xs"> <span class="text-dark font-weight-bold ms-sm-2"></span></span>
+                        <span class="text-xs"><span class="text-dark ms-sm-2 font-weight-bold"></span></span>
+                      </div>
+                      <div class="ms-auto text-end">
+                       <div>
+                      <!--<button type = "button" class = "btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus">Hapus</a>
+                      </div>
+                      <div>   
+                        <button type = "button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#edit">Respon</button>
+                      </div>-->
+                      </div>
+                      
+                    </li>
+
+                   
+
+
+                <?php } ?>
+
+                  <!-- Modal Pop Up Hapus -->
+                  <div class="modal fade" id="hapus<?php echo $data['id_no'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                   <div class="modal-dialog modal-dialog-centered" role="document">
+                     <div class="modal-content">
+
+                       <!-- popup ajuan surat mahasiswa -->
+                       <div class="modal-header">
+                         <h5 class="modal-title" id="hapus<?php echo $data['id_no'] ?>">Hapus File</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                         </button>
+                       </div>
+
+                     
+                       <div class="modal-body">
+                         <form action="" method="post" enctype="multipart/form-data">
+                           <div class="card-header pb-0 p-3">
+                             <div class="row">
+                               <div class="mb-3">
+                               
+                                 <!-- Nama File -->
+                                 <label for="formFile" class="form-label">Nama File</label>
+                                 <label name="flhps" class="form-control" aria-label="default input example"><?php echo $data['file'] ?></label>
+
+                                 <!-- NRP mahasiswa -->
+                                 <label for="formFile" class="form-label">Perihal</label>
+                                 <label name="prhlhps" class="form-control" aria-label="default input example"><?php echo $data['perihal'] ?></label>
+                                 
+                                 <!-- Lihat File -->
+                                 <label for="formFile" class="form-label">File Yang Akan Dihapus</label>
+                                 <a href="../pages_dosen/<?php echo $data['file'] ?>" target="_blank">
+                                    <h6 class="modal-title" name="fl" id="hapus<?php echo $data['id_no'] ?>"><button type="button"  class="btn btn-link"><em><?php echo $data['file'] ?></em></button></h6>
+                                    </a>
+                                 
+                                 <!-- Input ID untuk memberikan identitas surat -->
+                                 <input type="hidden" name="id" value="<?php echo $data['id_no'] ?>">
+
+                                 <!-- Memberi peringatan -->
+                                 <h5 class = "text-danger modal-title text-center">APAKAH ANDA YAKIN ?</h5>
+                                 <h6 class = " modal-title text-center">MENGHAPUS FILE BERARTI MENGHILANGKAN SELURUH DATA PERSETUJUAN</h6>
+ 
+                                
+                               </div>
+                             </div>
+                           </div>
+                       </div>
+
+
+                       <div class="modal-footer">
+                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+
+                         <!-- Saat dosen menolak -->
+                           <button type="submite" name="hapus" class="btn bg-gradient-info" data-bs-toggle="modal" data-bs-target="#edit<?php echo $data['id_no'] ?>">Hapus</button>
+                        
+                       </div>
+
+                       </form>
+
+                     </div>
+                     </div>
+                     </div>
+
+                  <!-- Modal Edit -->
+                  <div class="modal fade" id="edit<?php echo $data['id_no'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                   <div class="modal-dialog modal-dialog-centered" role="document">
+                     <div class="modal-content">
+
+                       <!-- popup ajuan surat mahasiswa -->
+                       <div class="modal-header">
+                         <h5 class="modal-title" id="edit<?php echo $data['id_no'] ?>">Catatan/Edit</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                         </button>
+                       </div>
+
+                     
+                       <div class="modal-body">
+                         
+                           <div class="card-header pb-0 p-3">
+                             <div class="row">
+                               <div class="mb-3">
+                               
+                                 <!-- nama mahasiswa -->
+                                 <label for="formFile" class="form-label">Catatan Kadep</label>
+                                 <label name="catatan" class="form-control" aria-label="default input example"><?php echo $data['catatan'] ?></label>
+
+                               
+                                 <!-- Input ID untuk memberikan identitas surat -->
+                                 <input type="hidden" name="id" value="<?php echo $data['id_no'] ?>">
+
+                                 <!-- Ubah File saat ditolak filenya -->
+                                <?php if ($data['status_kadep'] == "1") { ?>
+                                  <h5 class = "text-warning allign-middle modal-title text-center"> Surat Anda Ditolak, Silahkan Tekan Ubah untuk Merubah Surat </h5> 
+                                    <?php } else { ?>
+                                       <h5 class = "text-info allign-middle modal-title text-center"> Surat Belum Memerlukan Perubahan </h5> 
+                                        <?php } ?> 
+                               </div>
+                             </div>
+                           </div>
+                       </div>
+
+
+                       <div class="modal-footer">
+                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+
+                        <!-- Saat kadep menolak -->
+                        <?php if ($data['status_kadep'] == 1) { ?>
+                         <form action = "./ubahajuandsn.php" method = "post">
+                         <input type="hidden" name = "lokasi" value = "home">
+                         <input type="hidden" name="id" value="<?php echo $data['id_no'] ?>">
+                         <button class ="btn btn-info">Ubah</button>
+                         </form>
+                                         
+                        <?php } ?>
+                       </div>
+
+                      
+
+                     </div>
+                     </div>
+                     </div>
+                
+               <?php } ?>
+
+               <?php if ($no == 1) { ?>
+              <h6 class = "text-center"><br><br><br><br><br><br><br><br><br>BELUM ADA SURAT YANG DITOLAK</h6>
+
+              <?php } ?>
+
+
+              </ul>
+             </div>
+            </div>
+          
+
+
+               <!-- php hapus file -->
+               <?php
+                include "../_database/config.php";
+                if (isset($_POST['hapus'])) {
+                  $id6 = $_POST['id'];
+                  $query = mysqli_query($koneksi, "SELECT * FROM suratdosen WHERE id_no = '$id6'");
+                  $data = mysqli_fetch_assoc($query);
+                  $nama_file = $data['file']; 
+                  $target_file = "./$nama_file";
+                 
+
+                  unlink("$target_file");
+                  $query6 = mysqli_query($koneksi, "DELETE FROM suratdosen  WHERE id_no = '$id6' ");
+                 
+                  if ($query6) {
+                ?><script>
+                      <?php $_SESSION['sukseshps'] = true; ?>
+                    </script>
+                    <script>
+                      history.pushState({}, "", "")
+                    </script><?php
+                              ?> <script>
+                      history.pushState({}, "", "")
+                    </script>
+                <?php } else {
+                    echo '<script> alert ("gagal di ajukan")</script></a>';
+                  }
+                } ?>
+
+<!-- Bagian Status Surat -->
+<div class="col-md-5 mt-4">
+              <div class="card mb-4 shadow-lg p-3 mb-5 bg-body rounded" style="height:600px">
+              
+                <div class="card-header pb-4 px-4">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6 class="mb-0"></h6>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end align-items-center">
+                      <i class="far fa-calendar-alt me-2"></i>
+                      <small><?php  echo date('d F o')?></small>
+                    </div>
+                  </div>
+                </div>
+                <ul class="list-group">
+                  <?php
+                  include "../_database/config.php";
+                            
+                  $query = mysqli_query($koneksi, 'SELECT * FROM kirimadmindsn ORDER BY id_no DESC ');
+                  $no = 0;
+                  $no2 = $no++;
+                  while ($data = mysqli_fetch_array($query)){
+
+                    if ($data['nama'] == $_SESSION['user']) {
+                      $no++
+                    ?>
+                      <li class="list-group-item border-0 d-flex justify-content-between px-4 mb-3 ">
+                   <div class="d-flex flex-column">
+                    <!--<h6 class="mb-1 text-dark text-sm"><?php echo $data['perihal'] ?></h6>
+                      <a href="../pagesadmin/<?php echo $data['file'] ?>" target="_blank">
+                        <span name="fl" id="edit<?php echo $data['id_no'] ?>">
+                          <button type="button"  class="btn btn-link px-0">Klik untuk Mengunduh</button>
+                        </span>
+                      </a>-->
+                   </div>
+                    <!--<span class="text-xs"><?php echo $data['tanggal'] ?></span>
+                        <?php } } ?>
+                      </li>
+                      <?php if ($no == 1) { ?>-->
+                        
+              <h6 class = "text-center"><br><br><br><br><br><br><br><br><br></h6>
+
+              <?php } ?>
+                  </ul>
+              </div>
+            </div>
+          </div>
+          
         </div>
         </div>
       </main>
@@ -780,12 +1163,11 @@ function load_home() {
         <?php if(@$_SESSION['alert']) : ?>
             <script>
                 Swal.fire({
-                icon: 'question',
-                title: 'Lanjut Sebagai',
-                text: 'Pilih Untuk Lanjut',
-                showCancelButton: true,
-                confirmButtonText:'Dosen Pembimbing',
-                cancelButtonText:'<a style="color:white;" href="../pages_dosenuji/dosen_uji.php">Dosen Penguji<a>',
+                icon: 'success',
+                title: 'Berhasil',
+                text: 'Berhasil Login',
+                showConfirmButton: false,
+                timer: 2000
                 })
             </script>
         <?php unset($_SESSION['alert']); ?>

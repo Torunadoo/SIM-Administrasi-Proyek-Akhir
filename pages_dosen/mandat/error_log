@@ -1,2 +1,0 @@
-[18-Oct-2021 08:15:57 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/cypr9718/public_html/administration/pages_dosen/permohonandosen.php on line 419
-[18-Oct-2021 08:16:07 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/cypr9718/public_html/administration/pages_dosen/permohonandosen.php on line 419

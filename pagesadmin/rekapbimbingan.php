@@ -427,7 +427,7 @@ if (isset($_POST['dsn'])) {
                   <?php }  ?>
                   
                   <?php }  ?>   
-                  <tbody>
+                  
                  
                   <?php if ($no == 1) { ?>
                     
@@ -438,7 +438,7 @@ if (isset($_POST['dsn'])) {
                
              <?php } ?>
             </tr>
-                
+            <tbody>
                 </table>
               </div>
             </div>

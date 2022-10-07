@@ -222,17 +222,16 @@
         <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
           <ul class="navbar-nav">
             <!--home-->
-              <li class="nav-item">
-                <a class="nav-link  active" href="./dosen.php">
-                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
-                  <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+            <li class="nav-item">
+          <a class="nav-link  " href="./dosen.php">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                  <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
                 </svg>
-              </div>
-              <span class="nav-link-text ms-1">Home</span>
-            </a>
-            </li>
-
+            </div>
+            <span class="nav-link-text ms-1">Home</span>
+          </a>
+        </li>           
             <!--Mahasiswa Bimbingan-->
             <li class="nav-item">
               <a class="nav-link  " href="./bimbinganpa.php">
@@ -246,8 +245,8 @@
               </a>
             </li>
 
-            <!--kalender -->
-            <li class="nav-item">
+           <!--kalender -->
+           <li class="nav-item">
               <a class="nav-link  " href="./kalenderpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -273,7 +272,7 @@
 
               <!-- Nilai Proyek Akhir -->
               <li class="nav-item"> 
-              <a class="nav-link  " href="./nilaipa.php">
+              <a class="nav-link  active" href="./nilaipa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
@@ -281,7 +280,7 @@
                 </div>
                 <span class="nav-link-text ms-1">Nilai Proyek Akhir</span>
               </a>
-            </li>          
+            </li>             
             <!-- GANTI PASSWORD -->
             <li class="nav-item mt-3">
               <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
@@ -299,47 +298,38 @@
           </ul>
         </div>
       </aside>
+  <!-- end sidebar -->
 
-      <!--BAtas-->
-      <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
-        <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-          <div class="container-fluid py-1 px-3">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Pembimbing</a></li>
-                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Home</li>
-              </ol>
-              <h5 class="font-weight-bolder mb-0">Home</h5>
-            </nav>
-            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-              <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                
-              </div>
-              <ul class="navbar-nav  justify-content-end">
-                <li class="nav-item d-flex align-items-center">
-                  <a href="../profile.php" class="nav-link text-body font-weight-bold px-0">
-                    <i class="fa fa-user me-sm-1"></i>
-                    <span class="d-sm-inline d-none"><?php echo $_SESSION['user']?></span>
-                  </a>
-                </li>
-                <!-- <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                  <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                    <div class="sidenav-toggler-inner">
-                      <i class="sidenav-toggler-line"></i>
-                      <i class="sidenav-toggler-line"></i>
-                      <i class="sidenav-toggler-line"></i>
-                    </div>
-                  </a>
-                </li> -->
-                <li class="nav-item px-3 d-flex align-items-center">
-                  <!--a href="javascript:;" class="nav-link text-body p-0">
-                    <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-                  </a--> 
-                </li>
-
-               <!-- Notif -->
-               <li class="nav-item dropdown pe-2 d-flex align-items-center">
+  <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Pembimbing</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Nilai Proyek Akhir</li>
+          </ol>
+          <h5 class="font-weight-bolder mb-0">Nilai Proyek Akhir</h5>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <!--div class="input-group">
+              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" placeholder="Type here...">
+            </div-->
+          </div>
+          <ul class="navbar-nav justify-content-end">
+            <!-- nama user -->
+            <li class="nav-item d-flex align-items-center">
+            <a href="../profile.php" class="nav-link text-body font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none"> <?php echo $_SESSION['user'] ?> </span>
+              </a>
+            </li>
+            <!-- jarak -->
+            <li class="nav-item px-3 d-flex align-items-center"></li>
+            <!-- notif -->
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
                   <!-- icon lonceng/bel -->
                   <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <!-- <i class="fa fa-bell cursor-pointer"></i> -->
@@ -615,181 +605,145 @@
                   </ul>
                   <!-- akhir dropdown -->
                 </li>
-                <!-- and notif -->
-                <li class="nav-item px-2 d-flex align-items-center">
-                  <!-- <a href="javascript:;" class="nav-link text-body p-0">
-                    <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-                  </a> -->
-                </li>
-                <li class="nav-item d-flex align-items-center">
-                  <a href="../logout.php" href="javascript:;" class="nav-link text-body p-0" >
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="d-sm-inline d-none">Logout </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <!-- End Navbar -->
+            <!-- and notif -->
+            <!-- jarak -->
+            <li class="nav-item px-3 d-flex align-items-center">
+              <!-- <a href="javascript:;" class="nav-link text-body p-0">
+                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              </a> -->
+            </li>
+            <!-- logout -->
+            <li class="nav-item d-flex align-items-center">
+                <a href="../logout.php" href="javascript:;" class="nav-link text-body p-0" >
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span class="d-sm-inline d-none">Logout </span>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
 
-        <!-- CAROUSEL -->
-              <!-- slide ketiga -->
-              <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <!-- <div class="carousel-item">
-                <div class="page-header min-vh-50 m-3 border-radius-xl" style="background-image: url('https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1129&q=80');">
-                  <span class="mask bg-gradient-dark"></span>
-                  <div class="container">
-                    <div class="row">
-                    <div class="pb-5 px-7">
-                        <h4 class="text-dark pb-10 px-0">Infirmasi</h4>
-                        <h1 class="text-dark fadeIn2 fadeInBottom">kiww</h1>
-                          <div class="btn bg-gradient-info">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0 p-3">
+              <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                  <h6 class="mb-0"></h6>
                 </div>
-              </div> -->
 
-              <!-- Slide kedua -->
-
-
-              <!-- SLIDE SATU -->
-              <div class="carousel-item active">
-                <div class="page-header min-vh-25 m-3 border-radius-xl" style="background-image: url('https://media.istockphoto.com/photos/white-paper-texture-background-picture-id1293996796?b=1&k=20&m=1293996796&s=170667a&w=0&h=ot-Q4dcJynVUxQyjU5P7i4qPZxmoWmPC0M09R53D8j8=');height:250px;">
-                  <!-- <span class="mask bg-gradient-dark"></span> -->
-                  <div class="container">
-                    <div class="row">
-                      <div class="p-3 p-3">
-                        <h4 class="text-dark p-1 px-7"> </h4>
-                        <h1 class="text-dark p-0 px-7">Selamat Datang</h1>
-                        <h4 class="text-dark p-2 px-7"><?php echo $_SESSION['user'] ?></h4>
-                        <a href="./PANDUAN PENGGUNAAN SIM DTEO.pdf" target="_blank" class="pb-5 px-7">
-                        <button type="button" class="btn btn-secondary">Unduh Petunjuk Penggunaan SIM DTEO</button>
-                        </a>
+              </div>
+            </div>
+            <!-- dropdown semester -->
+            <div class="card-header pb-0 p-3">
+              <div class="row">
+                <div class="col-6 d-flex align-items-center">
+                  <h6 class="mb-0">Pilih Semester</h6>
+                  <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
+                    <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      <button type="button" class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Pilih Semester
+                      </button>
+                    </a>
+                    <ul style = "height:160px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
+                      <div class="card example-1 scrollbar-deep-purple bordered-deep-purple thin" style = "height:160px">
+                      <li>
+                          <a class="dropdown-item border-radius-md" href="#">
+                            <div class="d-flex py-1">
+                              <div class="my-auto">
+                                <h6 class="text-sm font-weight-normal mb-1">
+                                  <span class="font-weight-bold">Genap 2021/2022</span>
+                                </h6>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item border-radius-md" href="#">
+                            <div class="d-flex py-1">
+                              <div class="my-auto">
+                                <h6 class="text-sm font-weight-normal mb-1">
+                                  <span class="font-weight-bold">Gasal 2022/2023</span>
+                                </h6>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item border-radius-md" href="#">
+                            <div class="d-flex py-1">
+                              <div class="my-auto">
+                                <h6 class="text-sm font-weight-normal mb-1">
+                                  <span class="font-weight-bold">Genap 2022/2023</span>
+                                </h6>
+                            </div>
+                          </a>
+                        </li>
                       </div>
-                    </div>
-                  </div>
+                    </ul>
+                  </li> 
                 </div>
               </div>
             </div>
-
-            <!-- BUTTON Next -->
-            <div class="row row-xs">
-              <div class="col-12 col-sm-12 col-lg-12 d-flex justify-content-end">
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon position-absolute bottom-25" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-                  <span class="carousel-control-next-icon position-absolute bottom-25" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </a>
+            <!-- end dropdown semester -->
+            <!-- tabel rekap -->
+            <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">  
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <!-- judul kolom -->
+                      <tr>
+                        <th>No</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>NRP Mahasiswa</th>
+                        <th>Program Studi</th>
+                        <th>Judul Proyek Akhir</th>
+                        <th>Nilai Seminar Proposal</th>
+                        <th>Nilai Sidang Proyek Akhir</th>
+                        <th>Nilai Proyek Akhir</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </tbody>
+                     
+                  </table>
               </div>
             </div>
           </div>
-                        <!-- Carousel selesai -->
-                        <div class="container-fluid py-4">
-        <div class="row"> 
-
-        <!-- Tabel yang hanya bisa dilihat oleh kadep  -->
-<?php if ($_SESSION['status2'] == 5) { ?>
-      
-     
-     <div class="col-lg-12 mb-5 active">
-  
-
-    <div class="card">
-     
-        <h6 class="mb-0 pt-1 px-1">Surat Masuk sebagai Kadep</h6>
-      
-      <iframe src="http://administration.org/pages_dosen/tabel/suratmasukkadep.php" frameborder="0" style = "height:500px"></iframe>
-   
-        </div>    
-      </div>
-      </div>
-   
-  
-  
-  
-  <?php } ?>          
         </div>
-        </div>
-      </main>
-      
-    
-      <!--   Core JS Files   -->
-      <script src="../assets/js/core/popper.min.js"></script>
-      <script src="../assets/js/core/bootstrap.min.js"></script>
-      <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-      <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-      <!-- Query yang digunakan -->
+      </div>
 
-      <script>
-function load_home() {
-     document.getElementById("SrtMsk").innerHTML='<object type="text/html" data="suratmasukdosen.php" ></object>';
-} 
-</script>
-      <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-          var options = {
-            damping: '0.5'
-          }
-          Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-      </script>
-      <!-- Github buttons -->
-      <script async defer src="https://buttons.github.io/buttons.js"></script>
-      <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-      <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
-      <!-- JS sweetaler notif login berhasil-->
-      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <?php if(@$_SESSION['sukses']) : ?>
-        <script>
-            Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Anda Berhasil Melakukan Perubahan',
-            text: 'Perubahan Akan Disimpan',
-            showConfirmButton: false,
-            timer: 2000
-          })
-        </script>
-    <?php unset($_SESSION['sukses']); ?>
-    <?php endif; ?>
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <?php if (@$_SESSION['sukseshps']) : ?>
-        <script>
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Berhasil Menghapus',
-                showConfirmButton: false,
-                timer: 2000
-            })
-        </script>
-        <?php unset($_SESSION['sukseshps']); ?>
-    <?php endif; ?>
 
-      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <?php if(@$_SESSION['alert']) : ?>
-            <script>
-                Swal.fire({
-                icon: 'question',
-                title: 'Lanjut Sebagai',
-                text: 'Pilih Untuk Lanjut',
-                showCancelButton: true,
-                confirmButtonText:'Dosen Pembimbing',
-                cancelButtonText:'<a style="color:white;" href="../pages_dosenuji/dosen_uji.php">Dosen Penguji<a>',
-                })
-            </script>
-        <?php unset($_SESSION['alert']); ?>
-        <?php endif; ?>
-    </body>
+    </div>
+  </main>
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+</body>
 
-    </html>
+</html>
