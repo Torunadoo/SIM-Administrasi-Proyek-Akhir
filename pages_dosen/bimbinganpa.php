@@ -687,7 +687,7 @@
                     include "../_database/config.php";
                     
                     $no = 1;
-                    $query = mysqli_query($koneksi, 'SELECT * FROM bimbingan_pa');
+                    $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE pembimbing = '$nama' OR pembimbing_2 = '$nama' ");
                     while($row = mysqli_fetch_assoc($query)){
                     
                     if(isset($row['status_validasi'])){
