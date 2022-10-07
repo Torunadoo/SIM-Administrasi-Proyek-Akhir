@@ -25,9 +25,9 @@ if(isset($_POST['input']))
   $judul_pa = $_POST['judul_pa'];
   $transkrip_nilai = $_POST['trs_nilai'];
   $frs = $_POST['frs'];
-  $tanggal = $_POST[''];
 
-  $query = mysqli_query($koneksi, "INSERT into pendaftareval values('','$nama','$nrp','$angkatan','$prodi','$jumlah_sks','$semester','$lab', '$pembimbing', '$pembimbing_2', '$jenis_eval','$topik_pa','$judul_pa','$transkrip_nilai','$frs', sysdate())");
+
+  $query = mysqli_query($koneksi, "INSERT into pendaftareval values('','$nama','$nrp','$angkatan','$prodi','$jumlah_sks','$semester','$lab', '$pembimbing', '$pembimbing_2', '$jenis_eval','$topik_pa','$judul_pa','$transkrip_nilai','$frs', sysdate(),'')");
 
     if($query)
     {
