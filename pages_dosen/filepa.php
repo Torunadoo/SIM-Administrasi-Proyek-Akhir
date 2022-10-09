@@ -688,53 +688,6 @@
                   <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
                     <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                       <button type="button" class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-                      Pilih Mahasiswa
-                      </button>
-                    </a>
-                    <ul style = "height:200px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
-                      <div class="card example-1 scrollbar-deep-purple bordered-deep-purple thin" style = "height:200px">  
-                        <li>
-                          <a class="dropdown-item border-radius-md" href="#">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Gasal 2022/2023</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item border-radius-md" href="#">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Genap 2022/2023</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item border-radius-md" href="#">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Gasal 2023/2024</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item border-radius-md" href="#">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Genap 2023/2024</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                      </div>
-                    </ul>
                   </li> 
                 </div>
               </div>
@@ -742,7 +695,7 @@
 
             <!-- end dropdown semester -->
             <!-- and dropdown jenis surat -->
-          <div class="form-group d-flex justify-content-around mt-4 my-0 md-0">
+          <!-- <div class="form-group d-flex justify-content-around mt-4 my-0 md-0">
           <form action = "" method = "post">
                 <input type="hidden" name = "filterid" value = "12">
                 <?php if ($_POST['filterid'] == 0 || $_POST['filterid'] == 2 || $_POST['filterid'] == 1 ) { ?>
@@ -761,14 +714,7 @@
              <button type = "submit" name = "filter0" class = "btn btn-info">Belum Diproses</button>
              <?php } ?>
             </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "1">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 2 || $_POST['filterid'] == 0 || $_POST['filterid'] == NULL  ) { ?>
-               <button type = "submit" name = "filter1" class = "btn btn-outline-info">Ditolak</button>
-               <?php } 
-               else { ?>
-              <button type = "submit" name = "filter1" class = "btn btn-info">Ditolak</button>
-             <?php } ?>
+            
             </form>
             <form action = "" method = "post">
                 <input type="hidden" name = "filterid" value = "2">
@@ -776,41 +722,50 @@
                <button type = "submit" name = "filter2" class = "btn btn-outline-info">Disetujui</button>
                <?php } 
                else { ?>
-              <button type = "submit" name = "filter2" class = "btn btn-info">Disetujui</button>
+              <button type = "submit" name = "filter2" class = "btn btn-info">Sudah Diproses</button>
              <?php } ?>
             </form>
-        </div>
+        </div> -->
           <div class="card-body px-0 pt-0 mt-0 py-0 my-0 pb-2">
             <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px" >
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
                       <th class="text-center">No</th>
-                      <th class = "text-center">Nama Mahasiswa</th>
-                      <th class="text-center">NRP Mahasiswa</th>
-                      <th class="text-center">Semester</th>
-                      <th>Judul Proyek Akhir</th>
-                      <!-- <th>Nama File</th>
-                      <th>Jenis File</th>
-                      <th class="text-center">Tanggal Pengajuan</th> -->
-                      <th>Status Bimbingan</th>
-                      <!-- <th>Catatan Dosen Pembimbing</th> -->
+                      <th class = "text-center">Nama File</th>
+                      <th class="text-center">Jenis File</th>
+                      <th class="text-center">Tanggal Pengajuan</th>
+                      <th class="text-center">Status Bimbingan</th>
+                      <th class="text-center">Tindak lanjut</th>
                     </tr>
                   </thead>
                   <tbody>
+                  <?php
+                      include "../_database/config.php";
+                      
+                      $no = 1;
+                      $query = mysqli_query($koneksi, 'SELECT * FROM bimbingan_pa');
+                      while($row = mysqli_fetch_assoc($query)){
+                      
+                      if(isset($row['status_bimbingan'])){
+                        $status=$row['status_bimbingan'];
+
+                        if($status==0){
+                          $tampil='Perlu diproses';
+                        } elseif ($status==1) {
+                          $tampil='Sudah diproses';
+                        }
+                      }
+                      ?>
                     <tr>
-                        <th class="text-center">1</th>
-                        <form action="./validasipa.php" method="post">
-                            <input name="id" value="name" type="hidden">
-                            <td style = "height:20px">
-                              <h6 style = "height:35px" class="text-sm-left ps-1 "><button class="btn btn-light">Enggal Nur F Naufaldhianto</button></h6>
-                            </td>
-                          </form> 
-                        <th class="text-center">2040211002</th>
-                        <th class="text-center">Gasal 2022/2023</th>
-                        <th class="text-center">Integrated Hospital Asset Management</th>
-                        <th class="text-center">Sudah diproses</th>
+                        <th class="text-center"><?php echo $no++ ?></th>
+                        <th class="text-center"><?php echo $row['file'] ?></th>
+                        <th class="text-center"><?php echo $row['keterangan'] ?></th>
+                        <th class="text-center"><?php echo $row['tgl_unggah'] ?></th>
+                        <th class = "text-center"><a class="btn btn-primary" href="../pages_dosen/proses.php?id=<?php echo $row['id']; ?>" role="button"><?php echo $tampil ?></a></th>
+                        <th class="text-center"></th>
                     </tr>
+                    <?php }?>
                   </tbody>
                 </table>
               </div>

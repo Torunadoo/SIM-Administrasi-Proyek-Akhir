@@ -51,7 +51,7 @@ else if (move_uploaded_file($_FILES['fl']['tmp_name'], $url))
 {
   // upload file dosen pemb dan koor
   if ($jenis_file == "Proposal PA" || $jenis_file == "Laporan PA") { 
-    $query = mysqli_query($koneksi,"INSERT into bimbingan_pa values('', '$nama','$nrp','$jenis_file','$tempat','$judul_pa', '$pembimbing1', '$pembimbing2', '$keterangan', '$url','$tipe', '$ukuran', sysdate())");
+    $query = mysqli_query($koneksi,"INSERT into bimbingan_pa values('', '$nama','$nrp','$jenis_file','$tempat','$judul_pa', '$pembimbing1', '$pembimbing2', '$keterangan','', '$url','$tipe', '$ukuran', sysdate())");
     if($query)
     // notif dan header sukses upload file
     {

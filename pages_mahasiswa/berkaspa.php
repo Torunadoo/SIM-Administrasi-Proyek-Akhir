@@ -431,9 +431,9 @@ if (isset($_POST['selesai'])) {
                         <th class="text-center"><?php echo $row['file']?></th>
                         <th class="text-center"><?php echo $row['keterangan']?></th>
                         <th class="text-center"><?php echo $row['tgl_unggah']?></th>
+                        <th class="text-center"><?php echo $tampil?></th>
                         <th class="text-center"><?php echo $row['']?></th>
-                        <th class="text-center"><?php echo $row['nama']?></th>
-                        <th class="text-center"><?php echo $row['nama']?></th>
+                        <th class="text-center"><?php echo $row['']?></th>
                       </tr>
                       <?php }?>
                     </tbody> 
