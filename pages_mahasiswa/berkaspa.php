@@ -415,13 +415,13 @@ if (isset($_POST['selesai'])) {
                       $query = mysqli_query($koneksi, 'SELECT * FROM bimbingan_pa');
                       while($row = mysqli_fetch_assoc($query)){
                       
-                      if(isset($row['status_validasi'])){
-                        $status=$row['status_validasi'];
+                      if(isset($row['status_bimbingan'])){
+                        $status=$row['status_bimbingan'];
 
                         if($status==0){
-                          $tampil='Belum diproses';
+                          $tampil='Belum iproses';
                         } elseif ($status==1) {
-                          $tampil='Sudah validasi';
+                          $tampil='Sudah diproses';
                         }
                       }
                       ?>

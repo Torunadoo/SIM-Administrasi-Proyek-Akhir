@@ -50,8 +50,8 @@ else if ($tipe != $ekstensi && $tipe != NULL)
 else if (move_uploaded_file($_FILES['fl']['tmp_name'], $url)) 
 {
   // upload file dosen pemb dan koor
-  if ($jenis_file == "Proposal PA" || $jenis_file == "Laporan PA") { 
-    $query = mysqli_query($koneksi,"INSERT into bimbingan_pa values('', '$nama','$nrp','$jenis_file','$tempat','$judul_pa', '$pembimbing1', '$pembimbing2', '$keterangan','', '$url','$tipe', '$ukuran', sysdate())");
+  if ($jenis_file == "Proposal Proyek Akhir" || $jenis_file == "Laporan Proyek Akhir") { 
+    $query = mysqli_query($koneksi,"INSERT into bimbingan_pa values('', '$nama','$nrp','$jenis_file','$tempat','$judul_pa', '$pembimbing1', '$pembimbing2', '$keterangan','', '$url','$tipe', '$ukuran',sysdate())");
     if($query)
     // notif dan header sukses upload file
     {
@@ -326,8 +326,8 @@ $(document).ready(function(){
                                         <label for="formFile" class="form-label">Jenis File</label>
                                         <select id="jenis_surat" name="sr"  class="form-select" aria-label="Default select example" required>
                                             <option selected>Pilih Jenis File</option>
-                                            <option value="Proposal PA">Proposal Proyek Akhir</option>
-                                            <option value="Laporan PA">Laporan Proyek Akhir</option>
+                                            <option value="Proposal Proyek Akhir">Proposal Proyek Akhir</option>
+                                            <option value="Laporan Proyek Akhir">Laporan Proyek Akhir</option>
                                         </select>
                                     </div>
                                 </div>
@@ -406,7 +406,6 @@ $(document).ready(function(){
                               </div>
                             </div>
 
-                            <!-- dosen -->
                             <!--div class="dosen" style="display: none;"-->
                               <div class="card-header pb-0 p-3">    
                                 <div class="row">
@@ -438,6 +437,7 @@ $(document).ready(function(){
                                   </div>
                                 </div>
                               </div>
+                              
                             <!--/div-->
                             <div class="card-header pb-0 p-3">    
                               <div class="row">
@@ -525,7 +525,7 @@ $(document).ready(function(){
     <script>
         $('#jenis_surat').on('change',function () {
           // surat magang
-            if($('#jenis_surat').val() == 'Laporan PA') {
+            if($('#jenis_surat').val() == 'Laporan Proyek Akhir') {
                 $('.unduhmag').show();
                 $('.unduhpa').hide();
                 $('.unduhpbl').hide();
@@ -553,7 +553,7 @@ $(document).ready(function(){
                 $('.dosenTKK').hide();
               }
               // surat proyek akhir
-            else if($('#jenis_surat').val() == 'Proposal PA') {
+            else if($('#jenis_surat').val() == 'Proposal Proyek Akhir') {
                 $('.unduhmag').hide();
                 $('.unduhpa').show();
                 $('.unduhpbl').hide();

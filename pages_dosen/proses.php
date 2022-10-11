@@ -7,8 +7,75 @@ if ($_SESSION['user'] == '' || $_SESSION['status'] != 2) {
 
 <?php
 include "../_database/config.php";
+// Backend Pendaftaran Evaluasi
+if(isset($_POST['input']))
+{
+  $nama = $_POST['nama'];
+  $nrp = $_POST['nrp'];
+  $catatan = $_POST['catatan'];
+  $jenis_file = $_POST['jenis_file'];
+  $keterangan = $_POST['keterangan'];
+  $file = basename($_FILES['fl']['name']);
+  $ukuran = $_FILES['fl']['size'];
+  $tipe = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+  
+  $max = 1024 * 5000;
+  $ekstensi = "pdf";
 
+// file
+$url = $nrp.'_'.$file;
+
+// ukuran dan tipe tidak sesuai
+if ($ukuran > $max && $tipe !== $ekstensi)
+{
+?><script><?php $_SESSION["pdfuk"] = true;?></script> 
+<script>history.pushState({}, "", "")</script><?php 
+}
+// ukuran tidak sesuai
+else if ($ukuran > $max)
+{
+echo '<script> alert("Gagal mengajukan permohonan surat ! Ukuran file tidak boleh melebihi 20 mb")</script>' ;
+}
+// tipe tidak sesuai pdf
+else if ($tipe != $ekstensi && $tipe != NULL)
+{ 
+?><script><?php $_SESSION['pdf'] = true ?></script> 
+<script>history.pushState({}, "", "")</script><?php
+}  
+// upload file
+else if (move_uploaded_file($_FILES['fl']['tmp_name'], $url)) 
+{
+  // upload file dosen pemb dan koor
+  if ($jenis_file == "Proposal Proyek Akhir" || $jenis_file == "Laporan Proyek Akhir") { 
+    $query = mysqli_query($koneksi,"INSERT into proses_bimbingan values('', '$nama','$nrp','$catatan','$jenis_file','$keterangan', '$url', '$tipe', '$ukuran', sysdate())");
+    if($query)
+    // notif dan header sukses upload file
+    {
+      ?><script><?php $_SESSION['sukses'] = true;?></script> 
+      <?php header("location:filepa.php"); 
+    }
+    // notif gagal input
+    else
+    {
+    ?><script><?php $_SESSION['input'] = true;?></script> 
+    <script>history.pushState({}, "", "")</script><?php
+    }
+  }
+  
+// gagal upload
+else
+{
+    
+    echo "Gagal Upload";
+}
+
+} }
 ?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -265,7 +332,7 @@ include "../_database/config.php";
             <div class="card-header pb-0 p-3">
               <div class="row">
                 <div class="col-6 d-flex align-items-center">
-                  <h6 class="mb-0">Validasi Data</h6>
+                  <h6 class="mb-0">Unduh File</h6>
                 </div>
               </div>
             </div>
@@ -275,7 +342,7 @@ include "../_database/config.php";
 
                 
 
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                   <div class="card-header pb-0 p-3">
                     <div class="row">
                       <div class="mb-3">
@@ -289,55 +356,98 @@ include "../_database/config.php";
 
                             <div class="form-group col-md-6">
                               <label for="formFile" class="form-label">Nama Mahasiswa</label>
+                              <input name="nama" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nama']?>" required>
                               <label name="nama" class="form-control" aria-label="default input example"><?php echo $row['nama']?></label>
                             </div>
                             <div class="form-group col-md-6">
                               <label for="formFile" class="form-label">NRP Mahasiswa</label>
+                              <input name="nrp" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nrp']?>" required>
                               <label name="nrp" class="form-control" aria-label="default input example"><?php echo $row['nrp']?></label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
-                              <label for="formFile" class="form-label">Jenis Evaluasi</label>
-                              <label name="jenis_eval" class="form-control" aria-label="default input example"><?php echo $row['jenis_eval']?></label>
+                              <label for="formFile" class="form-label">Keterangan</label>
+                              <input name="keterangan" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['keterangan']?>" required>
+                              <label name="keterangan" class="form-control" aria-label="default input example"><?php echo $row['keterangan']?></label>
                             </div>
                             <div class="form-group col-md-6">
-                              <label for="formFile" class="form-label">Judul Proyek Akhir</label>
-                              <label name="judul_pa" class="form-control" aria-label="default input example"><?php echo $row['judul_pa']?></label>
+                              <label for="formFile" class="form-label">Nama File</label>
+                              <label name="nama_file" class="form-control" aria-label="default input example"><?php echo $row['file']?></label>
                             </div>
                         </div>
                         <!-- file surat -->
                         <label for="formFile" class="form-label">Lihat File</label>
                         <a href="../pages_mahasiswaa/" target="_blank">
-                          <p class="modal-title" name="fl" id="edit">
+                          <p class="modal-title" name="file_mbuh" id="edit">
                           <button type="button" class="btn btn-link">
                             <em></em>
                           </button>
-                        </p>
+                          </p>
                         </a>
+                        <br>
+                        <div class="row">
+                          <div class="col-6 d-flex align-items-center">
+                            <h6 class="mb-0">Unggah File</h6>
+                          </div>
+                        </div>
+                  
+                        <br>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                              <label for="formFile" class="form-label">Catatan Dosen</label>
+                              <input name="catatan" class="form-control" type="text" aria-label="default input example" placeholder="Ketik Catatan" >
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="formFile" class="form-label">Jenis File</label>
+                              <select name="jenis_file" class="form-control" aria-placeholder="Pilih Jenis File"  name aria-label="Default input example" required>
+                                <option selected>Pilih Jenis File</option>
+                                <option value="Proposal Proyek Akhir">Proposal</option>
+                                <option value="Laporan Proyek Akhir">Laporan</option>
+                              </select>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="formFile" class="form-label">Keterangan</label>
+                              <select name="keterangan" class="form-control" aria-placeholder="Pilih Jenis File"  name aria-label="Default input example" required>
+                                <option selected>Pilih Keterangan</option>
+                                <option value="Revisi 1">Revisi 1</option>
+                                <option value="Revisi 2">Revisi 2</option>
+                                <option value="Revisi 3">Revisi 3</option>
+                                <option value="Revisi 4">Revisi 4</option>
+                                <option value="Revisi 5">Revisi 5</option>
+                                <option value="Final">Final</option>
+                              </select>
+                          </div>
+                          
+                        </div>
+                        <div class="row">
+                          <div class="mb-3">
+                            <label id="label-file" for="formFile" class="form-label">Unggah File (Ekstensi File .PDF)</label>
+                            <input type="file" id="file" name="fl" class="form-control" aria-label="file example">
+                            <div class="invalid-feedback">Example invalid form file feedback</div>
+                          </div>
+                        </div>
                         <!-- Menginput id surat -->
-                        <input name="id" value= "" type="hidden">
-                        <input type="hidden" name = "lokasi" value = "">
+                        
 
                       </div>
                     </div>
                   </div>
                   <!-- button upload close -->
-              </div>
-              <div class = "mx-4">
-                <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
               
-                <a class="btn btn-primary" name="update_validasi" href="../pages_dosenkoor/update.php?id=<?php echo $row['id']; ?>" role="button">OK</a>
-                <?php }?>
+                  <div class = "mx-4">
+                    <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
+                    <a class="btn btn-primary" name="input" href="../pages_dosen/update_status.php?id=<?php echo $row['id']; ?>" role="button">OK</a>
+                    <?php }?> 
+                  </div>
               </form>
-              </div>
             </div>
           </div>
         </div>
         <!-- and popup ajuan surat mahasiswa -->
-        </tr>
-        </tbody>
-        </table>
+        
       </div>
     </div>
 
