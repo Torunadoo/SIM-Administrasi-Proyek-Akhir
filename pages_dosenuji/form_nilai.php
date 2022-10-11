@@ -10,20 +10,24 @@ include "../_database/config.php";
 
 if(isset($_POST['input']))
 {
+  $nama = $_POST['nama'];
+  $nrp = $_POST['nrp'];
+  $dosen_uji = $_SESSION['user'];
   $latar = $_POST['latar'];
   $manfaat = $_POST['manfaat'];
   $metode = $_POST['metode'];
-  $tulis = $_POST['tulis'];
-  $bahasa = $_POST['bahasa'];
+  $tulis = $_POST['tata_tulis'];
+  $bahasa = $_POST['tata_bahasa'];
   $sikap = $_POST['sikap'];
   $waktu_datang = $_POST['waktu_datang'];
   $datadok = $_POST['datadok'];
   $materi = $_POST['materi'];
   $nilai_angka = $_POST['nilai_angka'];
   $rekom = $_POST['rekom'];
+  $catatan = $_POST['catatan_revisi'];
   
 
-  $query = mysqli_query($koneksi, "INSERT into nilai_eval values('','$latar','$manfaat','$metode','$tulis','$bahasa','$sikap','$waktu_datang', '$datadok', '$materi', '$nilai_angka','$rekom', sysdate())");
+  $query = mysqli_query($koneksi, "INSERT into nilai_eval values('','$nama','$nrp','$dosen_uji','$latar','$manfaat','$metode','$tulis','$bahasa','$sikap','$waktu_datang', '$datadok', '$materi', '$nilai_angka','$rekom','$catatan', sysdate())");
 
     if($query)
     {
@@ -188,7 +192,7 @@ if(isset($_POST['input']))
                             <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
                           </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Ujian Proyek Akhir</span>
+                        <span class="nav-link-text ms-1">Evaluasi Proyek Akhir</span>
                       </a>
                     </li>
 
@@ -200,7 +204,7 @@ if(isset($_POST['input']))
                             <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
                           </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Nilai Ujian Proyek Akhir</span>
+                        <span class="nav-link-text ms-1">Nilai Evaluasi Proyek Akhir</span>
                       </a>
                     </li>   
 
@@ -243,7 +247,7 @@ if(isset($_POST['input']))
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Penguji</a></li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Ujian Proyek Akhir</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Evaluasi Proyek Akhir</li>
                         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Form Penilaian Evaluasi Proyek Akhir</li>
                       </ol>
                       <h5 class="font-weight-bolder mb-0">Form Penilaian Evaluasi Proyek Akhir</h5>
@@ -575,42 +579,38 @@ if(isset($_POST['input']))
     </div>-->
 
     <!-- Tabel Validasi -->
+    <form action="" method="post" enctype="multipart/form-data">
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0 p-3">
-              <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:100px" >
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class = "text-center">Nama</th>
-                      <th class = "text-center">Nrp</th>
-                      <th class = "text-center">Judul Proyek Akhir</th>
-                      <th class = "text-center">Pembimbing 1</th>
-                      <th class = "text-center">Pembimbing 2</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+             <div class="row">
                     <?php
                     include "../_database/config.php";
-                    
-                    $no = 1;
-                    $query = mysqli_query($koneksi, 'SELECT * FROM pendaftareval');
+                    $id=$_GET['id'];
+                    $no=1;
+                    $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE id='$id' ");
                     while($row = mysqli_fetch_assoc($query)){
                       
                       ?>
-                      <tr>
-                        <th class = "text-center"><?php echo $row['nama']?></th>
-                        <th class = "text-center"><?php echo $row['nrp']?></th>
-                        <th class = "text-center"><?php echo $row['judul_pa']?></th>
-                        <th class = "text-center"><?php echo $row['pembimbing']?></th>
-                        <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
-                      </tr>
-                    <?php }?>
-                  </tbody>
-                </table>
+                     
+                            <div class="form-group col-md-6">
+                              <label for="formFile" class="form-label">Nama</label>
+                              <input name="nama" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nama']?>" required>
+                              <label name="nama" class="form-control" aria-label="default input example"><?php echo $row['nama']?></label>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="formFile" class="form-label">NRP</label>
+                              <input name="nrp" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nrp']?>" required>
+                              <label name="nrp" class="form-control" aria-label="default input example"><?php echo $row['nrp']?></label>
+                            </div>
+                            <?php }?>
+                  </div>
+                    
+                
               </div>
+              
               <br>
               <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px">
                 <table class="table align-items-center mb-0">
@@ -632,10 +632,10 @@ if(isset($_POST['input']))
                   <td class="text-center">
                     <select name="latar">
                       <option class="text-center">-</option>
-                      <option class="text-center">Kurang Sekali</option>
-                      <option class="text-center">Kurang</option>
-                      <option class="text-center">Cukup</option>
-                      <option class="text-center">Sangat Baik</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -645,10 +645,10 @@ if(isset($_POST['input']))
                   <td class="text-center">
                     <select name="manfaat">
                       <option class="text-center">-</option>
-                      <option class="text-center">Kurang Sekali</option>
-                      <option class="text-center">Kurang</option>
-                      <option class="text-center">Cukup</option>
-                      <option class="text-center">Sangat Baik</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -663,10 +663,10 @@ if(isset($_POST['input']))
                   <td class="text-center">
                     <select name="metode">
                       <option class="text-center">-</option>
-                      <option class="text-center">Kurang Sekali</option>
-                      <option class="text-center">Kurang</option>
-                      <option class="text-center">Cukup</option>
-                      <option class="text-center">Sangat Baik</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -679,12 +679,12 @@ if(isset($_POST['input']))
                   <td></td>
                   <td>Format dan Tata Tulis Rapi</td>
                   <td class="text-center">
-                    <select name="tulis">
+                    <select name="tata_tulis">
                       <option class="text-center">-</option>
-                      <option class="text-center">Kurang Sekali</option>
-                      <option class="text-center">Kurang</option>
-                      <option class="text-center">Cukup</option>
-                      <option class="text-center">Sangat Baik</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -692,12 +692,12 @@ if(isset($_POST['input']))
                   <td></td>
                   <td>Gagasan disampaikan dengan Tata Bahasa yang jelas</td>
                   <td class="text-center">
-                    <select name="bahasa">
+                    <select name="tata_bahasa">
                       <option class="text-center">-</option>
-                      <option class="text-center">Kurang Sekali</option>
-                      <option class="text-center">Kurang</option>
-                      <option class="text-center">Cukup</option>
-                      <option class="text-center">Sangat Baik</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -712,10 +712,10 @@ if(isset($_POST['input']))
                   <td class="text-center">
                     <select name="sikap">
                       <option class="text-center">-</option>
-                      <option class="text-center">Kurang Sekali</option>
-                      <option class="text-center">Kurang</option>
-                      <option class="text-center">Cukup</option>
-                      <option class="text-center">Sangat Baik</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -725,10 +725,10 @@ if(isset($_POST['input']))
                   <td class="text-center">
                     <select name="waktu_datang">
                       <option class="text-center">-</option>
-                      <option class="text-center">Kurang Sekali</option>
-                      <option class="text-center">Kurang</option>
-                      <option class="text-center">Cukup</option>
-                      <option class="text-center">Sangat Baik</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -738,10 +738,10 @@ if(isset($_POST['input']))
                   <td class="text-center">
                     <select name="datadok">
                       <option class="text-center">-</option>
-                      <option class="text-center">Kurang Sekali</option>
-                      <option class="text-center">Kurang</option>
-                      <option class="text-center">Cukup</option>
-                      <option class="text-center">Sangat Baik</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
                     </select>
                   </td>
                 </tr><tr>
@@ -750,10 +750,10 @@ if(isset($_POST['input']))
                   <td class="text-center">
                     <select name="materi">
                       <option class="text-center">-</option>
-                      <option class="text-center">Kurang Sekali</option>
-                      <option class="text-center">Kurang</option>
-                      <option class="text-center">Cukup</option>
-                      <option class="text-center">Sangat Baik</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -761,7 +761,7 @@ if(isset($_POST['input']))
             </table>
           </div>   
           <br>
-          <div class="col-auto">
+          <div class="col-auto" >
             <label class="visually-hidden" for="nilaimbuh"></label>
             <input type="text" class="form-control" id="nilaimbuh" name="nilai_angka" placeholder="Nilai Pembimbing/Penguji(0-100)">
             <h3>Rekomendasi</h3>
@@ -789,10 +789,15 @@ if(isset($_POST['input']))
                 Tidak Lulus
               </label>
             </div>
-
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Form Revisi</label>
+            <textarea class="form-control" name="catatan_revisi" id="exampleFormControlTextarea1" rows="5"></textarea>
+          </div>
+          <div class="col-auto" >
             <button type="submit" name="input" class="btn bg-gradient-info">Kirim</button>
           </div>
-
+        </form>
         </div>
       </div>
     </div>

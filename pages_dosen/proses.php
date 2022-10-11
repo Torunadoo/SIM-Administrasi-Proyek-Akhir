@@ -66,7 +66,7 @@ else if (move_uploaded_file($_FILES['fl']['tmp_name'], $url))
 else
 {
     
-    echo "Gagal Upload";
+  echo 'Gagal Upload';
 }
 
 } }

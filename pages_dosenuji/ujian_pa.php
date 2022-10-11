@@ -764,11 +764,11 @@
                       <th class = "text-center"><?php echo $row['nrp']?></th>
                       <th class = "text-center"><?php echo $row['judul_pa']?></th>
                       <th class = "text-center"><?php echo $row['jenis_eval']?></th>
+                      <th class = "text-center">-</th>
                       <th class = "text-center"></th>
-                      <th class = "text-center"></th>
-                      <th class = "text-center"></th>
-                      <th class = "text-center"></th>
-                      <th class = "text-center"></th>
+                      <th class = "text-center">-</th>
+                      <th class = "text-center"><?php echo $row['pembimbing']?></th>
+                      <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
                     </tr>
                       <?php }?>
                   </tbody>
