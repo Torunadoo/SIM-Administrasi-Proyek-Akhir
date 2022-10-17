@@ -694,12 +694,12 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-center">No</th>
-                      <th class = "text-center">Nama File</th>
-                      <th class="text-center">Jenis File</th>
-                      <th class="text-center">Tanggal Pengajuan</th>
-                      <th class="text-center">Status Bimbingan</th>
-                      <th class="text-center">Tindak lanjut</th>
+                      <th class="text-center"><strong>No</th>
+                      <th class = "text-center"><strong>Nama File</th>
+                      <th class="text-center"><strong>Jenis File</th>
+                      <th class="text-center"><strong>Tanggal Pengajuan</th>
+                      <th class="text-center"><strong>Status Bimbingan</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -726,7 +726,7 @@
                         <th class="text-center"><?php echo $row['keterangan'] ?></th>
                         <th class="text-center"><?php echo $row['tgl_unggah'] ?></th>
                         <th class ="text-center"><a class="btn btn-primary" href="../pages_dosen/proses.php?id=<?php echo $row['id']; ?>" role="button"><?php echo $tampil ?></a></th>
-                        <th class="text-center"></th>
+                        
                     </tr>
                     <?php }?>
                   </tbody>

@@ -4,12 +4,67 @@
   {
         header("location:../index.php");
     }
-?>
-    
 
-<?php
+
   include "../_database/config.php";
-?>
+  if(isset($_POST['input']))
+  {
+    $nama = $_POST['nama'];
+    $nrp = $_POST['nrp'];
+    $dosen_uji = $_SESSION['user'];
+    $prodi = 'Teknologi Rekayasa Otomasi';
+    $jenis_eval = $_POST['jenis_eval'];
+    $judul_pa = $_POST['judul_pa'];
+    $latar = $_POST['latar'];
+    $manfaat = $_POST['manfaat'];
+    $metode = $_POST['metode'];
+    $tulis = $_POST['tata_tulis'];
+    $bahasa = $_POST['tata_bahasa'];
+    $sikap = $_POST['sikap'];
+    $waktu_datang = $_POST['waktu_datang'];
+    $datadok = $_POST['datadok'];
+    $materi = $_POST['materi'];
+    $nilai_angka = $_POST['nilai_angka'];
+    $rekom = $_POST['rekom'];
+    $catatan = $_POST['catatan_revisi'];
+    
+  
+    if($jenis_eval =="Seminar"){
+      $query = mysqli_query($koneksi, "INSERT into nilai_seminar values('','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','$latar','$manfaat','$metode','$tulis','$bahasa','$sikap','$waktu_datang', '$datadok', '$materi', '$nilai_angka','$rekom','$catatan', sysdate())");
+  
+      if($query)
+      {
+        ?><script><?php $_SESSION['sukses'] = true;?></script> 
+        <script>history.pushState({}, "", "")</script><?php
+  
+      }
+      else
+      {
+        ?><script><?php $_SESSION['input'] = true;?></script> 
+        <script>history.pushState({}, "", "")</script><?php
+      }
+  
+  }
+  
+  else if($jenis_eval == "Sidang"){
+      $query1 = mysqli_query($koneksi, "INSERT into nilai_sidang values('','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','$latar','$manfaat','$metode','$tulis','$bahasa','$sikap','$waktu_datang', '$datadok', '$materi', '$nilai_angka','$rekom','$catatan', sysdate())");
+  
+      if($query1)
+      {
+        ?><script><?php $_SESSION['sukses'] = true;?></script> 
+        <script>history.pushState({}, "", "")</script><?php
+  
+      }
+      else
+      {
+        ?><script><?php $_SESSION['input'] = true;?></script> 
+        <script>history.pushState({}, "", "")</script><?php
+      }
+  }
+  else{
+      echo "Gagal Upload";
+  }
+  }?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +75,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/images/favicon.png">
   <title>
-    SIM Administrasi Proyek Akhir
+    Sistem Administrasi DTEO
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -40,7 +95,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="">
-        <span class="ms-1 font-weight-bold">Dashboard Admin</span>
+        <span class="ms-1 font-weight-bold">Dashboard Dosen Pembimbing</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -49,7 +104,7 @@
 
         <!-- HOME  -->
         <li class="nav-item">
-          <a class="nav-link  " href="./admin.php">
+          <a class="nav-link  " href="./dosen.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                   <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
@@ -128,73 +183,65 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Navigasi Dosen</h6>
         </li>
         <?php } ?>
-        
-        <!--Mahasiswa Pendaftar Proyek Akhir-->
-            <li class="nav-item">
-              <a class="nav-link  " href="./pendaftarpa_min.php">
+<!--Mahasiswa Bimbingan-->
+<li class="nav-item">
+              <a class="nav-link  " href="./bimbinganpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                     <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                   </svg>
                 </div>
-                <span class="nav-link-text ms-1">Pendaftar Proyek Akhir</span>
+                <span class="nav-link-text ms-1">Mahasiswa Bimbingan</span>
               </a>
             </li>
 
-            <!--Mahasiswa Proyek Akhir terverifikasi-->
+            <!--kalender -->
             <li class="nav-item">
-              <a class="nav-link  " href="./mahasiswapa_min.php">
+              <a class="nav-link  " href="./kalenderpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="fa-solid fa-calendar-days" viewBox="0 0 448 512">
+                      <path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"/>
                   </svg>
                 </div>
-                <span class="nav-link-text ms-1">Mahasiswa Proyek Akhir</span>
+                <span class="nav-link-text ms-1">Kalender Evaluasi</span>
               </a>
             </li>
 
-            <!--Kalender Proyek Akhir-->
+            <!-- File Proyek Akhir -->
             <li class="nav-item">
-              <a class="nav-link  " href="./jadwalpa_min.php">
-                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                  </svg>
-                </div>
-                <span class="nav-link-text ms-1">Penjadwalan Evaluasi</span>
-              </a>
-            </li>
+                <a class="nav-link  " href="./daftar_bimbingan.php">
+                  <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
+                      <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
+                    </svg>
+                  </div>
+                  <span class="nav-link-text ms-1">File Proyek Akhir</span>
+                </a>
+              </li>
 
-              <!-- Nilai Akhir Proyek Akhir -->
-            <li class="nav-item"> 
-              <a class="nav-link  " href="./nilaipa_min.php">
+              <li class="nav-item">
+                <a class="nav-link  active" href="./mahasiswa_uji.php">
+                  <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
+                      <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
+                    </svg>
+                  </div>
+                  <span class="nav-link-text ms-1">Evaluasi Proyek Akhir</span>
+                </a>
+              </li>
+              <!-- Nilai Proyek Akhir -->
+              <li class="nav-item"> 
+              <a class="nav-link  " href="./nilaipa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
                   </svg>
                 </div>
                 <span class="nav-link-text ms-1">Nilai Proyek Akhir</span>
               </a>
-            </li>
-             
-            
-              
-        <!-- DATA MAGANG -->
-        <?php if($_SESSION['status2'] == '2'){ ?>
-        <li class="nav-item"> 
-          <a class="nav-link  " href="./datamagang.php">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
-                <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
-              </svg>
-            </div>
-            <span class="nav-link-text ms-1">Data Magang</span>
-          </a>
-        </li>  
-        <?php } ?>
+            </li>   
 
         <!--Ganti Password-->
         <li class="nav-item mt-3">
@@ -220,10 +267,11 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Admin</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pendaftar Proyek Akhir</li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Pembimbing</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Evaluasi Proyek Akhir</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Form Penilaian</li>
           </ol>
-          <h5 class="font-weight-bolder mb-0">Pendaftar Proyek Akhir</h5>
+          <h5 class="font-weight-bolder mb-0">Form Penilaian Evaluasi Proyek Akhir</h5>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -399,7 +447,7 @@
                         <!-- dosen koor magang & proyek akhir -->
                         <?php if ($_SESSION['status2'] == 2 && $data['status_dosen1'] == 2 && $data['notif'] == 1 && $tujuan2 == $nama) { ?>
                         <li class="mb-2">
-                          <a class="dropdown-item border-radius-md" href="./bimbinganpa.php">
+                          <a class="dropdown-item border-radius-md" href="./validasisurat.php">
                             <div class="d-flex py-1">
                               <div class="d-flex flex-column justify-content-center">
                                 <button type="submit" name="koor1" class="border-0 btn btn-outline-dark btn-sm px-0 mb-0 mt-1">
@@ -420,7 +468,7 @@
                         <!-- dosen koor PBL -->
                         <?php } else if ($_SESSION['status3'] == 2 && $data['status_dosen1'] == 2 && $data['notif'] == 1 && $tujuan2 == $nama) { ?>
                         <li class="mb-2">
-                          <a class="dropdown-item border-radius-md" href="./bimbinganpa.php">
+                          <a class="dropdown-item border-radius-md" href="./validasisurat.php">
                             <div class="d-flex py-1">
                               <div class="d-flex flex-column justify-content-center">
                                 <button type="submit" name="koor2" class="border-0 btn btn-outline-dark btn-sm px-0 mb-0 mt-1">
@@ -442,7 +490,7 @@
                         <?php } else if ($tujuan == $nama && $data['notif'] == 0 && $data['status_dosen1'] == 0) { 
                           if ($data['perihal'] == "Bimbingan Proposal Magang" || $data['perihal'] == "Bimbingan Proposal Proyek Akhir" || $data['perihal'] == "Bimbingan Proposal PBL") { ?>
                         <li class="mb-2">
-                          <a class="dropdown-item border-radius-md" href="./bimbinganpa.php">
+                          <a class="dropdown-item border-radius-md" href="./validasisurat.php">
                             <div class="d-flex py-1">
                               <div class="d-flex flex-column justify-content-center">
                                 <button type="submit" name="bp" class="border-0 btn btn-outline-dark btn-sm px-0 mb-0 mt-1">
@@ -462,7 +510,7 @@
                         </li>
                         <?php } else { ?>
                           <li class="mb-2">
-                          <a class="dropdown-item border-radius-md" href="./bimbinganpa.php">
+                          <a class="dropdown-item border-radius-md" href="./validasisurat.php">
                             <div class="d-flex py-1">
                               <div class="d-flex flex-column justify-content-center">
                                 <button type="submit" name="notif" class="border-0 btn btn-outline-dark btn-sm px-0 mb-0 mt-1">
@@ -484,7 +532,7 @@
                         <?php } } else if ($_SESSION['status2'] == 1 && $_SESSION['status'] == 2 && $data['notif'] == 1 && $tujuan3 == $nama) {
                           if ($data['perihal'] == "Bimbingan Proposal Kegiatan HIMA") { ?>
                         <li class="mb-2">
-                          <a class="dropdown-item border-radius-md" href="./bimbinganpa.php">
+                          <a class="dropdown-item border-radius-md" href="./validasisurat.php">
                             <div class="d-flex py-1">
                               <div class="d-flex flex-column justify-content-center">
                                 <button type="submit" name="bptkk" class="border-0 btn btn-outline-dark btn-sm px-0 mb-0 mt-1">
@@ -504,7 +552,7 @@
                         </li>
                         <?php } else { ?>
                         <li class="mb-2">
-                          <a class="dropdown-item border-radius-md" href="./bimbinganpa.php">
+                          <a class="dropdown-item border-radius-md" href="./validasisurat.php">
                             <div class="d-flex py-1">
                               <div class="d-flex flex-column justify-content-center">
                                 <button type="submit" name="tkk" class="border-0 btn btn-outline-dark btn-sm px-0 mb-0 mt-1">
@@ -545,140 +593,263 @@
     </nav>
     <!-- End Navbar -->
 
+    <!-- <div class="text-center">
+      <a class="nav-link  " href="./unggahpa.php"> 
+        <button type="button" class="btn btn-secondary btn-lg-center w-95 btn bg-gradient-info" >Unggah File Revisi</button>
+      </a>
+    </div> -->
+
 <!-- Tabel Validasi -->
-<div class="container-fluid py-4">
+<form action="" method="post" enctype="multipart/form-data">
+    <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
-                  <!-- dropdown jenis surat -->
             <div class="card-header pb-0 p-3">
-              <div class="row">
-                <div class="col-6 d-flex align-items-center">
-                  <h6 class="mb-0">Pilih Semester:</h6>
-                  <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
-                    <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                      <button type="button" class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Pilih Semester
-                      </button>
-                    </a>
-                    <ul style = "height:200px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
-                      <div class="card example-1 scrollbar-deep-purple bordered-deep-purple thin" style = "height:200px">  
-                        <li>
-                          <a class="dropdown-item border-radius-md">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1" >
-                                  <span class="font-weight-bold">Gasal 2021/2022</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                        <li >
-                          <a class="dropdown-item border-radius-md">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Genap 2021/2022</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                      </div>
-                    </ul>
-                  </li> 
+                <div class="row">
+                    <?php
+                    include "../_database/config.php";
+                    $id=$_GET['id'];
+                    $no=1;
+                    $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE id='$id' ");
+                    while($row = mysqli_fetch_assoc($query)){
+                      
+                      ?>
+                     
+                    <div class="form-group col-md-6">
+                        <label for="formFile" class="form-label">Nama</label>
+                        <input name="nama" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nama']?>" required>
+                        <label name="nama" class="form-control" aria-label="default input example"><?php echo $row['nama']?></label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="formFile" class="form-label">NRP</label>
+                        <input name="nrp" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nrp']?>" required>
+                        <label name="nrp" class="form-control" aria-label="default input example"><?php echo $row['nrp']?></label>
+                    </div>
+                    <input name="jenis_eval" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['jenis_eval']?>" required>
+
+                    
                 </div>
+                    
+                <div class="row">
+                    <div class="form-group">
+                        <label for="formFile" class="form-label">Judul Proyek Akhir</label>
+                        <label name="judul_pa" class="form-control" aria-label="default input example"><?php echo $row['judul_pa']?></label>
+                        <input name="judul_pa" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['judul_pa']?>" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="formFile" class="form-label">Dosen Pembimbing 1</label>
+                        <label name="dosbing1" class="form-control" aria-label="default input example"><?php echo $row['pembimbing']?></label>
+                        <input name="dosbing1" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['pembimbing']?>" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="formFile" class="form-label">Dosen Pembimbing 2</label>
+                        <label name="dosbing2" class="form-control" aria-label="default input example"><?php echo $row['pembimbing_2']?></label>
+                        <input name="dosbing2" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['pembimbing_2']?>" required>
+                    </div><?php }?>
+                </div>
+
               </div>
-            </div>
-            <!-- and dropdown jenis surat -->
-          <!--<div class="form-group d-flex justify-content-around mt-4 my-0 md-0">
-          <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "12">
-                <?php if ($_POST['filterid'] == 0 || $_POST['filterid'] == 2 || $_POST['filterid'] == 1 ) { ?>
-               <button type = "submit" name = "filterall" class = "btn btn-outline-info">Lihat Semua</button>
-               <?php } 
-               else { ?>
-               <button type = "submit" name = "filterall" class = "btn btn-info">Lihat Semua</button>
-             <?php } ?>
-               </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "0">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 2 || $_POST['filterid'] == 1 || $_POST['filterid'] == NULL  ) { ?>
-               <button type = "submit" name = "filter0" class = "btn btn-outline-info">Belum Diproses</button>
-               <?php } 
-               else { ?>
-             <button type = "submit" name = "filter0" class = "btn btn-info">Belum Diproses</button>
-             <?php } ?>
-            </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "1">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 2 || $_POST['filterid'] == 0 || $_POST['filterid'] == NULL  ) { ?>
-               <button type = "submit" name = "filter1" class = "btn btn-outline-info">Ditolak</button>
-               <?php } 
-               else { ?>
-              <button type = "submit" name = "filter1" class = "btn btn-info">Ditolak</button>
-             <?php } ?>
-            </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "2">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 1 || $_POST['filterid'] == 0 || $_POST['filterid'] == NULL  ) { ?>
-               <button type = "submit" name = "filter2" class = "btn btn-outline-info">Disetujui</button>
-               <?php } 
-               else { ?>
-              <button type = "submit" name = "filter2" class = "btn btn-info">Disetujui</button>
-             <?php } ?>
-            </form>
-        </div>-->
-        
-          <div class="card-body px-0 pt-0 mt-0 py-0 my-0 pb-2">
-            <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px" >
+              
+              
+              
+              <br>
+              <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th class = "text-center">Nama</th>
-                      <th class="text-center">Nrp</th>
-                      <th class="text-center">Angkatan</th>
-                      <th class="text-center">Judul Proyek Akhir</th>
-                      <th class="text-center">Tanggal Pengajuan</th>
-                      <th class="text-center">Pembimbing 1</th>
-                      <th class="text-center">Pembimbing 2</th>
-                      <th class="text-center">Opsi</th>
+                      <th class="text-center">No</th>
+                      <th >Sasaran Penilaian</th>
+                      <th class="text-center">Nilai</th>
                     </tr>
                   </thead>
-                  <tbody>
+                </tbody>
+                <tr>
+                  <th class="text-center">1</th>
+                  <th>Kebermanfaatan kepada mitra (20%)</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Latar belakang sesuai dengan problem mitra</td>
+                  <td class="text-center">
+                    <select name="latar">
+                      <option class="text-center">-</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Bermanfaat untuk mitra</td>
+                  <td class="text-center">
+                    <select name="manfaat">
+                      <option class="text-center">-</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
+                    </select>
+                  </td>
+                </tr>
 
-                  <?php
-                    include "../_database/config.php";
-                    
-                    $no = 1;
-                    $query = mysqli_query($koneksi, 'SELECT * FROM pendaftareval');
-                    while($row = mysqli_fetch_assoc($query)){
-                      
+                <tr>
+                  <th class="text-center">2</th>
+                  <th>Metode yang diusulkan pada proyek akhir (20%)</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Metode yang relevan dengan prodi TRO</td>
+                  <td class="text-center">
+                    <select name="metode">
+                      <option class="text-center">-</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
+                    </select>
+                  </td>
+                </tr>
 
-                    
-                    ?>
+                <tr>
+                  <th class="text-center">3</th>
+                  <th>Tata Tulis Buku Proyek Akhir (20%)</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Format dan Tata Tulis Rapi</td>
+                  <td class="text-center">
+                    <select name="tata_tulis">
+                      <option class="text-center">-</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Gagasan disampaikan dengan Tata Bahasa yang jelas</td>
+                  <td class="text-center">
+                    <select name="tata_bahasa">
+                      <option class="text-center">-</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
+                    </select>
+                  </td>
+                </tr>
 
-                    <tr>
-                    <th class = "text-center"><?php echo $no++ ?></th>
-                      <th class = "text-center"><?php echo $row['nama']?></th>
-                      <th class = "text-center"><?php echo $row['nrp']?></th>
-                      <th class = "text-center"><?php echo $row['angkatan']?></th>
-                      <th class = "text-center"><?php echo $row['judul_pa']?></th>
-                      <th class = "text-center"><?php echo $row['tanggal']?></th>
-                      <th class = "text-center"><?php echo $row['pembimbing']?></th>
-                      <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
-                      <th class = "text-center"><a class="btn btn-primary" href="../pages_dosenkoor/validasi.php?nama=<?php echo $row['nama']; ?>" role="button">Validasi</a></th>
-                    </tr>
-                    <?php }?>
-                  </tbody>
-                </table>
-              </div>
+                <tr>
+                  <th class="text-center">4</th>
+                  <th>Presentasi (40%)</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Sikap yang sopan</td>
+                  <td class="text-center">
+                    <select name="sikap">
+                      <option class="text-center">-</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Kedatangan tepat waktu</td>
+                  <td class="text-center">
+                    <select name="waktu_datang">
+                      <option class="text-center">-</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Data dan Dokumentasi Proses bisa dipertanggung-jawabkan</td>
+                  <td class="text-center">
+                    <select name="datadok">
+                      <option class="text-center">-</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
+                    </select>
+                  </td>
+                </tr><tr>
+                  <td></td>
+                  <td>Penguasaan Materi</td>
+                  <td class="text-center">
+                    <select name="materi">
+                      <option class="text-center">-</option>
+                      <option class="text-center" value = "Kurang Sekali">Kurang Sekali</option>
+                      <option class="text-center" value = "Kurang ">Kurang</option>
+                      <option class="text-center" value = "Cukup">Cukup</option>
+                      <option class="text-center" value = "Sangat Baik">Sangat Baik</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>   
+          <br>
+          <div class="col-auto" >
+            <label class="visually-hidden" for="nilaimbuh"></label>
+            <input type="text" class="form-control" id="nilaimbuh" name="nilai_angka" placeholder="Nilai Pembimbing/Penguji(0-100)">
+            <h3>Rekomendasi</h3>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="rekom" value="Lulus tanpa Revisi" >
+              <label class="form-check-label">
+                Lulus tanpa Revisi
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="rekom" value="Lulus dengan Revisi Minor" >
+              <label class="form-check-label">
+                Lulus dengan Revisi Minor
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="rekom" value="Lulus dengan Revisi Mayor">
+              <label class="form-check-label">
+                Lulus dengan Revisi Mayor
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="rekom" value="Tidak Lulus">
+              <label class="form-check-label">
+                Tidak Lulus
+              </label>
             </div>
           </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Form Revisi (Bab/Halaman : Uraian : Keterangan)</label>
+            <textarea class="form-control" name="catatan_revisi" id="exampleFormControlTextarea1" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Form Berita Acara</label>
+            <textarea class="form-control" name="catatan_revisi" id="exampleFormControlTextarea1" rows="5"></textarea>
+          </div>
+          <div class="col-auto" >
+            <button type="submit" name="input" class="btn bg-gradient-info">Kirim</button>
+          </div>
+        </form>
         </div>
-      </div>      
-
+      </div>
     </div>
+  </div>
 
   </main>
   

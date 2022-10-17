@@ -298,7 +298,7 @@
 
             <!-- File Proyek Akhir -->
             <li class="nav-item">
-                <a class="nav-link  active" href="./ujian_pa.php">
+                <a class="nav-link  " href="./mahasiswa_uji.php">
                   <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
                       <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
@@ -738,16 +738,15 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-center">No</th>
-                      <th class = "text-center">Nama</th>
-                      <th class = "text-center">Nrp</th>
-                      <th class = "text-center">Judul Proyek Akhir</th>
-                      <th class = "text-center">Jenis Evaluasi</th>
-                      <th class = "text-center">Jadwal Evaluasi</th>
-                      <th class = "text-center">Status</th>
-                      <th class = "text-center">Tanggal Pelaksanaan</th>
-                      <th class = "text-center">Pembimbing 1</th>
-                      <th class = "text-center">Pembimbing 2</th>
+                      <th class="text-center"><strong>No</th>
+                      <th class = "text-center"><strong>Nama</th>
+                      <th class = "text-center"><strong>Nrp</th>
+                      <th class = "text-center"><strong>Judul Proyek Akhir</th>
+                      <th class = "text-center"><strong>Jenis Evaluasi</th>
+                      <th class = "text-center"><strong>Jadwal Evaluasi</th>
+                      <th class = "text-center"><strong>Status</th>
+                      <th class = "text-center"><strong>Pembimbing 1</th>
+                      <th class = "text-center"><strong>Pembimbing 2</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -760,13 +759,13 @@
                         ?>
                     <tr>
                       <th class="text-center"><?php echo $no++ ?></th>
-                      <th class = "text-center"><button class="btn btn-light"><a href="../pages_dosenuji/form_nilai.php?nama="><?php echo $row['nama']?></a></button></th>
+                      <th class = "text-center"><button class="btn btn-light"><a href="../pages_dosenuji/form_nilai.php?id=<?php echo $row['id']; ?>"><?php echo $row['nama']?></a></button></th>
                       <th class = "text-center"><?php echo $row['nrp']?></th>
                       <th class = "text-center"><?php echo $row['judul_pa']?></th>
                       <th class = "text-center"><?php echo $row['jenis_eval']?></th>
                       <th class = "text-center">-</th>
                       <th class = "text-center"></th>
-                      <th class = "text-center">-</th>
+                      
                       <th class = "text-center"><?php echo $row['pembimbing']?></th>
                       <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
                     </tr>

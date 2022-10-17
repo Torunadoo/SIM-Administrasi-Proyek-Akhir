@@ -379,7 +379,7 @@ if (isset($_POST['hima2'])) {
                   <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
                     <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                       <button type="button" class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Pilih Nilai
+                      Nilai Sidang 
                       </button>
                     </a>
                     <ul style = "height:160px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
@@ -429,13 +429,31 @@ if (isset($_POST['hima2'])) {
                     <thead>
                       <!-- judul kolom -->
                       <tr>
+                        <th class="text-center">Nama</th>
                         <th class="text-center">NRP</th>
-                        <th class="text-left ps-1">Nama</th>
                         <th class="text-center">Program Studi</th>
                         <th class="text-center">Nilai Sidang</th>
                         <th class="text-center">Catatan Hasil Sidang Proyek Akhir</th>
                       </tr>
                     </thead>
+                      <tbody>
+                        <tr>
+                        <?php
+                        include "../_database/config.php";
+                        $user=$_SESSION['user'];
+                        $no = 1;
+                        $query = mysqli_query($koneksi, "SELECT * FROM nilai_eval WHERE nama='$user' AND jenis_eval='Sidang'");
+                        while($row = mysqli_fetch_assoc($query)){
+                          ?>
+
+                          <th class="text-center"><?php echo $row['nama']?></th>
+                          <th class="text-center"><?php echo $row['nrp']?></th>
+                          <th class="text-center"><?php echo $row['prodi']?></th>
+                          <th class="text-center"><?php echo $row['nilai_angka']?></th>
+                          <th class="text-center"><?php echo '-'?></th>
+                        </tr>
+                        <?php }?>
+                      </tbody>
                   </table>
               </div>
             </div>

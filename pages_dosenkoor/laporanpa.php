@@ -272,7 +272,7 @@
         <?php } ?>
         
         <!--Mahasiswa Pendaftar Proyek Akhir-->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link  " href="./pendaftarpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
@@ -282,7 +282,7 @@
                 </div>
                 <span class="nav-link-text ms-1">Pendaftar Proyek Akhir</span>
               </a>
-            </li>
+            </li> -->
 
             <!--Mahasiswa Proyek Akhir terverifikasi-->
             <li class="nav-item">
@@ -789,7 +789,7 @@
                       <th>No</th>
                       <th class ="text-center">Nama</th>
                       <th class ="text-center">NRP</th>
-                      <th class ="text-center">Angkatan</th>
+                      <th class ="text-center">Semester</th>
                       <th class ="text-center">Judul Proyek Akhir</th>
                       <th class ="text-center">Tanggal Pelaksanaan</th>
                       <th class ="text-center">Pembimbing 1</th>
@@ -798,6 +798,20 @@
                       <th class ="text-center">Status</th>
                     </tr>
                   </thead>
+                  <tbody>
+                    <tr>
+                      <th>No</th>
+                      <th class ="text-center">Valiant</th>
+                      <th class ="text-center">2040211022</th>
+                      <th class ="text-center">Genap 2023/2024</th>
+                      <th class ="text-center">Smart Home</th>
+                      <th class ="text-center"></th>
+                      <th class ="text-center">Pembimbing 1</th>
+                      <th class ="text-center">Pembimbing 2</th>
+                      <th class ="text-center">Nilai Akhir</th>
+                      <th class ="text-center"></th>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div>

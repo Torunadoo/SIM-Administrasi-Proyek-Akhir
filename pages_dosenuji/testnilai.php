@@ -29,8 +29,7 @@ if(isset($_POST['input']))
   $rekom = $_POST['rekom'];
   $catatan = $_POST['catatan_revisi'];
   
-
-  if($jenis_eval =="Seminar"){
+if($jenis_eval =="Seminar"){
     $query = mysqli_query($koneksi, "INSERT into nilai_seminar values('','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','$latar','$manfaat','$metode','$tulis','$bahasa','$sikap','$waktu_datang', '$datadok', '$materi', '$nilai_angka','$rekom','$catatan', sysdate())");
 
     if($query)
@@ -65,6 +64,7 @@ else if($jenis_eval == "Sidang"){
 else{
     echo "Gagal Upload";
 }
+
 }?>
             <!DOCTYPE html>
             <html lang="en">
@@ -613,9 +613,9 @@ else{
              <div class="row">
                     <?php
                     include "../_database/config.php";
-                    $id=$_GET['id'];
+                    // $id=$_GET['id'];
                     $no=1;
-                    $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE id='$id' ");
+                    $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE id='18'");
                     while($row = mysqli_fetch_assoc($query)){
                       
                       ?>

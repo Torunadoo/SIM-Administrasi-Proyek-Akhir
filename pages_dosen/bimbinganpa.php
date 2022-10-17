@@ -238,6 +238,16 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a class="nav-link  " href="./mahasiswa_uji.php">
+                  <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
+                      <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
+                    </svg>
+                  </div>
+                  <span class="nav-link-text ms-1">Evaluasi Proyek Akhir</span>
+                </a>
+              </li>
               <!-- Nilai Proyek Akhir -->
               <li class="nav-item"> 
               <a class="nav-link  " href="./nilaipa.php">
@@ -605,67 +615,23 @@
         <div class="col-12">
           <div class="card mb-4">
             <!-- dropdown semester -->
-            <div class="card-header pb-0 p-3">
-              <div class="row">
-                <div class="col-6 d-flex align-items-center">
-                  <h6 class="mb-0">Pilih Semester</h6>
-                  <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
-                    <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                      <button type="button" class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Pilih Semester
-                      </button>
-                    </a>
-                    <ul style = "height:200px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
-                      <div class="card example-1 scrollbar-deep-purple bordered-deep-purple thin" style = "height:200px">  
-                        <li>
-                          <a class="dropdown-item border-radius-md" href="#">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Gasal 2022/2023</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item border-radius-md" href="#">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Genap 2022/2023</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item border-radius-md" href="#">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Gasal 2023/2024</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item border-radius-md" href="#">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Genap 2023/2024</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                      </div>
-                    </ul>
-                  </li> 
-                </div>
+            
+            <!-- <div class="card-header pb-0 p-3">
+              <div class="row" id="filters">
+                <span>Pilih Semester &nbsp;</span>
+                <select name="pilih_semester" >
+                  <option value="Genap 2022/2023">Genap 2022/2023</option>
+                  <option value="Ganjil 2023/2024">Ganjil 2023/2024</option>
+                  <option value="Genap 2023/2024">Genap 2023/2024</option>
+                  <option value="Ganjil 2024/2025">Ganjil 2024/2025</option>
+                  <option value="Genap 2024/2025">Genap 2024/2025</option>
+                </select>
+                
               </div>
-            </div>
+            </div> -->
             
             <!-- end dropdown semester -->
-        <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
           <div class="card-body px-0 pt-0 mt-0 py-0 my-0 pb-2">
             <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px" >
                 <table class="table align-items-center mb-0">
@@ -676,9 +642,9 @@
                       <th class="text-center">NRP</th>
                       <th class="text-center">Semester</th>
                       <th class="text-center">Judul Proyek Akhir</th>
-                      <th class="text-center">Tempat Proyek Akhir</th>
                       <th class="text-center">Jenis Bimbingan</th>
                       <th class="text-center">Tanggal Pengajuan</th>
+                      <th class="text-center">Status Pendaftaran</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -702,11 +668,12 @@
                     ?>
                       <th class = "text-center"><?php echo $no++ ?></th>
                       <th class = "text-center"><?php echo $row['nama']?></th>
-                      <th class = "text-center"><?php echo $row['nama']?></th>
-                      <th class = "text-center"><?php echo $row['nama']?></th>
-                      <th class = "text-center"><?php echo $row['nama']?></th>
-                      <th class = "text-center"><?php echo $row['nama']?></th>
-                      <th class = "text-center"><?php echo $row['nama']?></th>
+                      <th class = "text-center"><?php echo $row['nrp']?></th>
+                      <th class = "text-center"><?php echo $row['semester']?></th>
+                      <th class = "text-center"><?php echo $row['judul_pa']?></th>
+                      <th class = "text-center"><?php echo $row['jenis_eval']?></th>
+                      <th class = "text-center"><?php echo $row['tanggal']?></th>
+                      <th class = "text-center"><?php echo $tampil?></th>
                     </tr>
                     <?php }?>
                   </tbody>
@@ -741,6 +708,7 @@
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script></script>
     <?php if(@$_SESSION['sukses']) : ?>
         <script>
             Swal.fire({
@@ -782,6 +750,7 @@
         </script>
     <?php unset($_SESSION['catatan']); ?>
     <?php endif; ?>
+          
 </body>
 
 </html>

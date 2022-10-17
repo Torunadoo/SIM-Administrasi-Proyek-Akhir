@@ -453,7 +453,7 @@ if(isset($_POST['input']))
                 <div class="mb-0">
                   <label for="formFile" class="form-label">Semester</label>
                     <select name="smt" class="form-control" aria-placeholder="Pilih Program Studi"  name aria-label="Default input example" required>
-                      <option selected>Pilih Semester</option>
+                      <option selected disabled>Pilih Semester</option>
                       <option value="Gasal 2022/2023">Gasal 2022/2023</option>
                       <option value="Genap 2022/2023">Genap 2022/2023</option>
                       <option value="Gasal 2023/2024">Gasal 2023/2024</option>
@@ -512,7 +512,7 @@ if(isset($_POST['input']))
                   <div class="form-group col-md-12">
                       <label for="formFile" class="form-label">Dosen Pembimbing 1</label>
                       <select name="ds1"  class="form-select" aria-label="Default select example" >
-                        <option value="Tidak Memerlukan Dosen Pembimbing" selected>Pilih Dosen Pembimbing</option>
+                        <option value="Tidak Memerlukan Dosen Pembimbing" selected disabled>Pilih Dosen Pembimbing</option>
                         <?php
                         include '../_database/config.php';
                         $query_dosen = mysqli_query($koneksi, "SELECT * FROM data_dosenb") or die(mysqli_error($koneksi));
@@ -524,7 +524,7 @@ if(isset($_POST['input']))
                     <div class="form-group col-md-12">
                       <label for="formFile" class="form-label">Dosen Pembimbing 2</label>
                       <select name="ds2"  class="form-select" aria-label="Default select example" >
-                        <option value="Tidak Memerlukan Dosen Pembimbing" selected>Pilih Dosen Pembimbing</option>
+                        <option value="Tidak Memerlukan Dosen Pembimbing" selected disabled>Pilih Dosen Pembimbing</option>
                         <?php
                         include '../_database/config.php';
                         $query_dosen = mysqli_query($koneksi, "SELECT * FROM data_dosenb") or die(mysqli_error($koneksi));
@@ -544,7 +544,7 @@ if(isset($_POST['input']))
                 <div class="mb-0">
                   <label for="formFile" class="form-label">Jenis Evaluasi</label>
                     <select name="jenis_eval" class="form-control" aria-placeholder="Pilih Program Studi"  name aria-label="Default input example" required>
-                      <option selected>Pilih Jenis Evaluasi</option>
+                      <option selected disabled>Pilih Jenis Evaluasi</option>
                       <option value="Seminar">Seminar</option>
                       <option value="Sidang">Sidang</option>
                     </select>
@@ -559,19 +559,7 @@ if(isset($_POST['input']))
                 <div class="mb-0">
                   
                   <label for="formFile" class="form-label">Topik/ Tema Proyek Akhir</label>
-                  <?php if ($data2['status_ajuan'] == 2 && $data2['status_dosen1'] !== 2) { ?>
-                  <input name="tema_pa" class="form-control" type="text" aria-label="default input example"  value = "<?php echo $data2['nama_perusahaan'] ?>" >
-                
-                  <?php } else if ($data2 ['status_ajuan'] == 1 && $data2['status_dosen1'] !== 2) { ?>
-                  <input name="tema_pa" class="form-control" type="text" aria-label="default input example"  value = "<?php echo $data2['nama_perusahaan'] ?>" >
-                    <?php } 
-                    else if ($data2['status_dosen1'] == 2) { ?>
-                        <label name="tema_pa" class="form-control" aria-label="default input example"><?php echo $data2['nama_perusahaan'] ?></label>       
-                   <?php }
-                    else { ?>
                   <input name="tema_pa" class="form-control" type="text" aria-label="default input   example" placeholder="Masukkan Topik/ Tema Proyek Akhir" >
-                   <?php }
-                    ?>
                 </div>
               </div>
             </div>

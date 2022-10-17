@@ -304,7 +304,7 @@
             <?php } ?>
               
             <!--Mahasiswa Pendaftar Proyek Akhir-->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link  " href="./pendaftarpa_min.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
@@ -314,7 +314,7 @@
                 </div>
                 <span class="nav-link-text ms-1">Pendaftar Proyek Akhir</span>
               </a>
-            </li>
+            </li> -->
 
             <!--Mahasiswa Proyek Akhir terverifikasi-->
             <li class="nav-item">

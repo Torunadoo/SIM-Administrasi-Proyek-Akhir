@@ -304,7 +304,7 @@
             <?php } ?>
               
            <!--Mahasiswa Pendaftar Proyek Akhir-->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link  " href="./pendaftarpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
@@ -314,7 +314,7 @@
                 </div>
                 <span class="nav-link-text ms-1">Pendaftar Proyek Akhir</span>
               </a>
-            </li>
+            </li> -->
 
             <!--Mahasiswa Proyek Akhir terverifikasi-->
             <li class="nav-item">
@@ -625,27 +625,28 @@
                     <ul style = "height:200px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
                       <div class="card example-1 scrollbar-deep-purple bordered-deep-purple thin" style = "height:200px">  
                         <li>
-                          <a href="../awikwok.php" class="dropdown-item border-radius-md">
+                          <a href="../pages_dosenkoor/nilaisempro.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1" >
                                   <span class="font-weight-bold">Nilai Seminar Proposal</span>
+                                  
                                 </h6>
                             </div>
                           </a>
                         </li>
                         <li >
-                          <a href="../" class="dropdown-item border-radius-md">
+                          <a href="../pages_dosenkoor/nilaieval.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Nilai Evaluasi Proyek Akhir</span>
+                                  <span class="font-weight-bold">Nilai Sidang Proyek Akhir</span>
                                 </h6>
                             </div>
                           </a>
                         </li>
                         <li >
-                          <a href="../" class="dropdown-item border-radius-md">
+                          <a href="../pages_dosenkoor/nilaipa.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -677,37 +678,30 @@
                       <tr class="col-lg-4 col-md-6 col-sm-12 col-xs-12 filterDiv industrial show">
                         <th class="text-center">No</th>
                         <th class="text-center">Nama</th>
-                        <th class="text-left ps-1">Nrp</th>
-                        <th class="text-center">Angkatan</th>
-                        <th class="text-center">Nilai Seminar Proposal</th>
-                        <th class="text-center">Nilai Sidang Proyek Akhir</th>
+                        <th class="text-center">Nrp</th>
+                        <th class="text-center">Judul Proyek Akhir</th>
+                        <th class="text-center">Nilai Akhir</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    include "../_database/config.php";
+                      $user=$_SESSION['user'];
+                      $no = 1;
+                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_seminar WHERE dosen_uji='$user'");
+                      while($row = mysqli_fetch_assoc($query)){
+                
+                      ?>
                       <tr>
-                        <th class="text-center">1</th>
-                        <th class="text-center">2040211022</th>
-                        <th class="text-left ps-1">Valiant </th>
-                        <th class="text-center">2021</th>
-                        <th class="text-center">-</th>
-                        <th class="text-center">-</th>
+                        <td class="text-center"><?php echo $no++ ?></td>
+                        <td class="text-center"><?php echo $row['nama']?></td>
+                        <td class="text-center"><?php echo $row['nrp']?></td>
+                        <td class="text-center"><?php echo $row['judul_pa']?></td>
+                        <td class="text-center"><?php echo $row['nilai_sem']?></td>
+                        
                       </tr>
-                      <!--<tr>
-                        <th class="text-center">2</th>
-                        <th class="text-center">2040211022</th>
-                        <th class="text-left ps-1">Valiant </th>
-                        <th class="text-center">Elektro Otomasi</th>
-                        <th class="text-center">-</th>
-                        <th class="text-center">-</th>
-                      </tr>
-                      <tr>
-                        <th class="text-center">3</th>
-                        <th class="text-center">2040211022</th>
-                        <th class="text-left ps-1">Valiant </th>
-                        <th class="text-center">Elektro Otomasi</th>
-                        <th class="text-center">-</th>
-                        <th class="text-center">-</th>
-                      </tr>-->
+                      <?php }?>
                     </tbody>
                     
                   </table>

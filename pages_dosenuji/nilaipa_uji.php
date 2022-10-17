@@ -215,7 +215,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="">
-              <span class="ms-1 font-weight-bold">Dashboard Dosen</span>
+              <span class="ms-1 font-weight-bold">Dashboard Dosen Penguji</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0">
@@ -610,53 +610,31 @@
                     <thead>
                       <!-- judul kolom -->
                       <tr>
-                        <th class="text-center">Nama</th>
-                        <th class="text-left ps-1">Nrp</th>
-                        <th class="text-center">Judul Proyek Akhir</th>
-                        <th class="text-center">Nilai Seminar Proposal</th>
-                        <th class="text-center">Nilai Sidang Proyek Akhir</th>
+                        <th class="text-center"><strong>Nama</th>
+                        <th class="text-center"><strong>Nrp</th>
+                        <th class="text-center"><strong>Judul Proyek Akhir</th>
+                        <th class="text-center"><strong>Nilai Seminar Proposal</th>
+                        <th class="text-center"><strong>Nilai Sidang Proyek Akhir</th>
                       </tr>
                     </thead>
-
-                    <?php
-                    include '../_database/config.php'; //panggil setiap ingin koneksi ke data
-                    $no = 0;
-                    $no2 = $no++;
-                    $query = mysqli_query($koneksi, 'SELECT * FROM kirimadmin ORDER BY id_no DESC' );
-                    while ($data = mysqli_fetch_array($query)) {
-
-                      $tujuan = $data['nama'];
-
-                      if (strpos($tujuan, $_SESSION['user']) !== false) {
-                        
-                    ?>
-                        <tr>
-                          <!-- no -->
-                          <td class="text-center"><?php echo $no++ ?></td>
-                          <!-- perihal -->
-                          <td class="text-left ps-1"><?php echo $data['perihal'] ?></td>
-                          <!-- id surat -->
-                          <td class="text-center"><?php echo $data['id_no'] ?></td>
-                          <!-- tanggal -->
-                          <td class="text-center"><?php echo $data['tanggal'] ?></td>
-                          <td> 
-                            <!-- file -->
-                            <div class="text-center">
-                              <a href="../pagesadmin/<?php echo $data['file'] ?>" target="_blank">
-                              <p class="modal-title" class="text-center ps-1" name="fl" id="edit<?php echo $data['id_no'] ?>"><button type="button"  class="btn btn-link"><em><?php echo $data['file'] ?></em></button></p>
-                            </div>
-                          </td>
-
-                        </tr>
-                        <?php }
-                    }  ?>
-
-                          <?php if ($no == 1) { ?>
-
-                          <td></td>
-                          <td></td>
-                          <td class = "text-center"> <h6 class = "font-weight-bold">BELUM ADA NILAI</h6></td>
-                          <?php } ?>
+                    <tbody>
+                      <?php
+                      include "../_database/config.php";
+                      $user=$_SESSION['user'];
+                      $no = 1;
+                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_seminar as n1 INNER JOIN nilai_sidang as n2 ON n1.id=n2.id WHERE n1.dosen_uji='$user'AND n2.dosen_uji='$user'");
+                      while($row = mysqli_fetch_assoc($query)){
+                
+                      ?>
+                      <tr>
+                        <td class="text-center"><?php echo $row['nama']?></td>
+                        <td class="text-center"><?php echo $row['nrp']?></td>
+                        <td class="text-center"><?php echo $row['judul_pa']?></td>
+                        <td class="text-center"><?php echo $row['nilai_sem']?></td>
+                        <td class="text-center"><?php echo $row['nilai_sid']?></td>
+                      </tr>
+                      <?php }?>
+                    </tbody>
                   </table>
               </div>
             </div>

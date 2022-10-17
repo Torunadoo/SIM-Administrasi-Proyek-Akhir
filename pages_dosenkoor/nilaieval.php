@@ -304,7 +304,7 @@
             <?php } ?>
               
            <!--Mahasiswa Pendaftar Proyek Akhir-->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link  " href="./pendaftarpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
@@ -314,7 +314,7 @@
                 </div>
                 <span class="nav-link-text ms-1">Pendaftar Proyek Akhir</span>
               </a>
-            </li>
+            </li> -->
 
             <!--Mahasiswa Proyek Akhir terverifikasi-->
             <li class="nav-item">
@@ -617,33 +617,34 @@
                   <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
                     <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                       <button type="button"  class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Nilai Evaluasi Proyek Akhir
+                      Nilai Sidang Proyek Akhir
                       </button>
                     </a>
                     <ul style = "height:200px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
                       <div class="card example-1 scrollbar-deep-purple bordered-deep-purple thin" style = "height:200px">  
-                        <li>
-                          <a href="../nilaisempro.php" class="dropdown-item border-radius-md">
+                      <li>
+                          <a href="../pages_dosenkoor/nilaisempro.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1" >
                                   <span class="font-weight-bold">Nilai Seminar Proposal</span>
+                                  
                                 </h6>
                             </div>
                           </a>
                         </li>
                         <li >
-                          <a href="../nilaieval.php" class="dropdown-item border-radius-md">
+                          <a href="../pages_dosenkoor/nilaieval.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Nilai Evaluasi Proyek Akhir</span>
+                                  <span class="font-weight-bold">Nilai Sidang Proyek Akhir</span>
                                 </h6>
                             </div>
                           </a>
                         </li>
                         <li >
-                          <a href="../nilaiakhir.php" class="dropdown-item border-radius-md">
+                          <a href="../pages_dosenkoor/nilaipa.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -673,53 +674,32 @@
                     <thead>
                       <!-- judul kolom -->
                       <tr>
+                        <th class="text-center">No</th>
                         <th class="text-center">Nama</th>
-                        <th class="text-left ps-1">Nrp</th>
-                        <th class="text-center">Program Studi</th>
-                        <th class="text-center">Nilai Seminar Proposal</th>
+                        <th class="text-center">Nrp</th>
+                        <th class="text-center">Judul Proyek Akhir</th>
                         <th class="text-center">Nilai Sidang Proyek Akhir</th>
                       </tr>
                     </thead>
-
+                    <tbody>
                     <?php
-                    include '../_database/config.php'; //panggil setiap ingin koneksi ke data
-                    $no = 0;
-                    $no2 = $no++;
-                    $query = mysqli_query($koneksi, 'SELECT * FROM kirimadmin ORDER BY id_no DESC' );
-                    while ($data = mysqli_fetch_array($query)) {
-
-                      $tujuan = $data['nama'];
-
-                      if (strpos($tujuan, $_SESSION['user']) !== false) {
+                    include "../_database/config.php";
+                      $user=$_SESSION['user'];
+                      $no = 1;
+                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_sidang WHERE dosen_uji='$user'");
+                      while($row = mysqli_fetch_assoc($query)){
+                
+                      ?>
+                      <tr>
+                        <td class="text-center"><?php echo $no++ ?></td>
+                        <td class="text-center"><?php echo $row['nama']?></td>
+                        <td class="text-center"><?php echo $row['nrp']?></td>
+                        <td class="text-center"><?php echo $row['judul_pa']?></td>
+                        <td class="text-center"><?php echo $row['nilai_sid']?></td>
                         
-                    ?>
-                        <tr>
-                          <!-- no -->
-                          <td class="text-center"><?php echo $no++ ?></td>
-                          <!-- perihal -->
-                          <td class="text-left ps-1"><?php echo $data['perihal'] ?></td>
-                          <!-- id surat -->
-                          <td class="text-center"><?php echo $data['id_no'] ?></td>
-                          <!-- tanggal -->
-                          <td class="text-center"><?php echo $data['tanggal'] ?></td>
-                          <td> 
-                            <!-- file -->
-                            <div class="text-center">
-                              <a href="../pagesadmin/<?php echo $data['file'] ?>" target="_blank">
-                              <p class="modal-title" class="text-center ps-1" name="fl" id="edit<?php echo $data['id_no'] ?>"><button type="button"  class="btn btn-link"><em><?php echo $data['file'] ?></em></button></p>
-                            </div>
-                          </td>
-
-                        </tr>
-                        <?php }
-                    }  ?>
-
-                          <?php if ($no == 1) { ?>
-
-                          <td></td>
-                          <td></td>
-                          <td class = "text-center"> <h6 class = "font-weight-bold">BELUM ADA NILAI</h6></td>
-                          <?php } ?>
+                      </tr>
+                      <?php }?>
+                    </tbody>
                   </table>
               </div>
             </div>

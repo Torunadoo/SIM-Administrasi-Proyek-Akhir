@@ -387,6 +387,10 @@ if (isset($_POST['selesai'])) {
                     </ul>
                   </li> 
                 </div>
+                <!--Tombol riwayat revisi -->
+                <div class="col-auto" >
+                  <button class="btn bg-gradient-info"><a href="../pages_mahasiswa/file_dosbing.php">Riwayat File Bimbingan</a></button>
+               </div>
               </div>
             </div>
             <!-- end dropdown jenis surat -->
@@ -397,13 +401,12 @@ if (isset($_POST['selesai'])) {
                     <thead>
                       <!-- judul kolom -->
                       <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">Nama File</th>
-                        <th class="text-center">Jenis File</th>
-                        <th class="text-center">Tanggal Unggah</th>
-                        <th class="text-center">Status File</th>
-                        <th class="text-center">Tanggal Bimbingan</th>
-                        <th class="text-center">Catatan Dosen Pembimbing</th>
+                        <th class="text-center"><strong>No</th>
+                        <th class="text-center"><strong>Nama File</th>
+                        <th class="text-center"><strong>Jenis File</th>
+                        <th class="text-center"><strong>Tanggal Unggah</th>
+                        <th class="text-center"><strong>Status File</th>
+                        
                         
                       </tr>
                     </thead>
@@ -419,7 +422,7 @@ if (isset($_POST['selesai'])) {
                         $status=$row['status_bimbingan'];
 
                         if($status==0){
-                          $tampil='Belum iproses';
+                          $tampil='Belum diproses';
                         } elseif ($status==1) {
                           $tampil='Sudah diproses';
                         }
@@ -432,8 +435,6 @@ if (isset($_POST['selesai'])) {
                         <th class="text-center"><?php echo $row['keterangan']?></th>
                         <th class="text-center"><?php echo $row['tgl_unggah']?></th>
                         <th class="text-center"><?php echo $tampil?></th>
-                        <th class="text-center"><?php echo $row['']?></th>
-                        <th class="text-center"><?php echo $row['']?></th>
                       </tr>
                       <?php }?>
                     </tbody> 
@@ -504,7 +505,7 @@ if (isset($_POST['selesai'])) {
             Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Berhasil Mengajukan Surat',
+            title: 'Berhasil',
             showConfirmButton: false,
             timer: 2000
           })
@@ -518,7 +519,7 @@ if (isset($_POST['selesai'])) {
             Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Berhasil Menghapus Surat',
+            title: 'Berhasil',
             showConfirmButton: false,
             timer: 2000
           })
@@ -532,7 +533,7 @@ if (isset($_POST['selesai'])) {
             Swal.fire({
             position: 'center',
             icon: 'warning',
-            title: 'Gagal mengajukan permohonan surat ! Ekstensi file harus pdf',
+            title: 'Gagal ! Ekstensi file harus pdf',
             showConfirmButton: false,
             timer: 2000
           })
@@ -546,7 +547,7 @@ if (isset($_POST['selesai'])) {
             Swal.fire({
             position: 'center',
             icon: 'error',
-            title: 'Gagal Input',
+            title: 'Gagal ',
             showConfirmButton: false,
             timer: 2000
           })

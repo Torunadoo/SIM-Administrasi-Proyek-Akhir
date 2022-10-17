@@ -272,7 +272,7 @@
         <?php } ?>
         
         <!--Mahasiswa Pendaftar Proyek Akhir-->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link  " href="./pendaftarpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
@@ -280,9 +280,9 @@
                     <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                   </svg>
                 </div>
-                <span class="nav-link-text ms-1">Pendaftar Proyek Akhir</span>
+                <span class="nav-link-text ms-1"> Proyek Akhir</span>
               </a>
-            </li>
+            </li> -->
 
             <!--Mahasiswa Proyek Akhir terverifikasi-->
             <li class="nav-item">
@@ -783,29 +783,52 @@
         
           <div class="card-body px-0 pt-0 mt-0 py-0 my-0 pb-2">
             <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px" >
-                <table class="table align-items-center mb-0">
+              <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class ="text-center">No</th>
-                      <th class ="text-center">Nama</th>
-                      <th class ="text-center">Nrp</th>
-                      <th class ="text-center">Judul Proyek Akhir</th>
-                      <th class ="text-center">Jenis Evaluasi</th>
-                      <th class ="text-center">Tanggal Terverifikasi</th>
-                      <th class ="text-center">Pembimbing 1</th>
-                      <th class ="text-center">Pembimbing 2</th>
+                      <th class="text-center">No</th>
+                      <th class="text-center">Nama</th>
+                      <th class="text-center">Nrp</th>
+                      <th class="text-center">Judul Proyek Akhir</th>
+                      <th class="text-center">Jenis Evaluasi</th>
+                      <th class="text-center">Tanggal Pengajuan</th>
+                      <th class="text-center">Pembimbing 1</th>
+                      <th class="text-center">Pembimbing 2</th>
+                      <th class="text-center">Status</th>
                     </tr>
                   </thead>
                   <tbody>
+                    
+                    <?php
+                    include "../_database/config.php";
+                    
+                    $no = 1;
+                    $query = mysqli_query($koneksi, 'SELECT * FROM pendaftareval');
+                    while($row = mysqli_fetch_assoc($query)){
+                    
+                    if(isset($row['status_validasi'])){
+                      $status=$row['status_validasi'];
+
+                      if($status==0){
+                        $tampil='Belum Tervalidasi';
+                      } elseif ($status==1) {
+                        $tampil='Tervalidasi';
+                      }
+                    }
+                    ?>
                     <tr>
-                      <th class ="text-center">1</th>
-                      <th class ="text-center">Lee</th>
-                      <th class ="text-center">2040211220</th>
-                      <th class ="text-center">-</th>
-                      <th class ="text-center">-</th>
-                      <th class ="text-center">-</th>
-                      <th class ="text-center">-</th>
-                    </tr>
+                      <th class = "text-center"><?php echo $no++ ?></th>
+                      <th class = "text-center"><?php echo $row['nama']?></th>
+                      <th class = "text-center"><?php echo $row['nrp']?></th>
+                      <th class = "text-center"><?php echo $row['judul_pa']?></th>
+                      <th class = "text-center"><?php echo $row['jenis_eval']?></th>
+                      <th class = "text-center"><?php echo $row['tanggal']?></th>
+                      <th class = "text-center"><?php echo $row['pembimbing']?></th>
+                      <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
+                      <th class = "text-center"><a class="btn btn-primary" href="../pages_dosenkoor/validasi.php?id=<?php echo $row['id']; ?>" role="button"><?php echo $tampil ?></a></th>
+                    </tr> 
+                      <?php }?>
+                    
                   </tbody>
                 </table>
               </div>
