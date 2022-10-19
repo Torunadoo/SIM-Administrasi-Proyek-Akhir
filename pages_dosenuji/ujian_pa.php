@@ -759,7 +759,7 @@
                         ?>
                     <tr>
                       <th class="text-center"><?php echo $no++ ?></th>
-                      <th class = "text-center"><button class="btn btn-light"><a href="../pages_dosenuji/form_nilai.php?id=<?php echo $row['id']; ?>"><?php echo $row['nama']?></a></button></th>
+                      <th class = "text-center"><button class="btn btn-light"><a href="../pages_dosenuji/form_nilai.php?nrp=<?php echo $row['nrp']; ?>"><?php echo $row['nama']?></a></button></th>
                       <th class = "text-center"><?php echo $row['nrp']?></th>
                       <th class = "text-center"><?php echo $row['judul_pa']?></th>
                       <th class = "text-center"><?php echo $row['jenis_eval']?></th>

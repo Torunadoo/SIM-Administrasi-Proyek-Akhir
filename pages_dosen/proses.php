@@ -39,7 +39,7 @@ echo '<script> alert("Gagal mengajukan permohonan surat ! Ukuran file tidak bole
 // tipe tidak sesuai pdf
 else if ($tipe != $ekstensi && $tipe != NULL)
 { 
-?><script><?php $_SESSION['pdf'] = true ?></script> 
+?><script><?php $_SESSION['pdf'] = true?></script> 
 <script>history.pushState({}, "", "")</script><?php
 }  
 // upload file
@@ -51,8 +51,9 @@ else if (move_uploaded_file($_FILES['fl']['tmp_name'], $url))
     if($query)
     // notif dan header sukses upload file
     {
+      $nrp_id=$_GET['nrp'];
       ?><script><?php $_SESSION['sukses'] = true;?></script> 
-      <?php header("location:filepa.php"); 
+      <?php header("location:filepa.php?nrp=$nrp_id"); 
     }
     // notif gagal input
     else
@@ -349,8 +350,8 @@ else
                         <div class="row">
                                 <?php
                             include "../_database/config.php";
-                            $id=$_GET['id'];
-                            $query = mysqli_query($koneksi, "SELECT * FROM bimbingan_pa WHERE id='$id'");
+                            $id=$_GET['nrp'];
+                            $query = mysqli_query($koneksi, "SELECT * FROM bimbingan_pa WHERE nrp='$id'");
                             while($row = mysqli_fetch_assoc($query)){
                             ?>
 
@@ -439,7 +440,7 @@ else
               
                   <div class = "mx-4">
                     <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
-                    <a class="btn btn-primary" name="input" href="../pages_dosen/update_status.php?id=<?php echo $row['id']; ?>" role="button">OK</a>
+                    <a href="../pages_dosen/update_status.php?nrp=<?php echo $id?>"><button type="submit" class="btn btn-primary" name="input" >OK</button></a>
                     <?php }?> 
                   </div>
               </form>

@@ -337,11 +337,15 @@ if (isset($_POST['selesai'])) {
     
     
     <div class="container-fluid py-4">
+      
       <div class="row">
+        
         <div class="col-12">
           <div class="card mb-4">
             <!-- dropdown jenis surat -->
+           
             <div class="card-header pb-0 p-3">
+            <h5>Riwayat File Terkirim</h5>
               <div class="row">
                 <div class="col-6 d-flex align-items-center">
                   <h6 class="mb-0">Status</h6>

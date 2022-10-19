@@ -350,85 +350,68 @@ if(isset($_POST['input']))
     </nav>
     <!-- End Navbar -->
 
-    <?php  include "../_database/config.php"; 
-          $nama = $_SESSION['user'];
-          $query = mysqli_query($koneksi, "SELECT * FROM permohonanpmb WHERE nama = '$nama' ");
-          $data2 = mysqli_fetch_array($query)
-          ?>
-          
     <div class="container-fluid py-4">
       <div class="row">
-      <div class="col">
-          <div class="card h-100">
-            <div class="card-header pb-0 p-3">
-              <div class="row">
-                <div class="col-6 d-flex align-items-center">
-                  <h6 class="mb-0">Form Penambahan Acara</h6>
-                </div>
-                
-                 
+        <h5>Form Penjadwalan Evaluasi Proyek Akhir</h5>
+        <div class="col-12">
+          <div class="card mb-4">
+          <div class="card-body px-0 pt-0 mt-0 py-0 my-0 pb-2">
+            <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px" >
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class ="text-center"><strong>No</th>
+                      <th class ="text-center"><strong>Nama</th>
+                      <th class ="text-center"><strong>Nrp</th>
+                      <th class ="text-center"><strong>Judul Proyek Akhir</th>
+                      <th class ="text-center"><strong>Jenis Evaluasi</th>
+                      <th class ="text-center"><strong>Tanggal Terverifikasi</th>
+                      <th class ="text-center"><strong>Pembimbing 1</th>
+                      <th class ="text-center"><strong>Pembimbing 2</th>
+                      <th class ="text-center"><strong>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <?php
+                    include "../_database/config.php";
+                    
+                    $no = 1;
+                    $query = mysqli_query($koneksi, 'SELECT * FROM pendaftareval');
+                    while($row = mysqli_fetch_assoc($query)){
+                    
+                    if(isset($row['status_penjadwalan'])){
+                      $status=$row['status_penjadwalan'];
+
+                      if($status==0){
+                        $tampil='Belum Terjadwal';
+                      } elseif ($status==1) {
+                        $tampil='Sudah Terjadwal';
+                      }
+                    }
+                    ?>
+                    <tr>
+                      <th class = "text-center"><?php echo $no++ ?></th>
+                      <th class = "text-center"><?php echo $row['nama']?></th>
+                      <th class = "text-center"><?php echo $row['nrp']?></th>
+                      <th class = "text-center"><?php echo $row['judul_pa']?></th>
+                      <th class = "text-center"><?php echo $row['jenis_eval']?></th>
+                      <th class = "text-center"><?php echo $row['tanggal']?></th>
+                      <th class = "text-center"><?php echo $row['pembimbing']?></th>
+                      <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
+                      <th class = "text-center"><a class="btn btn-primary" href="../pages_dosenkoor/tambah2.php?nrp=<?php echo $row['nrp']; ?>" role="button"><?php echo $tampil ?></a></th>
+                    </tr> 
+                      <?php }?>
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
-
-           
-            <!-- Form untuk melakukan permohonan pembimbing -->
-            <form action="" method="post" enctype="multipart/form-data">
-                <div class="form-group d-flex my-0">
-            <!-- Jenis Eval -->
-                    <div class="card-header pb-0 pt-0 p-3 my-0">
-                        <div class="row">
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label">Jenis Evaluasi</label>
-                                <select name="jenis_eval" class="form-control" aria-placeholder="Pilih Program Studi"  name aria-label="Default input example" required>
-                                    <option selected>Pilih Jenis Evaluasi</option>
-                                    <option value="Seminar">Seminar</option>
-                                    <option value="Sidang">Sidang</option>
-                                </select>
-                            </div>
-              <!-- End Jenis Eval -->
-                                  <div class="form-group col-md-6">
-                                    <label id="label-tgl1" for="example-date-input" class="form-control-label">Tanggal Mulai</label>
-                                    <input name="mulai" class="form-control" type="date" value="Masukkan Tanggal" id="example-date-input">
-                                  </div>
-                                  <div class="form-group col-md-6">
-                                    <label id="label-tgl2" for="example-date-input" class="form-control-label">Tanggal Selesai</label>
-                                    <input name="selesai" class="form-control" type="date" value="Masukkan Tanggal" id="example-date-input">
-                                  </div>
-                                  <div class="mb-3">
-                                          <label  id="label-deskripsi"for="formFile" class="form-label">Deskripsi</label>
-                                          <input name="des" class="form-control" type="text" aria-label="default input example" >
-                                      </div>
-                    <div class="d-flex mt-3">
-                        <button type="submit" name="input" class="btn bg-gradient-info">Kirim</button>
-                    </div>
-            </form>            
           </div>
         </div>
-      </div>
+      </div>      
+
     </div>
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
   </main>
 
   <!--   Core JS Files   -->

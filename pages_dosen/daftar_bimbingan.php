@@ -784,7 +784,7 @@
                       <th class = "text-center"><?php echo $row['semester']?></th>
                       <th class = "text-center"><?php echo $row['judul_pa']?></th>
                       
-                      <th class = "text-center"><a class="btn btn-primary" href="../pages_dosen/filepa.php?id=<?php echo $row['id']; ?>" role="button"><?php echo $tampil ?></a></th>
+                      <th class = "text-center"><a class="btn btn-primary" href="../pages_dosen/filepa.php?nrp=<?php echo $row['nrp']; ?>" role="button"><?php echo $tampil ?></a></th>
                     </tr>                      
                     <?php }?>
                     

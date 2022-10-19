@@ -619,7 +619,7 @@
                   <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
                     <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                       <button type="button"  class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Pilih Penilaian
+                      Nilai Akhir Proyek Akhir
                       </button>
                     </a>
                     <ul style = "height:200px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
@@ -698,7 +698,7 @@
                         <td class="text-center"><?php echo $row['nama']?></td>
                         <td class="text-center"><?php echo $row['nrp']?></td>
                         <td class="text-center"><?php echo $row['judul_pa']?></td>
-                        <td class="text-center"><?php echo $row['nilai_sem']?></td>
+                        <td class="text-center"><a class="btn btn-primary" href="../pages_dosen/filepa.php?id=<?php echo $row['id']; ?>" role="button"><?php echo 'A' ?></a></td>
                         
                       </tr>
                       <?php }?>

@@ -705,9 +705,9 @@
                   <tbody>
                   <?php
                       include "../_database/config.php";
-                      
+                      $id=$_GET['nrp'];
                       $no = 1;
-                      $query = mysqli_query($koneksi, 'SELECT * FROM bimbingan_pa');
+                      $query = mysqli_query($koneksi, "SELECT * FROM bimbingan_pa WHERE nrp='$id' ");
                       while($row = mysqli_fetch_assoc($query)){
                       
                       if(isset($row['status_bimbingan'])){
@@ -725,7 +725,7 @@
                         <th class="text-center"><?php echo $row['file'] ?></th>
                         <th class="text-center"><?php echo $row['keterangan'] ?></th>
                         <th class="text-center"><?php echo $row['tgl_unggah'] ?></th>
-                        <th class ="text-center"><a class="btn btn-primary" href="../pages_dosen/proses.php?id=<?php echo $row['id']; ?>" role="button"><?php echo $tampil ?></a></th>
+                        <th class ="text-center"><a class="btn btn-primary" href="../pages_dosen/proses.php?nrp=<?php echo $id?>" role="button"><?php echo $tampil ?></a></th>
                         
                     </tr>
                     <?php }?>

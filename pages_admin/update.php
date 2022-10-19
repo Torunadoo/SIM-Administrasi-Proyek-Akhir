@@ -8,7 +8,7 @@ if($_SESSION['user']=='' || $_SESSION['status'] != 2)
  $id=$_GET['id'];
   $query = mysqli_query($koneksi, "UPDATE pendaftareval SET `status_validasi`= 1 WHERE id = '$id' ");
   if ($query) { 
-    header('location:pendaftarpa.php'); ?>
+    header('location:mahasiswapa_min.php'); ?>
     <script>history.pushState({}, "", "")</script><?php
   } else { 
     header('location:./dosenkoor.php'); ?>

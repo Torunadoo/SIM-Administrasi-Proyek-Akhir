@@ -29,42 +29,96 @@ if(isset($_POST['input']))
   $rekom = $_POST['rekom'];
   $catatan = $_POST['catatan_revisi'];
   
+  $id=$_GET['nrp'];
 
-  if($jenis_eval =="Seminar"){
-    $query = mysqli_query($koneksi, "INSERT into nilai_seminar values('','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','$latar','$manfaat','$metode','$tulis','$bahasa','$sikap','$waktu_datang', '$datadok', '$materi', '$nilai_angka','$rekom','$catatan', sysdate())");
+  if($jenis_eval == 'Seminar'){
+    $query= mysqli_query($koneksi,"SELECT * FROM nilai_seminar WHERE nrp='$id' ");
+    $row = mysqli_fetch_assoc($query);
+    $baris = mysqli_num_rows($query);
 
-    if($query)
-    {
-      ?><script><?php $_SESSION['sukses'] = true;?></script> 
-      <script>history.pushState({}, "", "")</script><?php
+        if($baris != 1){
+            $query1 = mysqli_query($koneksi, "INSERT INTO nilai_seminar VALUES('','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','','','$latar','','','$manfaat','','','$metode','','','$tulis','','','$bahasa','','','$sikap','','','$waktu_datang','','', '$datadok','','', '$materi','','', '$nilai_angka','','','$rekom','','','$catatan','','')");
+                if($query1){
+                    ?><script><?php $_SESSION['sukses'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+                else{
+                    ?><script><?php $_SESSION['input'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+        }
+        else if($row['nilai_sem2'] == 0){
+            $query2 = mysqli_query($koneksi,"UPDATE nilai_seminar SET dosen_uji2='$dosen_uji', latar2='$latar', manfaat2='$manfaat', metode2='$metode', tulis2='$tulis',  bahasa2='$bahasa', sikap2='$sikap', waktu_datang2='$waktu_datang', datadok2='$datadok', materi2='$materi', nilai_sem2='$nilai_angka', rekom2='$rekom', catatan2='$catatan' WHERE nrp='$id'");
+                if($query2){
+                    ?><script><?php $_SESSION['sukses'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+                else{
+                    ?><script><?php $_SESSION['input'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+        }
+        else if($row['nilai_sem3'] == 0){
+            $query3 = mysqli_query($koneksi,"UPDATE nilai_seminar SET dosen_uji3='$dosen_uji', latar3='$latar', manfaat3='$manfaat', metode3='$metode', tulis3='$tulis',  bahasa3='$bahasa', sikap3='$sikap', waktu_datang3='$waktu_datang', datadok3='$datadok', materi3='$materi', nilai_sem3='$nilai_angka', rekom3='$rekom', catatan3='$catatan' WHERE nrp='$id'");
+                if($query3){
+                    ?><script><?php $_SESSION['sukses'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+                else{
+                    ?><script><?php $_SESSION['input'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+        }
+        else{
+            echo 'gagal su';
+        }
+  }
+  else if($jenis_eval == 'Sidang'){
+    $query= mysqli_query($koneksi,"SELECT * FROM nilai_sidang WHERE nrp='$id' ");
+    $row = mysqli_fetch_assoc($query);
+    $baris = mysqli_num_rows($query);
 
-    }
-    else
-    {
-      ?><script><?php $_SESSION['input'] = true;?></script> 
-      <script>history.pushState({}, "", "")</script><?php
-    }
-
-}
-
-else if($jenis_eval == "Sidang"){
-    $query1 = mysqli_query($koneksi, "INSERT into nilai_sidang values('','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','$latar','$manfaat','$metode','$tulis','$bahasa','$sikap','$waktu_datang', '$datadok', '$materi', '$nilai_angka','$rekom','$catatan', sysdate())");
-
-    if($query1)
-    {
-      ?><script><?php $_SESSION['sukses'] = true;?></script> 
-      <script>history.pushState({}, "", "")</script><?php
-
-    }
-    else
-    {
-      ?><script><?php $_SESSION['input'] = true;?></script> 
-      <script>history.pushState({}, "", "")</script><?php
-    }
-}
-else{
-    echo "Gagal Upload";
-}
+        if($baris != 1){
+            $query1 = mysqli_query($koneksi, "INSERT INTO nilai_sidang VALUES('','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','','','$latar','','','$manfaat','','','$metode','','','$tulis','','','$bahasa','','','$sikap','','','$waktu_datang','','', '$datadok','','', '$materi','','', '$nilai_angka','','','$rekom','','','$catatan','','')");
+                if($query1){
+                    ?><script><?php $_SESSION['sukses'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+                else{
+                    ?><script><?php $_SESSION['input'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+        }
+        else if($row['nilai_sid2'] == 0){
+            $query2 = mysqli_query($koneksi,"UPDATE nilai_sidang SET dosen_uji2='$dosen_uji', latar2='$latar', manfaat2='$manfaat', metode2='$metode', tulis2='$tulis',  bahasa2='$bahasa', sikap2='$sikap', waktu_datang2='$waktu_datang', datadok2='$datadok', materi2='$materi', nilai_sid2='$nilai_angka', rekom2='$rekom', catatan2='$catatan' WHERE nrp='$id'");
+                if($query2){
+                    ?><script><?php $_SESSION['sukses'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+                else{
+                    ?><script><?php $_SESSION['input'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+        }
+        else if($row['nilai_sid2']){
+            $query3 = mysqli_query($koneksi,"UPDATE nilai_sidang SET dosen_uji3='$dosen_uji', latar3='$latar', manfaat3='$manfaat', metode3='$metode', tulis3='$tulis',  bahasa3='$bahasa', sikap3='$sikap', waktu_datang3='$waktu_datang', datadok3='$datadok', materi3='$materi', nilai_sid3='$nilai_angka', rekom3='$rekom', catatan3='$catatan' WHERE nrp='$id'");
+                if($query3){
+                    ?><script><?php $_SESSION['sukses'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+                else{
+                    ?><script><?php $_SESSION['input'] = true;?></script> 
+                    <script>history.pushState({}, "", "")</script><?php
+                }
+        }
+        else{
+            echo 'gagal';
+        }
+  }
+  else{
+    echo 'gagal';
+  }
+  
 }?>
             <!DOCTYPE html>
             <html lang="en">
@@ -613,9 +667,9 @@ else{
              <div class="row">
                     <?php
                     include "../_database/config.php";
-                    $id=$_GET['id'];
+                    $id=$_GET['nrp'];
                     $no=1;
-                    $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE id='$id' ");
+                    $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE nrp='$id' ");
                     while($row = mysqli_fetch_assoc($query)){
                       
                       ?>

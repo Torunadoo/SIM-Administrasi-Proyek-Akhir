@@ -33,11 +33,11 @@ if($cek > 0){
     {
         session_start();
         $data = mysqli_fetch_array($tambah);
-        $_SESSION['user'] = "Admin";
-        $_SESSION['NIP'] = "0000";
+        $_SESSION['user'] = "adminsuper";
+        $_SESSION['NIP'] = "1234";
         $_SESSION['status'] = $data['status'];
         $_SESSION['alert'] = true;
-        header("location:pagesadmin/adminsuper.php");
+        header("location:pages_admin/admin.php");
     }
     elseif ($data['status'] == '2') //ketika login maka user akan membawa status
     {
