@@ -568,21 +568,8 @@ if(isset($_POST['input']))
             <div class="card-header pb-0 p-3" style = "width:550px">
               <div class="row">
                 <div class="mb-0">
-                  
                   <label for="formFile" class="form-label">Judul Proyek Akhir</label>
-                 <?php if ($data2['status_ajuan'] == 2 && $data2['status_dosen1'] !== 2) { ?>
-                  <input name="judul_pa" class="form-control" type="text" aria-label="default input example"  value = "<?php echo $data2['alamat_perusahaan'] ?>" >
-                
-                  <?php } else if ($data2 ['status_ajuan'] == 1 && $data2['status_dosen1'] !== 2) { ?>
-                  <input name="judul_pa" class="form-control" type="text" aria-label="default input example"  value = "<?php echo $data2['alamat_perusahaan'] ?>" >
-                    <?php } 
-                     else if ($data2['status_dosen1'] == 2) { ?>
-                        <label name="judul_pa" class="form-control" aria-label="default input example"><?php echo $data2['alamat_perusahaan'] ?></label>       
-                   <?php }
-                    else { ?>
                   <input name="judul_pa" class="form-control" type="text" aria-label="default input example" placeholder="Masukkan Judul Proyek Akhir" >
-                   <?php }
-                    ?>
                 </div>
               </div>
             </div>

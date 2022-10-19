@@ -357,7 +357,7 @@ if(isset($_POST['input']))
             <div class="card-header pb-0 p-3">
             <h5>Form Penjadwalan Evaluasi Proyek Akhir</h5>
              <div class="row">
-                <div class="mb-3">
+                
                     <div class="row">
                         <?php 
                         include "../_database/config.php";
@@ -365,7 +365,19 @@ if(isset($_POST['input']))
                         $id = $_GET['nrp'];
                         $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE nrp='$id'");
                         while($row = mysqli_fetch_assoc($query)){
-                        
+
+                          if(isset($row['jenis_eval'])){
+                            $status=$row['jenis_eval'];
+      
+                            if($status== 'Seminar'){
+                              $tampil='Seminar Proposal Proyek Akhir';
+                            } elseif ($status== 'Sidang') {
+                              $tampil='Sidang Proyek Akhir';
+                            }
+                            else{
+                              echo 'Tidak ada data';
+                            }
+                          }
                         ?>
                         
                         <div class="form-group col-md-6">
@@ -377,19 +389,87 @@ if(isset($_POST['input']))
                             <label name="nrp" class="form-control" aria-label="default input example"><?php echo $row['nrp']?></label>
                         </div>
                     </div>
+                
+                
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="formFile" class="form-label">Jenis Evaluasi</label>
+                      <label class="form-control" aria-label="default input example"><?php echo $tampil?></label>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="formFile" class="form-label">Program Studi</label>
+                      <label name='' class="form-control" aria-label="default input example"><?php echo $row['prodi']?></label>
+                    </div>
+                  </div>
+              
+                
+                  <div class="row">
+                    <div class="mb-0">
+                      <label for="formFile" class="form-label">Judul Proyek Akhir</label>
+                      <label name='' class="form-control" aria-label="default input example"><?php echo $row['judul_pa']?></label>
+                      <input name="judul_pa" class="form-control" type="hidden" aria-label="default input example" value="<?php echo $row['judul_pa']?>" >
+                    </div>
+                  </div>
+                
+                
+                  <div class="row">
+                    <div class="mb-0">
+                      <label for="formFile" class="form-label">Dosen Pembimbing</label>
+                      <label name='' class="form-control" aria-label="default input example"><?php echo $row['pembimbing']?></label>
+                      <input name="dosbing1" class="form-control" type="hidden" aria-label="default input example" value="<?php echo $row['pembimbing']?>" >
+                    </div>
+                  </div>
+                
+                
+                  <div class="row">
+                    <div class="mb-0">
+                      <label for="formFile" class="form-label">Dosen Pembimbing 2</label>
+                      <label name='' class="form-control" aria-label="default input example"><?php echo $row['pembimbing_2']?></label>
+                      <input name="dosbing2" class="form-control" type="hidden" aria-label="default input example" value="<?php echo $row['pembimbing_2']?>" >
+                    </div>
+                  </div>
+                <?php } ?>
+              
+                  <div class="row">
+                    <div class="mb-0">
+                      <div class="form-group col-md-12">
+                        <label for="formFile" class="form-label">Dosen Penguji</label>
+                        <select name="ds2"  class="form-select" aria-label="Default select example" >
+                          <option value="Tidak Memerlukan Dosen Pembimbing" selected disabled>Pilih Dosen Penguji</option>
+                          <?php
+                          include '../_database/config.php';
+                          $query_dosen = mysqli_query($koneksi, "SELECT * FROM data_dosenb") or die(mysqli_error($koneksi));
+                          while ($data_dosen = mysqli_fetch_array($query_dosen)) { ?>
+                          <option value="<?php echo $data_dosen['nama_anggota'] ?>"><?php echo $data_dosen['nama_anggota'] ?></option>
+                          <?php } ?>
+                          </select>
+                      </div>
+                    </div>
+                  </div>
+                
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label id="label-tgl1" for="example-date-input" class="form-control-label">Tanggal Pelaksanaan</label>
+                    <input name="mulai" class="form-control" type="date" value="Masukkan Tanggal" id="example-date-input">
+                  </div>    
+                  <div class="form-group col-md-6">
+                  <label for="appt" class="form-control-label">Waktu Pelaksanaan</label>
+                  <input type="time" class="form-control" id="appt" name="appt">
+                  </div> 
                 </div>
-                <div class="mb-0">
-                  <label for="formFile" class="form-label">Jenis Evaluasi</label>
-                    <select name="smt" class="form-control" aria-placeholder="Pilih Program Studi"  name aria-label="Default input example" required>
-                      <option selected disabled>Pilih Jenis Evaluasi</option>
-                      <option value="Seminar">Seminar Proposal Proyek Akhir</option>
-                      <option value="Sidang">Sidang Proyek Akhir</option>
-                    </select>
-                </div>
+                <div class="row">
+                    <div class="mb-0">
+                      <label for="formFile" class="form-label">Tempat Pelaksanaan</label>
+                      <input name="tempat_eval" class="form-control" type="text" aria-label="default input example" >
+                    </div>
+                  </div>
+                  
                 <div class="col-auto" >
+                  <div class="mb-0">
                   <button type="input" name="input" class="btn bg-gradient-info">Kirim</button>
+                  </div>
                 </div>
-                      <?php } ?>
+                      
              </div>
             </div>          
           </div>
