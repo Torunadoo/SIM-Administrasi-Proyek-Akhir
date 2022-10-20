@@ -253,6 +253,17 @@ if (isset($_POST['update2'])) {
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a class="nav-link  " href="./mahasiswa_uji.php">
+                  <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
+                      <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
+                    </svg>
+                  </div>
+                  <span class="nav-link-text ms-1">Evaluasi Proyek Akhir</span>
+                </a>
+              </li>
+
               <!-- Nilai Proyek Akhir -->
               <li class="nav-item"> 
               <a class="nav-link " href="./nilaipa.php">
@@ -605,10 +616,10 @@ if (isset($_POST['update2'])) {
     </nav>
 
     <!-- End Navbar -->
-  <div class="wrapper">
+    <div class="wrapper">
     <div class="content-wrapper">
       <div class="container">
-        <div class="col-md-15">
+        <div class="col-md-12">
           <div class="box box-solid">
             <div id="calendar">
             </div>
@@ -618,25 +629,27 @@ if (isset($_POST['update2'])) {
     </div>
   </div>
 </main>
-<script src="https://teras.ee.its.ac.id/asset/jquery-3.3.1/dist/jquery.min.js"></script>
-<script src="https://teras.ee.its.ac.id/asset/moment-2.24.0/min/moment.min.js"></script>
-<script src="https://teras.ee.its.ac.id/asset/fullcalendar-3.10.0/fullcalendar.min.js"></script>
-<script src="https://teras.ee.its.ac.id/asset/fullcalendar-3.10.0/locale/id.js"></script>
+<script src="../fullcalendar/jquery.min.js"></script>
+<script src="../fullcalendar/moment.js"></script>
+<script src="../fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="../fullcalendar/dist/locale/id.js"></script>
 <script src="/js/vue.js?id=f3ce0c6e41dd11dee30c"></script> <script>
   $(document).ready(function(){
     flashNotification = 0;
       });
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-	    $('#calendar').fullCalendar({
-	    	header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,basicWeek,basicDay'
-			},
-			eventLimit: true, // allow "more" link when too many events
-	        events: [{}]
+</script><script type="text/javascript">
+	$(document).ready(function () {
+    var calendar = $('#calendar').fullCalendar({
+        editable: true,
+        events: "../fetch-event.php",
+        displayEventTime: false,
+        eventRender: function (event, element, view) {
+            if (event.allDay === 'true') {
+                event.allDay = true;
+            } else {
+                event.allDay = false;
+            }
+        },
 	    })
 	});
 </script>

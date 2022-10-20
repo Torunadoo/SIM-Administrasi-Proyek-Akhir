@@ -355,9 +355,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Pembimbing</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Daftar Mahasiswa yang Dibimbing</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">File Proyek Akhir</li>
           </ol>
-          <h5 class="font-weight-bolder mb-0">Daftar Mahasiswa yang Dibimbing</h5>
+          <h5 class="font-weight-bolder mb-0">Daftar Mahasiswa Bimbingan</h5>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -784,7 +784,7 @@
                       <th class = "text-center"><?php echo $row['semester']?></th>
                       <th class = "text-center"><?php echo $row['judul_pa']?></th>
                       
-                      <th class = "text-center"><a class="btn btn-primary" href="../pages_dosen/filepa.php?nrp=<?php echo $row['nrp']; ?>" role="button"><?php echo $tampil ?></a></th>
+                      <th class = "text-center"><a class="btn btn-primary" href="../pages_dosen/filepa.php?nrp=<?php echo $row['nrp'] ?>" role="button"><?php echo $tampil ?></a></th>
                     </tr>                      
                     <?php }?>
                     

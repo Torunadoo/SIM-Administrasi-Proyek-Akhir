@@ -695,6 +695,50 @@
                     </ul>
                   </li> 
                 </div>
+                <div class="col-6 d-flex align-items-center">
+                  <h6 class="mb-0">Pilih Penilaian:</h6>
+                  <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
+                    <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      <button type="button"  class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Nilai Akhir Proyek Akhir
+                      </button>
+                    </a>
+                    <ul style = "height:200px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
+                      <div class="card example-1 scrollbar-deep-purple bordered-deep-purple thin" style = "height:200px">  
+                        <li>
+                          <a href="../pages_dosen/nilaisempro.php" class="dropdown-item border-radius-md">
+                            <div class="d-flex py-1">
+                              <div class="my-auto">
+                                <h6 class="text-sm font-weight-normal mb-1" >
+                                  <span class="font-weight-bold">Nilai Seminar Proposal</span>
+                                </h6>
+                            </div>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="../pages_dosen/nilaisidang.php" class="dropdown-item border-radius-md">
+                            <div class="d-flex py-1">
+                              <div class="my-auto">
+                                <h6 class="text-sm font-weight-normal mb-1">
+                                  <span class="font-weight-bold">Nilai Sidang Proyek Akhir</span>
+                                </h6>
+                            </div>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="../pages_dosen/nilaiakhir.php" class="dropdown-item border-radius-md">
+                            <div class="d-flex py-1">
+                              <div class="my-auto">
+                                <h6 class="text-sm font-weight-normal mb-1">
+                                  <span class="font-weight-bold">Nilai Akhir Proyek Akhir</span>
+                                </h6>
+                            </div>
+                          </a>
+                        </li>
+                      </div>
+                    </ul>
+                  </li> 
+                </div>
               </div>
             </div>
             <!-- end dropdown semester -->
@@ -710,29 +754,55 @@
                         <th class="text-center">NRP</th>
                         <th class="text-center">Program Studi</th>
                         <th class="text-center">Judul Proyek Akhir</th>
-                        <th class="text-center">Nilai Seminar Proposal</th>
-                        <th class="text-center">Nilai Sidang Proyek Akhir</th>
-                        <th class="text-center">Nilai Proyek Akhir</th>
+                        <th class="text-center">Nilai Akhir Proyek Akhir</th>
                       </tr>
                     </thead>
                     <tbody>
                     <?php
                       include "../_database/config.php";
-                      
+                      $user=$_SESSION['user'];
                       $no = 1;
-                      $query = mysqli_query($koneksi, 'SELECT * FROM nilai_eval');
+                      $query = mysqli_query($koneksi, 'SELECT * FROM nilai_sidang');
                       while($row = mysqli_fetch_assoc($query)){
-                        ?>
+                        
 
+                      $nilai1=$row['nilai_sid'];
+                      $nilai2=$row['nilai_sid2'];
+                      $nilai3=$row['nilai_sid3'];
+
+                      $total= ($nilai1 + $nilai2 + $nilai3)/3;
+                      if($total >= 85.60){
+                          $tampil= 'A';
+                      }
+                      else if($total >= 75.60 && $total <= 85.59 ){
+                          $tampil= 'AB';
+                      }
+                      else if($total >= 65.60 && $total <= 75.59){
+                          $tampil= 'B';
+                      }
+                      else if($total >= 60.60 && $total <= 65.59){
+                          $tampil= 'BC';
+                      }
+                      else if($total >= 55.60 && $total <= 60.59){
+                          $tampil= 'C';
+                      }
+                      else if($total >= 40.60 && $total <= 55.59){
+                          $tampil= 'D';
+                      }
+                      else if($total >= 0 && $total <= 40.59){
+                          $tampil= 'E';
+                      }
+                      else{
+                        echo 'Tidak ada nilai';
+                      }
+                      ?>
                       <tr>
                         <th class="text-center"><?php echo $no++?></th>
                         <th class="text-center"><?php echo $row['nama']?></th>
                         <th class="text-center"><?php echo $row['nrp']?></th>
-                        <th class="text-center"><?php echo $row['prodi']?></th>
+                        <th class="text-center"><?php echo 'Teknologi Rekayasa Otomasi'?></th>
                         <th class="text-center"><?php echo $row['judul_pa']?></th>
-                        <th class="text-center"><?php echo $row['nilai_angka']?></th>
-                        <th class="text-center">-</th>
-                        <th class="text-center">-</th>
+                        <th class="text-center"><?php echo $tampil?></th>
                       </tr>
                       <?php }?>
                     </tbody>

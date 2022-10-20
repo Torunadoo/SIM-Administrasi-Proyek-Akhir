@@ -331,7 +331,7 @@
 
             <!--Kalender Proyek Akhir-->
             <li class="nav-item">
-              <a class="nav-link  " href="./kalenderpa2.php">
+              <a class="nav-link  " href="./kalenderpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -344,7 +344,7 @@
 
               <!-- Nilai Akhir Proyek Akhir -->
               <li class="nav-item"> 
-              <a class="nav-link  " href="./nilaipa.php">
+              <a class="nav-link  active" href="./nilaisempro.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
@@ -644,7 +644,7 @@
                           </a>
                         </li>
                         <li >
-                          <a href="../pages_dosenkoor/nilaipa.php" class="dropdown-item border-radius-md">
+                          <a href="../pages_dosenkoor/nilaiakhir.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -686,7 +686,7 @@
                     include "../_database/config.php";
                       $user=$_SESSION['user'];
                       $no = 1;
-                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_sidang WHERE dosen_uji='$user'");
+                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_sidang");
                       while($row = mysqli_fetch_assoc($query)){
                 
                       ?>

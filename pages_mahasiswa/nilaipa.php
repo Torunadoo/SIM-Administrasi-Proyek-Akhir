@@ -399,7 +399,7 @@ if (isset($_POST['hima2'])) {
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Nilai Sidang</span>
+                                  <span class="font-weight-bold">Nilai Sidang Proyek Akhir</span>
                                 </h6>
                             </div>
                           </a>
@@ -409,7 +409,7 @@ if (isset($_POST['hima2'])) {
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Nilai Akhir</span>
+                                  <span class="font-weight-bold">Nilai Akhir Proyek Akhir</span>
                                 </h6>
                             </div>
                           </a>
@@ -424,7 +424,7 @@ if (isset($_POST['hima2'])) {
             <!-- tabel rekap -->
             <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-0">  
-                  <h6 class="mb-0" style="text-align: center;">Nilai Seminar Proposal Proyek Akhir</h6>
+                  
                   <table class="table align-items-center mb-0">
                     <thead>
                       <!-- judul kolom -->
@@ -442,14 +442,20 @@ if (isset($_POST['hima2'])) {
                       include "../_database/config.php";
                       $user=$_SESSION['user'];
                       $no = 1;
-                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_eval WHERE nama='$user' AND jenis_eval='Sidang'");
+                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_seminar WHERE nama='$user'");
                       while($row = mysqli_fetch_assoc($query)){
+
+                      $nilai1=$row['nilai_sem'];
+                      $nilai2=$row['nilai_sem2'];
+                      $nilai3=$row['nilai_sem3'];
+
+                      $total= ($nilai1 + $nilai2 + $nilai3)/3;
                         ?>
 
                         <th class="text-center"><?php echo $row['nama']?></th>
                         <th class="text-center"><?php echo $row['nrp']?></th>
                         <th class="text-center"><?php echo $row['prodi']?></th>
-                        <th class="text-center"><?php echo $row['nilai_angka']?></th>
+                        <th class="text-center"><?php echo $total?></th>
                         <th class="text-center"></th>
                       </tr>
                       <?php }?>

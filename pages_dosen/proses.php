@@ -13,6 +13,7 @@ if(isset($_POST['input']))
   $nama = $_POST['nama'];
   $nrp = $_POST['nrp'];
   $catatan = $_POST['catatan'];
+  $dosbing = $_POST['dosbing'];
   $jenis_file = $_POST['jenis_file'];
   $keterangan = $_POST['keterangan'];
   $file = basename($_FILES['fl']['name']);
@@ -47,7 +48,7 @@ else if (move_uploaded_file($_FILES['fl']['tmp_name'], $url))
 {
   // upload file dosen pemb dan koor
   if ($jenis_file == "Proposal Proyek Akhir" || $jenis_file == "Laporan Proyek Akhir") { 
-    $query = mysqli_query($koneksi,"INSERT into proses_bimbingan values('', '$nama','$nrp','$catatan','$jenis_file','$keterangan', '$url', '$tipe', '$ukuran', sysdate())");
+    $query = mysqli_query($koneksi,"INSERT into proses_bimbingan values('', '$nama','$nrp','$dosbing','$catatan','$jenis_file','$keterangan', '$url', '$tipe', '$ukuran', sysdate())");
     if($query)
     // notif dan header sukses upload file
     {
@@ -197,7 +198,7 @@ else
         <?php } ?>
                 <!--Mahasiswa Bimbingan-->
                 <li class="nav-item">
-              <a class="nav-link  active" href="./bimbinganpa.php">
+              <a class="nav-link" href="./bimbinganpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -223,7 +224,7 @@ else
 
             <!-- File Proyek Akhir -->
             <li class="nav-item">
-                <a class="nav-link  " href="./filepa.php">
+                <a class="nav-link  active" href="./daftar_bimbingan.php">
                   <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
                       <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
@@ -283,9 +284,9 @@ else
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Pembimbing</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Validasi Proyek Akhir Mahasiswa</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">File Proyek Akhir</li>
           </ol>
-          <h5 class="font-weight-bolder mb-0">Validasi Proyek Akhir Mahasiswa</h5>
+          <h5 class="font-weight-bolder mb-0">Unggah File Proyek Akhir</h5>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -342,7 +343,9 @@ else
               <div class="table-responsive p-0">
 
                 
-
+              <?php
+                            include "../_database/config.php";
+                            $id=$_GET['nrp'];?>
                 <form action="" method="post" enctype="multipart/form-data">
                   <div class="card-header pb-0 p-3">
                     <div class="row">
@@ -350,6 +353,7 @@ else
                         <div class="row">
                                 <?php
                             include "../_database/config.php";
+                            $user=$_SESSION['user'];
                             $id=$_GET['nrp'];
                             $query = mysqli_query($koneksi, "SELECT * FROM bimbingan_pa WHERE nrp='$id'");
                             while($row = mysqli_fetch_assoc($query)){
@@ -365,6 +369,7 @@ else
                               <input name="nrp" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nrp']?>" required>
                               <label name="nrp" class="form-control" aria-label="default input example"><?php echo $row['nrp']?></label>
                             </div>
+                            <input name="dosbing" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $user?>" required>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -405,8 +410,8 @@ else
                             <label for="formFile" class="form-label">Jenis File</label>
                               <select name="jenis_file" class="form-control" aria-placeholder="Pilih Jenis File"  name aria-label="Default input example" required>
                                 <option selected>Pilih Jenis File</option>
-                                <option value="Proposal Proyek Akhir">Proposal</option>
-                                <option value="Laporan Proyek Akhir">Laporan</option>
+                                <option value="Proposal Proyek Akhir">Proposal Proyek Akhir</option>
+                                <option value="Laporan Proyek Akhir">Laporan Proyek Akhir</option>
                               </select>
                           </div>
                           <div class="form-group col-md-6">
@@ -440,12 +445,12 @@ else
               
                   <div class = "mx-4">
                     <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
-                    <a href="../pages_dosen/update_status.php?nrp=<?php echo $id?>"><button type="submit" class="btn btn-primary" name="input" >OK</button></a>
+                    <button type="submit" class="btn btn-primary" name="input" onClink="location.href='../pages_dosen/update_status.php?nrp=<?php echo $row['nrp']?>'">OK</button>
                     <?php }?> 
                   </div>
               </form>
             </div>
-          </div>
+          </div> 
         </div>
         <!-- and popup ajuan surat mahasiswa -->
         

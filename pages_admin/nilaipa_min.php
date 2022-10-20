@@ -344,7 +344,7 @@
 
               <!-- Nilai Akhir Proyek Akhir -->
               <li class="nav-item"> 
-              <a class="nav-link  " href="./nilaipa_min.php">
+              <a class="nav-link  active" href="./nilaipa_min.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
@@ -609,13 +609,13 @@
                   <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
                     <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                       <button type="button"  class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Pilih Penilaian
+                      Nilai Akhir Proyek Akhir
                       </button>
                     </a>
                     <ul style = "height:200px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
                       <div class="card example-1 scrollbar-deep-purple bordered-deep-purple thin" style = "height:200px">  
                         <li>
-                          <a href="../awikwok.php" class="dropdown-item border-radius-md">
+                          <a href="../pages_admin/nilaisem.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1" >
@@ -625,17 +625,17 @@
                           </a>
                         </li>
                         <li >
-                          <a href="../" class="dropdown-item border-radius-md">
+                          <a href="../pages_admin/nilaisid.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Nilai Evaluasi Proyek Akhir</span>
+                                  <span class="font-weight-bold">Nilai Sidang Proyek Akhir</span>
                                 </h6>
                             </div>
                           </a>
                         </li>
                         <li >
-                          <a href="../" class="dropdown-item border-radius-md">
+                          <a href="../pages_admin/nilaipa_min.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -667,37 +667,55 @@
                       <tr class="col-lg-4 col-md-6 col-sm-12 col-xs-12 filterDiv industrial show">
                         <th class="text-center">No</th>
                         <th class="text-center">Nama</th>
-                        <th class="text-left ps-1">Nrp</th>
-                        <th class="text-center">Angkatan</th>
-                        <th class="text-center">Nilai Seminar Proposal</th>
-                        <th class="text-center">Nilai Sidang Proyek Akhir</th>
+                        <th class="text-center">Nrp</th>
+                        <th class="text-center">Nilai Akhir Proyek Akhir</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th class="text-center">1</th>
-                        <th class="text-center">2040211022</th>
-                        <th class="text-left ps-1">Valiant </th>
-                        <th class="text-center">2021</th>
-                        <th class="text-center">-</th>
-                        <th class="text-center">-</th>
+                      <?php
+                    include "../_database/config.php";
+                      $user=$_SESSION['user'];
+                      $no = 1;
+                      $query = mysqli_query($koneksi, 'SELECT * FROM nilai_sidang');
+                      while($row = mysqli_fetch_assoc($query)){
+                      
+                      $nilai1=$row['nilai_sid'];
+                      $nilai2=$row['nilai_sid2'];
+                      $nilai3=$row['nilai_sid3'];
+
+                      $total= ($nilai1 + $nilai2 + $nilai3)/3;
+                      if($total >= 85.60){
+                          $tampil= 'A';
+                      }
+                      else if($total >= 75.60 && $total <= 85.59 ){
+                          $tampil= 'AB';
+                      }
+                      else if($total >= 65.60 && $total <= 75.59){
+                          $tampil= 'B';
+                      }
+                      else if($total >= 60.60 && $total <= 65.59){
+                          $tampil= 'BC';
+                      }
+                      else if($total >= 55.60 && $total <= 60.59){
+                          $tampil= 'C';
+                      }
+                      else if($total >= 40.60 && $total <= 55.59){
+                          $tampil= 'D';
+                      }
+                      else if($total >= 0 && $total <= 40.59){
+                          $tampil= 'E';
+                      }
+                      else{
+                        echo 'Tidak ada nilai';
+                      }
+                      ?>
+                        <td class="text-center"><?php echo $no++?></td>
+                        <td class="text-center"><?php echo $row['nama']?></td>
+                        <td class="text-center"><?php echo $row['nrp']?></td>
+                        <td class="text-center"><?php echo $tampil?></td>
                       </tr>
-                      <!--<tr>
-                        <th class="text-center">2</th>
-                        <th class="text-center">2040211022</th>
-                        <th class="text-left ps-1">Valiant </th>
-                        <th class="text-center">Elektro Otomasi</th>
-                        <th class="text-center">-</th>
-                        <th class="text-center">-</th>
-                      </tr>
-                      <tr>
-                        <th class="text-center">3</th>
-                        <th class="text-center">2040211022</th>
-                        <th class="text-left ps-1">Valiant </th>
-                        <th class="text-center">Elektro Otomasi</th>
-                        <th class="text-center">-</th>
-                        <th class="text-center">-</th>
-                      </tr>-->
+                      <?php } ?>
                     </tbody>
                     
                   </table>

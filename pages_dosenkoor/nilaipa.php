@@ -331,7 +331,7 @@
 
             <!--Kalender Proyek Akhir-->
             <li class="nav-item">
-              <a class="nav-link  " href="./kalenderpa2.php">
+              <a class="nav-link  " href="./kalenderpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -344,7 +344,7 @@
 
               <!-- Nilai Akhir Proyek Akhir -->
               <li class="nav-item"> 
-              <a class="nav-link  " href="./nilaipa.php">
+              <a class="nav-link  active" href="./nilaisempro.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
@@ -687,20 +687,49 @@
                     <tbody>
                     <?php
                     include "../_database/config.php";
-                      $user=$_SESSION['user'];
-                      $no = 1;
-                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_seminar WHERE dosen_uji='$user'");
-                      while($row = mysqli_fetch_assoc($query)){
-                
-                      ?>
-                      <tr>
-                        <td class="text-center"><?php echo $no++ ?></td>
-                        <td class="text-center"><?php echo $row['nama']?></td>
-                        <td class="text-center"><?php echo $row['nrp']?></td>
-                        <td class="text-center"><?php echo $row['judul_pa']?></td>
-                        <td class="text-center"><a class="btn btn-primary" href="../pages_dosen/filepa.php?id=<?php echo $row['id']; ?>" role="button"><?php echo 'A' ?></a></td>
-                        
-                      </tr>
+                    $user=$_SESSION['user'];
+                    $no = 1;
+                    $query = mysqli_query($koneksi, 'SELECT * FROM nilai_sidang');
+                    while($row = mysqli_fetch_assoc($query)){
+                    
+                    $nilai1=$row['nilai_sid'];
+                    $nilai2=$row['nilai_sid2'];
+                    $nilai3=$row['nilai_sid3'];
+
+                    $total= ($nilai1 + $nilai2 + $nilai3)/3;
+                    if($total >= 85.60){
+                        $tampil= 'A';
+                    }
+                    else if($total >= 75.60 && $total <= 85.59 ){
+                        $tampil= 'AB';
+                    }
+                    else if($total >= 65.60 && $total <= 75.59){
+                        $tampil= 'B';
+                    }
+                    else if($total >= 60.60 && $total <= 65.59){
+                        $tampil= 'BC';
+                    }
+                    else if($total >= 55.60 && $total <= 60.59){
+                        $tampil= 'C';
+                    }
+                    else if($total >= 40.60 && $total <= 55.59){
+                        $tampil= 'D';
+                    }
+                    else if($total >= 0 && $total <= 40.59){
+                        $tampil= 'E';
+                    }
+                    else{
+                      echo 'Tidak ada nilai';
+                    }
+                    ?>
+                    <tr>
+                      <td class="text-center"><?php echo $no++ ?></td>
+                      <td class="text-center"><?php echo $row['nama']?></td>
+                      <td class="text-center"><?php echo $row['nrp']?></td>
+                      <td class="text-center"><?php echo $row['judul_pa']?></td>
+                      <td class="text-center"><a class="btn btn-primary" href="../pages_dosen/filepa.php?nrp=<?php echo $row['nrp']; ?>" role="button"><?php echo $tampil ?></a></td>
+                      
+                    </tr>
                       <?php }?>
                     </tbody>
                     

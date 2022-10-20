@@ -417,9 +417,9 @@ if (isset($_POST['selesai'])) {
                     <tbody id="myTable">
                       <?php
                       include "../_database/config.php";
-                      
+                      $user=$_SESSION['user'];
                       $no = 1;
-                      $query = mysqli_query($koneksi, 'SELECT * FROM bimbingan_pa');
+                      $query = mysqli_query($koneksi, "SELECT * FROM bimbingan_pa WHERE nama='$user'");
                       while($row = mysqli_fetch_assoc($query)){
                       
                       if(isset($row['status_bimbingan'])){

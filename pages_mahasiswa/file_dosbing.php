@@ -435,7 +435,7 @@ if (isset($_POST['selesai'])) {
                         <th class="text-center"><?php echo $row['file']?></th>
                         <th class="text-center"><?php echo $row['keterangan']?></th>
                         <th class="text-center"><?php echo $row['waktu'] ?></th>
-                        <th class="text-center"><button class="btn btn-light"><a href="../pages_mahasiswa/catatan_dosen.php?id=<?php echo $row['id']; ?>">Lihat Catatan</a></button></th>
+                        <th class="text-center"><button class="btn btn-light"><a href="../pages_mahasiswa/catatan_dosen.php?nrp=<?php echo $row['nrp']; ?>">Lihat Catatan</a></button></th>
                         
                       </tr>
                       <?php }?>

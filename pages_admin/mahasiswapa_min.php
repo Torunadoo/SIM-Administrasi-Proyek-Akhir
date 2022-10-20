@@ -286,7 +286,7 @@
 
             <!--Mahasiswa Proyek Akhir terverifikasi-->
             <li class="nav-item">
-              <a class="nav-link  " href="./mahasiswapa_min.php">
+              <a class="nav-link  active" href="./mahasiswapa_min.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -730,46 +730,6 @@
                 </div>
               </div>
             </div>
-            <!-- and dropdown jenis surat -->
-          <!--<div class="form-group d-flex justify-content-around mt-4 my-0 md-0">
-          <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "12">
-                <?php if ($_POST['filterid'] == 0 || $_POST['filterid'] == 2 || $_POST['filterid'] == 1 ) { ?>
-               <button type = "submit" name = "filterall" class = "btn btn-outline-info">Lihat Semua</button>
-               <?php } 
-               else { ?>
-               <button type = "submit" name = "filterall" class = "btn btn-info">Lihat Semua</button>
-             <?php } ?>
-               </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "0">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 2 || $_POST['filterid'] == 1 || $_POST['filterid'] == NULL  ) { ?>
-               <button type = "submit" name = "filter0" class = "btn btn-outline-info">Belum Diproses</button>
-               <?php } 
-               else { ?>
-             <button type = "submit" name = "filter0" class = "btn btn-info">Belum Diproses</button>
-             <?php } ?>
-            </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "1">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 2 || $_POST['filterid'] == 0 || $_POST['filterid'] == NULL  ) { ?>/
-               <button type = "submit" name = "filter1" class = "btn btn-outline-info">Ditolak</button>
-               <?php } 
-               else { ?>
-              <button type = "submit" name = "filter1" class = "btn btn-info">Ditolak</button>
-             <?php } ?>
-            </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "2">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 1 || $_POST['filterid'] == 0 || $_POST['filterid'] == NULL  ) { ?>
-               <button type = "submit" name = "filter2" class = "btn btn-outline-info">Disetujui</button>
-               <?php } 
-               else { ?>
-              <button type = "submit" name = "filter2" class = "btn btn-info">Disetujui</button>
-             <?php } ?>
-            </form>
-        </div>-->
-        
           <div class="card-body px-0 pt-0 mt-0 py-0 my-0 pb-2">
             <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px" >
                 <table class="table align-items-center mb-0">
@@ -814,7 +774,7 @@
                       <th class = "text-center"><?php echo $row['tanggal']?></th>
                       <th class = "text-center"><?php echo $row['pembimbing']?></th>
                       <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
-                      <th class = "text-center"><a class="btn btn-primary" href="../pages_admin/validasipa.php?id=<?php echo $row['id']; ?>" role="button"><?php echo $tampil ?></a></th>
+                      <th class = "text-center"><a class="btn btn-primary" href="../pages_admin/validasipa.php?nrp=<?php echo $row['nrp']; ?>" role="button"><?php echo $tampil ?></a></th>
                     </tr> 
                       <?php }?>
                     

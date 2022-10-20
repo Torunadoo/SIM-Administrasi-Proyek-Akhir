@@ -286,7 +286,7 @@
 
             <!--Mahasiswa Proyek Akhir terverifikasi-->
             <li class="nav-item">
-              <a class="nav-link  " href="./mahasiswapa_min.php">
+              <a class="nav-link  active" href="./mahasiswapa_min.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -711,7 +711,7 @@
                         <div class="row">
                                 <?php
                             include "../_database/config.php";
-                            $id=$_GET['id'];
+                            $id=$_GET['nrp'];
                             $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE id='$id'");
                             while($row = mysqli_fetch_assoc($query)){
                     
@@ -758,28 +758,13 @@
               <div class = "mx-4">
                 <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
               
-                <a class="btn btn-primary" name="update_validasi" href="../pages_admin/update.php?id=<?php echo $row['id']; ?>" role="button">OK</a>
+                <a class="btn btn-primary" name="update_validasi" href="../pages_admin/update.php?nrp=<?php echo $id ?>" role="button">OK</a>
                 <?php }?>
               </form>
               </div>
             </div>
           </div>
         </div>
-        <!-- and popup ajuan surat mahasiswa -->
-
-
-        <!-- and php tabel -->
-        <!-- and modal-->
-
-
-        </tr>
-        <!-- php update surat -->
-       
-
-        <!-- php update catatan dosen -->
-
-        <!-- update catatan kadep -->
-        
 
         </tbody>
         </table>

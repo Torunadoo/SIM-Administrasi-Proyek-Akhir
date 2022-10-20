@@ -468,24 +468,27 @@ if (isset($_POST['update2'])) {
     </div>
   </div>
 </main>
-<script src="https://teras.ee.its.ac.id/asset/jquery-3.3.1/dist/jquery.min.js"></script>
-<script src="https://teras.ee.its.ac.id/asset/moment-2.24.0/min/moment.min.js"></script>
-<script src="https://teras.ee.its.ac.id/asset/fullcalendar-3.10.0/fullcalendar.min.js"></script>
-<script src="https://teras.ee.its.ac.id/asset/fullcalendar-3.10.0/locale/id.js"></script>
+<script src="../fullcalendar/jquery.min.js"></script>
+<script src="../fullcalendar/moment.js"></script>
+<script src="../fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="../fullcalendar/dist/locale/id.js"></script>
 <script src="/js/vue.js?id=f3ce0c6e41dd11dee30c"></script> <script>
   $(document).ready(function(){
     flashNotification = 0;
       });
 </script><script type="text/javascript">
-	$(document).ready(function() {
-	    $('#calendar').fullCalendar({
-	    	header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,basicWeek,basicDay'
-			},
-			eventLimit: true, // allow "more" link when too many events
-	        events: [{"title":"Sidang Proyek Akhir","start":"2022-09-01T08:00","end":"2022-09-08T08:00","url":"mahasiswa.php"}]
+	$(document).ready(function () {
+    var calendar = $('#calendar').fullCalendar({
+        editable: true,
+        events: "../fetch-event.php",
+        displayEventTime: false,
+        eventRender: function (event, element, view) {
+            if (event.allDay === 'true') {
+                event.allDay = true;
+            } else {
+                event.allDay = false;
+            }
+        },
 	    })
 	});
 </script>

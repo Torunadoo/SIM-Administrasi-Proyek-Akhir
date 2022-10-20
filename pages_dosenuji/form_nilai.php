@@ -684,12 +684,29 @@ if(isset($_POST['input']))
                               <input name="nrp" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nrp']?>" required>
                               <label name="nrp" class="form-control" aria-label="default input example"><?php echo $row['nrp']?></label>
                             </div>
-                            <input name="judul_pa" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['judul_pa']?>" required>
                             <input name="jenis_eval" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['jenis_eval']?>" required>
 
-                            <?php }?>
+                            
                   </div>
-                  
+                  <div class="row">
+                    <div class="form-group">
+                        <label for="formFile" class="form-label">Judul Proyek Akhir</label>
+                        <label name="judul_pa" class="form-control" aria-label="default input example"><?php echo $row['judul_pa']?></label>
+                        <input name="judul_pa" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['judul_pa']?>" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="formFile" class="form-label">Dosen Pembimbing 1</label>
+                        <label name="dosbing1" class="form-control" aria-label="default input example"><?php echo $row['pembimbing']?></label>
+                        <input name="dosbing1" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['pembimbing']?>" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="formFile" class="form-label">Dosen Pembimbing 2</label>
+                        <label name="dosbing2" class="form-control" aria-label="default input example"><?php echo $row['pembimbing_2']?></label>
+                        <input name="dosbing2" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['pembimbing_2']?>" required>
+                    </div><?php }?>
+                </div>
                     
                 
               </div>

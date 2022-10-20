@@ -697,6 +697,7 @@
                       <th class="text-center"><strong>No</th>
                       <th class = "text-center"><strong>Nama File</th>
                       <th class="text-center"><strong>Jenis File</th>
+                      <th class="text-center"><strong>Status File</th>
                       <th class="text-center"><strong>Tanggal Pengajuan</th>
                       <th class="text-center"><strong>Status Bimbingan</th>
                       
@@ -723,6 +724,7 @@
                     <tr>
                         <th class="text-center"><?php echo $no++ ?></th>
                         <th class="text-center"><?php echo $row['file'] ?></th>
+                        <th class="text-center"><?php echo $row['jenis_file'] ?></th>
                         <th class="text-center"><?php echo $row['keterangan'] ?></th>
                         <th class="text-center"><?php echo $row['tgl_unggah'] ?></th>
                         <th class ="text-center"><a class="btn btn-primary" href="../pages_dosen/proses.php?nrp=<?php echo $id?>" role="button"><?php echo $tampil ?></a></th>
@@ -765,7 +767,7 @@
             Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Berhasil Melakukan Perubahan',
+            title: 'Berhasil',
             text: 'Perubahan Akan Disimpan',
             showConfirmButton: false,
             timer: 2000
@@ -780,7 +782,7 @@
             Swal.fire({
             position: 'center',
             icon: 'error',
-            title: 'Gagal Diajukan',
+            title: 'Gagal',
             showConfirmButton: false,
             timer: 2000
           })
@@ -794,7 +796,7 @@
             Swal.fire({
             position: 'center',
             icon: 'warning',
-            title: 'Gagal memberikan catatan',
+            title: 'Gagal',
             showConfirmButton: false,
             timer: 2000
           })

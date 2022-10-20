@@ -379,7 +379,7 @@ if (isset($_POST['hima2'])) {
                   <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
                     <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                       <button type="button" class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Nilai Akhir
+                      Nilai Akhir Proyek Akhir
                       </button>
                     </a>
                     <ul style = "height:160px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
@@ -399,7 +399,7 @@ if (isset($_POST['hima2'])) {
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Nilai Sidang</span>
+                                  <span class="font-weight-bold">Nilai Sidang Proyek Akhir</span>
                                 </h6>
                             </div>
                           </a>
@@ -409,7 +409,7 @@ if (isset($_POST['hima2'])) {
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Nilai Akhir</span>
+                                  <span class="font-weight-bold">Nilai Akhir Proyek Akhir</span>
                                 </h6>
                             </div>
                           </a>
@@ -424,7 +424,7 @@ if (isset($_POST['hima2'])) {
             <!-- tabel rekap -->
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">  
-                  <h6 class="mb-0" style="text-align: center;">Nilai Akhir Proyek Akhir</h6>
+                  
                   <table class="table align-items-center mb-0">
                     <thead>
                       <!-- judul kolom -->
@@ -432,10 +432,56 @@ if (isset($_POST['hima2'])) {
                         <th class="text-center">Nama</th>
                         <th class="text-center">NRP</th>
                         <th class="text-center">Program Studi</th>
-                        <th class="text-center">Nilai Akhir</th>
-                        <th></th>
+                        <th class="text-center">Nilai Akhir Proyek Akhir</th>
                       </tr>
                     </thead>
+                    <tbody>
+                      <tr>
+                      <?php
+                        include "../_database/config.php";
+                        $user=$_SESSION['user'];
+                        $no = 1;
+                        $query = mysqli_query($koneksi, "SELECT * FROM nilai_sidang WHERE nama='$user'");
+                        while($row = mysqli_fetch_assoc($query)){
+
+                        $nilai1=$row['nilai_sid'];
+                        $nilai2=$row['nilai_sid2'];
+                        $nilai3=$row['nilai_sid3'];
+
+                        $total= ($nilai1 + $nilai2 + $nilai3)/3;
+                        if($total >= 85.60){
+                          $tampil= 'A';
+                        }
+                        else if($total >= 75.60 && $total <= 85.59 ){
+                            $tampil= 'AB';
+                        }
+                        else if($total >= 65.60 && $total <= 75.59){
+                            $tampil= 'B';
+                        }
+                        else if($total >= 60.60 && $total <= 65.59){
+                            $tampil= 'BC';
+                        }
+                        else if($total >= 55.60 && $total <= 60.59){
+                            $tampil= 'C';
+                        }
+                        else if($total >= 40.60 && $total <= 55.59){
+                            $tampil= 'D';
+                        }
+                        else if($total >= 0 && $total <= 40.59){
+                            $tampil= 'E';
+                        }
+                        else{
+                          echo 'Tidak ada nilai';
+                        }
+                          ?>
+
+                        <td class="text-center"><?php echo $row['nama']?></td>
+                        <td class="text-center"><?php echo $row['nrp']?></td>
+                        <td class="text-center"><?php echo 'Teknologi Rekayasa Otomasi'?></td>
+                        <td class="text-center"><?php echo $tampil?></td>
+                      </tr>
+                      <?php } ?>
+                    </tbody>
                   </table>
               </div>
             </div>
