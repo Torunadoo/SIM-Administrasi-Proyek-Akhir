@@ -542,7 +542,7 @@ if(isset($_POST['input']))
                   
                 <div class="col-auto" >
                   <div class="mb-0">
-                    <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
+                    <a href="./validasi_jadwal.php"><button type="button" class="btn bg-gradient-secondary">Kembali</button></a>
               
                     <a class="btn btn-primary" name="update_validasi" href="../pages_admin/update_jadwal.php?nrp=<?php echo $row['nrp'] ?>" role="button">Validasi</a>
                   </div>

@@ -37,7 +37,7 @@ if(isset($_POST['input']))
     $baris = mysqli_num_rows($query);
 
         if($baris != 1){
-            $query1 = mysqli_query($koneksi, "INSERT INTO nilai_seminar VALUES('','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','','','$latar','','','$manfaat','','','$metode','','','$tulis','','','$bahasa','','','$sikap','','','$waktu_datang','','', '$datadok','','', '$materi','','', '$nilai_angka','','','$rekom','','','$catatan','','')");
+            $query1 = mysqli_query($koneksi, "INSERT INTO nilai_seminar VALUES('','','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','','','$latar','','','$manfaat','','','$metode','','','$tulis','','','$bahasa','','','$sikap','','','$waktu_datang','','', '$datadok','','', '$materi','','', '$nilai_angka','','','$rekom','','','$catatan','','')");
                 if($query1){
                     ?><script><?php $_SESSION['sukses'] = true;?></script> 
                     <script>history.pushState({}, "", "")</script><?php
@@ -79,7 +79,7 @@ if(isset($_POST['input']))
     $baris = mysqli_num_rows($query);
 
         if($baris != 1){
-            $query1 = mysqli_query($koneksi, "INSERT INTO nilai_sidang VALUES('','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','','','$latar','','','$manfaat','','','$metode','','','$tulis','','','$bahasa','','','$sikap','','','$waktu_datang','','', '$datadok','','', '$materi','','', '$nilai_angka','','','$rekom','','','$catatan','','')");
+            $query1 = mysqli_query($koneksi, "INSERT INTO nilai_sidang VALUES('','','$nama','$nrp','$prodi','$judul_pa','$dosen_uji','','','$latar','','','$manfaat','','','$metode','','','$tulis','','','$bahasa','','','$sikap','','','$waktu_datang','','', '$datadok','','', '$materi','','', '$nilai_angka','','','$rekom','','','$catatan','','')");
                 if($query1){
                     ?><script><?php $_SESSION['sukses'] = true;?></script> 
                     <script>history.pushState({}, "", "")</script><?php

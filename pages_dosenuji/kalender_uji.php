@@ -1,218 +1,199 @@
 <?php
-    session_start();
-    if($_SESSION['user']==''  || $_SESSION['status'] != 2)
-    {
-          header("location:../index.php");
-      }
-    include '../_database/config.php';
-    // aksi submit pada dosen
-    if (isset($_POST['notif'])) {
-      $id = $_POST['id'];
-      $nama = $_SESSION['user'];
-  
-      // update notif dosen pemb 
-      $query = mysqli_query($koneksi, 'SELECT * FROM suratmahasiswa ORDER BY id_no DESC');
-      while ($data = mysqli_fetch_array($query)) {
-      if ($data['dosen1'] == $nama) {
-      $query = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `notif`= 1 WHERE id_no = '$id' ");
-      if ($query) { 
-        header('location:validasisurat.php'); ?>
-        <script>history.pushState({}, "", "")</script><?php
-      } else { 
-        header('location:./dosen_uji.php'); ?>
-        <script>history.pushState({}, "", "")</script><?php
-      } } } }
+session_start();
+if ($_SESSION['user'] == '') {
+  header("location:../index.php");
+}
 
-      // update notif bimbingan proposal
-      if (isset($_POST['bp'])) {
-        $id = $_POST['id'];
-        $nama = $_SESSION['user'];
-        $query = mysqli_query($koneksi, 'SELECT * FROM bimbingan ORDER BY id_no DESC');
-        while ($data = mysqli_fetch_array($query)) {
-        if ($data['dosen1'] == $nama) {
-        $query = mysqli_query($koneksi, "UPDATE bimbingan SET `notif`= 1 WHERE id_no = '$id' ");
-        if ($query) { 
-          header('location:bimbingansurat.php'); ?>
-          <script>history.pushState({}, "", "")</script><?php
-        } else { 
-          header('location:./dosen_uji.php'); ?>
-          <script>history.pushState({}, "", "")</script><?php
-        } 
-          } 
-        }
-      }
+include "../_database/config.php";
+// update notif bimbingan proposal1
+if (isset($_POST['revisi'])) {
+  $id = $_POST['id'];
+  $query_revisi = mysqli_query($koneksi, "SELECT * FROM bimbingan ORDER BY id_no DESC");
+  while ($data_revisi = mysqli_fetch_array($query_revisi)) {
+  if ($data_revisi['status_dosen1'] == 1) {
+    $query2 = mysqli_query($koneksi, "UPDATE bimbingan SET `notif`= 0 WHERE id_no = '$id' ");
+    if ($query2) { 
+      header('location:bimbingan.php'); ?>
+      <script>history.pushState({}, "", "")</script><?php
+    } else { 
+      header('location:./mahasiswa.php'); ?>
+      <script>history.pushState({}, "", "")</script><?php
+    }
+  } } }
 
-      // update notif bimbingan proposal tkk
-      if (isset($_POST['bptkk'])) {
-        $id = $_POST['id'];
-        $nama = $_SESSION['user'];
-        $query = mysqli_query($koneksi, 'SELECT * FROM bimbingan ORDER BY id_no DESC');
-        while ($data = mysqli_fetch_array($query)) {
-        if ($data['dosen1'] == $nama) {
-        $query = mysqli_query($koneksi, "UPDATE bimbingan SET `notif`= 2 WHERE id_no = '$id' ");
-        if ($query) { 
-          header('location:bimbingansurat.php'); ?>
-          <script>history.pushState({}, "", "")</script><?php
-        } else { 
-          header('location:./dosen_uji.php'); ?>
-          <script>history.pushState({}, "", "")</script><?php
-        } 
-          } 
-        }
-      }
-  
-      // update notif dosen koor1
-      if (isset($_POST['koor1'])) {
-        $id = $_POST['id'];
-        if ($_SESSION['status2'] == 2 && $_SESSION['status'] == 2) {
-          $query2 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `notif`= 2 WHERE id_no = '$id' ");
-          if ($query2) { 
-            header('location:validasisurat.php'); ?>
-            <script>history.pushState({}, "", "")</script><?php
-          } else { 
-            header('location:./dosen_uji.php'); ?>
-            <script>history.pushState({}, "", "")</script><?php
-          }
-        }
-      }
-  
-      // update notif dosen koor 2
-      if (isset($_POST['koor2'])) {
-        $id = $_POST['id'];
-        if ($_SESSION['status3'] == 2 && $_SESSION['status'] == 2) {
-          $query3 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `notif`= 2 WHERE id_no = '$id' ");
-          if ($query3) { 
-            header('location:validasisurat.php'); ?>
-            <script>history.pushState({}, "", "")</script><?php
-          } else { 
-            header('location:./dosen_uji.php'); ?>
-            <script>history.pushState({}, "", "")</script><?php
-          }
-        }
-      }
-  
-      // update notif dosen tkk
-      if (isset($_POST['tkk'])) {
-        $id = $_POST['id'];
-        if ($_SESSION['status2'] == 1 && $_SESSION['status'] == 2) {
-          $query3 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `notif`= 2 WHERE id_no = '$id' ");
-          if ($query3) { 
-            header('location:validasisurat.php'); ?>
-            <script>history.pushState({}, "", "")</script><?php
-          } else { 
-            header('location:./dosen_uji.php'); ?>
-            <script>history.pushState({}, "", "")</script><?php
-          }
-        }
-      }
-      // akhir aksi submit dosen
-    
-    // aski submit kadep
-    if (isset($_POST['mhsw'])) {
-      $id = $_POST['id'];
-    if ($_SESSION['status2'] == 5) {
-      $query2 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `notif`= 3 WHERE id_no = '$id' ");
-      if ($query2) { 
-        header('location:validasisurat2.php'); ?>
-        <script>history.pushState({}, "", "")</script><?php
-      } else { 
-        header('location:./dosen_uji.php'); ?>
-        <script>history.pushState({}, "", "")</script><?php
-      }
-    } }
+  // update notif bimbingan proposal2
+if (isset($_POST['selesai'])) {
+  $id = $_POST['id'];
+  $nama = $_SESSION['user'];
+  $query_selesai = mysqli_query($koneksi, "SELECT * FROM bimbingan ORDER BY id_no DESC");
+  while ($data_selesai = mysqli_fetch_array($query_selesai)) {
+  if ($data_selesai['status_dosen1'] == 2) {
+  $query = mysqli_query($koneksi, "UPDATE bimbingan SET `notif`= 3 WHERE id_no = '$id' ");
+  if ($query) { 
+    header('location:bimbingan.php'); ?>
+    <script>history.pushState({}, "", "")</script><?php
+  } else { 
+    header('location:./mahasiswa.php'); ?>
+    <script>history.pushState({}, "", "")</script><?php
+  } 
+    } 
+  }
+}
 
-    if (isset($_POST['dsn'])) {
-      $id = $_POST['id'];
-      if ($_SESSION['status2'] == 5) {
-        $query2 = mysqli_query($koneksi, "UPDATE suratdosen SET `notif`= 1 WHERE id_no = '$id' ");
-        if ($query2) { 
-          header('location:validasidsn.php'); ?>
-          <script>history.pushState({}, "", "")</script><?php
-        } else { 
-          header('location:./dosen_uji.php'); ?>
-          <script>history.pushState({}, "", "")</script><?php
-        }
-      } }
+// update notif bimbingan proposal hima1
+if (isset($_POST['hima1'])) {
+  $id = $_POST['id'];
+  $nama = $_SESSION['user'];
+  $query_hima1 = mysqli_query($koneksi, "SELECT * FROM bimbingan ORDER BY id_no DESC");
+  while ($data_hima1 = mysqli_fetch_array($query_hima1)) {
+  if ($data_hima1['status_dosentkk'] == 1) {
+  $query = mysqli_query($koneksi, "UPDATE bimbingan SET `notif`= 0 WHERE id_no = '$id' ");
+  if ($query) { 
+    header('location:bimbingan.php'); ?>
+    <script>history.pushState({}, "", "")</script><?php
+  } else { 
+    header('location:./mahasiswa.php'); ?>
+    <script>history.pushState({}, "", "")</script><?php
+  } 
+    } 
+  }
+}
 
-      if (isset($_POST['tndk'])) {
-        $id = $_POST['id'];
-        if ($_SESSION['status2'] == 5) {
-          $query2 = mysqli_query($koneksi, "UPDATE surattendik SET `notif`= 1 WHERE id_no = '$id' ");
-          if ($query2) { 
-            header('location:validasitndk.php'); ?>
-            <script>history.pushState({}, "", "")</script><?php
-          } else { 
-            header('location:./dosen_uji.php'); ?>
-            <script>history.pushState({}, "", "")</script><?php
-          }
-        } }
-      // akhir aksi submit kadep
+// update notif bimbingan proposal hima2
+if (isset($_POST['hima2'])) {
+  $id = $_POST['id'];
+  $nama = $_SESSION['user'];
+  $query_hima2 = mysqli_query($koneksi, "SELECT * FROM bimbingan ORDER BY id_no DESC");
+  while ($data_hima2 = mysqli_fetch_array($query_hima2)) {
+  if ($data_hima2['status_dosentkk'] == 2) {
+  $query = mysqli_query($koneksi, "UPDATE bimbingan SET `notif`= 3 WHERE id_no = '$id' ");
+  if ($query) { 
+    header('location:bimbingan.php'); ?>
+    <script>history.pushState({}, "", "")</script><?php
+  } else { 
+    header('location:./mahasiswa.php'); ?>
+    <script>history.pushState({}, "", "")</script><?php
+  } 
+    } 
+  }
+}
+?>
+<?php
+include '../_database/config.php'; //panggil setiap ingin koneksi ke data
+$no = 0;
+$no2 = $no++;
+$query = mysqli_query($koneksi, 'SELECT * FROM suratmahasiswa ORDER BY id_no DESC');
+$data = $data = mysqli_fetch_array($query)
 
-   
-    ?>
-  
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-      <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-      <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/demo.min.css">
-      <title>
-        SIM Administrasi Proyek Akhir
-      </title>
-      <!--     Fonts and icons     -->
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-      <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-      <!-- Nucleo Icons -->
-      <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-      <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-      <!-- Font Awesome Icons -->
-      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-      <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-      <!-- CSS Files -->
-      <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css" rel="stylesheet" />
+?>
 
-      <style>
-            .scrollbar-deep-purple::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-            background-color: #F5F5F5;
-            border-radius: 10px; }
+<!-- php update surat saat kadep menolak -->
+<?php
+include "../_database/config.php";
+if (isset($_POST['update2'])) {
 
-            .scrollbar-deep-purple::-webkit-scrollbar {
-            width: 12px;
-            background-color: #F5F5F5; }
+  $nama_file3 = basename($_FILES['uflk']['name']);
+  $id4 = $_POST['id2'];
+  $nol = $_POST['stats2'];
 
-            .scrollbar-deep-purple::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-            background-color: #aaa; }
+  $url3 = $id4 . '_' . $nama_file3;
 
-            .scrollbar-deep-purple {
-            scrollbar-color: #512da8 #F5F5F5;
+  if (move_uploaded_file($_FILES['uflk']['tmp_name'], $url3)) {
+
+    $query4 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `file`='$url3' WHERE id_no = '$id4' ");
+    $query5 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `status_kadep`='$nol' WHERE id_no = '$id4' ");
+
+    if ($query4 && $query5) {
+      echo '<a href="./pmhnsurat.php"><script> alert ("Berhasil di ajukan")</script></a>';
+?> <script>
+        history.pushState({}, "", "")
+      </script> <?php
+              } else {
+                echo '<a href="./pmhnsurat.php"><script> alert ("gagal di ajukan")</script></a>';
+              }
             }
+          }
+?>
 
-            .bordered-deep-purple::-webkit-scrollbar-track {
-            -webkit-box-shadow: none;
-            border: 1px solid #ffffff00; }
 
-            .bordered-deep-purple::-webkit-scrollbar-thumb {
-            -webkit-box-shadow: none; }
+<!DOCTYPE html>
+<html lang="en">
 
-            .thin::-webkit-scrollbar {
-            width: 6px; }
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-33239191-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-            .example-1 {
-            position: relative;
-            overflow-y: scroll;
-            height: 200px; }
+    gtag('config', 'UA-33239191-2');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <title>
+    SIM Administrasi Proyek Akhir
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+  <link rel="stylesheet" href="https://teras.ee.its.ac.id/asset/fullcalendar-3.10.0/fullcalendar.min.css">
+
+  <style>
+    .scrollbar-deep-purple::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+      background-color: #F5F5F5;
+      border-radius: 10px;
+    }
+
+    .scrollbar-deep-purple::-webkit-scrollbar {
+      width: 12px;
+      background-color: #F5F5F5;
+    }
+
+    .scrollbar-deep-purple::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+      background-color: #aaa;
+    }
+
+    .scrollbar-deep-purple {
+      scrollbar-color: #512da8 #F5F5F5;
+    }
+
+    .bordered-deep-purple::-webkit-scrollbar-track {
+      -webkit-box-shadow: none;
+      border: 1px solid #ffffff00;
+    }
+
+    .bordered-deep-purple::-webkit-scrollbar-thumb {
+      -webkit-box-shadow: none;
+    }
+
+    .thin::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .example-1 {
+      position: relative;
+      overflow-y: scroll;
+      height: 200px;
+    }
   </style>
-    </head>
 
-    <body class="g-sidenav-show  bg-gray-100">
+</head>
+<!-- sidebar -->
+<body class="g-sidenav-show  bg-gray-100">
       <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -228,7 +209,7 @@
                 <a class="nav-link  " href="./dosen_uji.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
-                  <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
                 </svg>
               </div>
               <span class="nav-link-text ms-1">Home</span>
@@ -401,21 +382,20 @@
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <!--div class="input-group">
-              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Type here...">
-            </div-->
+
           </div>
-          <ul class="navbar-nav justify-content-end">
+          <ul class="navbar-nav  justify-content-end">
             <!-- nama user -->
             <li class="nav-item d-flex align-items-center">
-            <a href="../profile.php" class="nav-link text-body font-weight-bold px-0">
+              <a href="../profile.php" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"> <?php echo $_SESSION['user'] ?> </span>
+                <span class="d-sm-inline d-none"><?php echo $_SESSION['user'] ?></span>
               </a>
             </li>
             <!-- jarak -->
-            <li class="nav-item px-3 d-flex align-items-center"></li>
+            <li class="nav-item px-3 d-flex align-items-center">
+
+            </li>
             <!-- notif -->
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -547,73 +527,56 @@
                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
               </a> -->
             </li>
-            <!-- logout -->
             <li class="nav-item d-flex align-items-center">
-                <a href="../logout.php" href="javascript:;" class="nav-link text-body p-0" >
-                  <i class="fas fa-sign-out-alt"></i>
-                  <span class="d-sm-inline d-none">Logout </span>
-                </a>
+              <a href="../logout.php" href="javascript:;" class="nav-link text-body p-0">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="d-sm-inline d-none">Logout </span>
+              </a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+
     <!-- End Navbar -->
-
 <main>
-    <div class="wrapper">
-    <div class="container-calendar">
-        <h3 id="monthAndYear"></h3>
-        <div class="button-container-calendar">
-            <button id="previous" onclick="previous()">&#8249;</button>
-            <button id="next" onclick="next()">&#8250;</button>
+  <div class="wrapper">
+    <div class="content-wrapper">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="box box-solid">
+            <div id="calendar">
+            </div>
+          </div>
         </div>
-        <table class="table-calendar" id="calendar" data-lang="en">
-            <thead id="thead-month"></thead>
-            <tbody id="calendar-body"></tbody>
-        </table>
-        <div class="footer-container-calendar">
-             <label for="month">Jump To: </label>
-             <select id="month" onchange="jump()">
-                 <option value=0>Jan</option>
-                 <option value=1>Feb</option>
-                 <option value=2>Mar</option>
-                 <option value=3>Apr</option>
-                 <option value=4>May</option>
-                 <option value=5>Jun</option>
-                 <option value=6>Jul</option>
-                 <option value=7>Aug</option>
-                 <option value=8>Sep</option>
-                 <option value=9>Oct</option>
-                 <option value=10>Nov</option>
-                 <option value=11>Dec</option>
-             </select>
-             <select id="year" onchange="jump()"></select>       
-        </div>
+      </div>
     </div>
-</div>
-  <script type="text/javascript" src="../assets/js/script.js"></script>
+  </div>
 </main>
-
-    
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+<script src="../fullcalendar/jquery.min.js"></script>
+<script src="../fullcalendar/moment.js"></script>
+<script src="../fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="../fullcalendar/dist/locale/id.js"></script>
+<script src="/js/vue.js?id=f3ce0c6e41dd11dee30c"></script> <script>
+  $(document).ready(function(){
+    flashNotification = 0;
+      });
+</script><script type="text/javascript">
+	$(document).ready(function () {
+    var calendar = $('#calendar').fullCalendar({
+        editable: true,
+        events: "../fetch-event.php",
+        displayEventTime: false,
+        eventRender: function (event, element, view) {
+            if (event.allDay === 'true') {
+                event.allDay = true;
+            } else {
+                event.allDay = false;
+            }
+        },
+	    })
+	});
+</script>
 </body>
 
 </html>

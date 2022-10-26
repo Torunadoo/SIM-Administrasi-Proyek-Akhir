@@ -681,14 +681,36 @@
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
-          <!-- dropdown semester -->
-          <div class="card-header pb-0 p-3 ">
+          
+            <div class="card-header pb-0 p-3 ">
               <div class="row">
-                
+                <?php
+                include "../_database/config.php";
+                $user=$_SESSION['user'];
+                $id=$_GET['nrp'];
+                $query = mysqli_query($koneksi, "SELECT * FROM bimbingan_pa WHERE nrp='$id'");
+                while($row = mysqli_fetch_assoc($query)){
+                ?>
+                <div class="form-group col-md-6">
+                  <label for="formFile" class="form-label">Nama Mahasiswa</label>
+                  <input name="nama" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nama']?>" required>
+                  <label name="nama" class="form-control" aria-label="default input example"><?php echo $row['nama']?></label>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="formFile" class="form-label">NRP Mahasiswa</label>
+                  <input name="nrp" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nrp']?>" required>
+                  <label name="nrp" class="form-control" aria-label="default input example"><?php echo $row['nrp']?></label>
+                </div>
               </div>
+              
+              <div class="mb-0">
+                <label for="formFile" class="form-label">Judul Proyek Akhir</label>
+                <label name="judul_pa" class="form-control" aria-label="default input example"><?php echo $row['judul_pa']?></label>
+              </div>
+              
             </div>
 
-            
+            <?php } ?>
           <div class="card-body px-0 pt-0 mt-0 py-0 my-0 pb-2">
             <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px" >
                 <table class="table align-items-center mb-0">

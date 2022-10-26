@@ -726,7 +726,7 @@
                           </a>
                         </li>
                         <li >
-                          <a href="../pages_dosen/nilaiakhir.php" class="dropdown-item border-radius-md">
+                          <a href="../pages_dosen/nilaipa.php" class="dropdown-item border-radius-md">
                             <div class="d-flex py-1">
                               <div class="my-auto">
                                 <h6 class="text-sm font-weight-normal mb-1">
@@ -762,7 +762,7 @@
                       include "../_database/config.php";
                       $user=$_SESSION['user'];
                       $no = 1;
-                      $query = mysqli_query($koneksi, 'SELECT * FROM nilai_sidang');
+                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_sidang WHERE (dosen_uji='$user' AND tampil_nilai='1') OR (dosen_uji2='$user'AND tampil_nilai='1') OR (dosen_uji3='$user' AND tampil_nilai='1')");
                       while($row = mysqli_fetch_assoc($query)){
                         
 
@@ -800,7 +800,7 @@
                         <th class="text-center"><?php echo $no++?></th>
                         <th class="text-center"><?php echo $row['nama']?></th>
                         <th class="text-center"><?php echo $row['nrp']?></th>
-                        <th class="text-center"><?php echo 'Teknologi Rekayasa Otomasi'?></th>
+                        <th class="text-center"><?php echo $row['prodi']?></th>
                         <th class="text-center"><?php echo $row['judul_pa']?></th>
                         <th class="text-center"><?php echo $tampil?></th>
                       </tr>

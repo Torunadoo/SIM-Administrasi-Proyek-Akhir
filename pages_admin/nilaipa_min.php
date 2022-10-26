@@ -677,7 +677,7 @@
                     include "../_database/config.php";
                       $user=$_SESSION['user'];
                       $no = 1;
-                      $query = mysqli_query($koneksi, 'SELECT * FROM nilai_sidang');
+                      $query = mysqli_query($koneksi, "SELECT * FROM nilai_sidang WHERE tampil_nilai='1'");
                       while($row = mysqli_fetch_assoc($query)){
                       
                       $nilai1=$row['nilai_sid'];

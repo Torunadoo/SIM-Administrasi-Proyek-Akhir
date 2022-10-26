@@ -318,7 +318,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                             
-                            <!-- jenis surat -->
+                            <!-- jenis file -->
                             <div class="card-header pb-0 p-3">
                                 <div class="row">
                                     <div class="mb-3">
@@ -332,7 +332,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
 
-                            <!-- UNDUH PANDUANN Magang -->
+                            
                             <div class="unduhmag text-center" style="display: none;" class="d-grid gap-2">
                             <a href="./Contoh Proposal Magang.pdf" target="_blank" class="pb-5 px-7" >
                                 <!-- <h6 class= "text-sm text-dark text-center">UNDUH PANDUAN</h6> -->
