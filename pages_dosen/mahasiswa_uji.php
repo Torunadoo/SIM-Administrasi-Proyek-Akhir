@@ -201,75 +201,7 @@
           </a>
         </li>
 
-        <!-- BAR NAVIGASI UNTTUK KADEP  -->
-        <?php if ($_SESSION['status2'] == 5) { ?>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Navigasi Kadep</h6>
-        </li>
-
-        <!-- Pemberian mandat kadep -->
-        <?php if($_SESSION['status2'] == '5'){ ?>
-          <li class="nav-item">
-            <a class="nav-link  " href="./kirimkadep.php">
-              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-exclamation-fill" viewBox="0 0 16 16">
-                  <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47L15.964.686Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
-                  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1.5a.5.5 0 0 1-1 0V11a.5.5 0 0 1 1 0Zm0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z"/>
-                </svg>
-              </div>
-              <span class="nav-link-text ms-1">Pengajuan Mandat </span>
-            </a>
-          </li>
-        <?php } ?>
-          
-        <!--Validasi Surat MAHASISWA-->
-        <?php if ($_SESSION['status2'] == '5') {?>
-        <li class="nav-item">
-          <a class="nav-link  " href="./validasisurat2.php">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-check-fill" viewBox="0 0 16 16">
-                <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1.146 6.854-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-              </svg>
-            </div>
-            <span class="nav-link-text ms-1">Validasi Surat Mahasiswa</span>
-          </a>
-        </li>
-        <?php } ?>
-
-        <!-- Validasi Surat Dosen -->
-        <?php if ($_SESSION['status2'] == '5') {?>
-        <li class="nav-item">
-          <a class="nav-link  " href="./validasidsn.php">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-check-fill" viewBox="0 0 16 16">
-                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z"/>
-                <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
-              </svg>
-            </div>
-            <span class="nav-link-text ms-1">Validasi Surat Dosen</span>
-          </a>
-        </li>
-        <?php } ?>
-
-        <!-- Validasi Surat Tendik -->
-        <?php if ($_SESSION['status2'] == '5') {?>
-        <li class="nav-item">
-          <a class="nav-link  " href="./validasitndk.php">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check-fill" viewBox="0 0 16 16">
-                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm1.354 4.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-              </svg>
-            </div>
-            <span class="nav-link-text ms-1">Validasi Surat Tendik</span>
-          </a>
-        </li>
-        <?php } ?>
-
-
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Navigasi Dosen</h6>
-        </li>
-        <?php } ?>
+        
 <!--Mahasiswa Bimbingan-->
 <li class="nav-item">
               <a class="nav-link  " href="./bimbinganpa.php">
@@ -388,72 +320,7 @@
            <li class="nav-item dropdown pe-2 d-flex align-items-center">
                   <!-- icon lonceng/bel -->
                   <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <!-- <i class="fa fa-bell cursor-pointer"></i> -->
-                    <!-- php surat masuk kadep -->
-                    <?php 
-                    include '../_database/config.php';
-                    if ($_SESSION['status2'] == 5) {
-                      $query_kadep = mysqli_query($koneksi, 
-                      'SELECT * FROM suratmahasiswa WHERE (status_dosen2 = 2 || status_dosentkk = 2) && notif = 2 
-                      UNION SELECT * FROM suratdosen WHERE notif = 0
-                      UNION SELECT * FROM bimbingan WHERE notif = 0
-                      UNION SELECT * FROM surattendik  WHERE notif = 0 ORDER BY id_no DESC' );
-                      $data = mysqli_num_rows($query_kadep); ?>
-
-                      <span class="primary"><?php echo $data ?></span>
-                   <?php } 
-                   $nama = $_SESSION['user']; 
-                   $query_mhsw = mysqli_query($koneksi, "SELECT * FROM suratmahasiswa UNION SELECT * FROM bimbingan ORDER BY tanggal DESC");
-                   $data_mhsw = mysqli_fetch_array($query_mhsw); {
-                   $tujuan = $data_mhsw['dosen1'];
-                   $tujuan2 = $data_mhsw['dosen2'];
-                   $tujuan3 = $data_mhsw['dosen_tkk'];
-                   
-                  // notif dosen pemb, koor, dan bimbingan untuk pak joko 
-                   if (($_SESSION['status'] == 2 && $tujuan == $nama) || 
-                   ($_SESSION['status'] == 2 && $_SESSION['status2'] == 2 && $tujuan2 == $nama) ||
-                   ($_SESSION['status'] == 2 && $_SESSION['status3'] == 2 && $tujuan2 == $nama)) {
-                     $query_pemb = mysqli_query($koneksi, 
-                     "SELECT * FROM suratmahasiswa WHERE (dosen1 = '$nama' && status_dosen1 = 0 && notif = 0) || 
-                     (dosen2 = '$nama' && status_dosen1 = 2 && status_dosen2 = 0 && notif = 1)
-                     UNION SELECT * FROM bimbingan WHERE dosen1 = '$nama' && status_dosen1 = 0 && notif = 0 ORDER BY tanggal DESC");
-                     $data_pemb = mysqli_num_rows($query_pemb); ?>
-                     <i class="fa fa-bell cursor-pointer" <?php if($data_pemb > 0) { echo 'style="color:#63B3ED"'; } ?>></i>
-                     <span class="primary"><?php echo $data_pemb ?></span>
-                   <?php }  
-                   // notif dosen pemb dan bimbingan proposal
-                   else if ($_SESSION['status'] == 2 && $tujuan == $nama) {
-                    $query_pemb2 = mysqli_query($koneksi, 
-                    "SELECT * FROM suratmahasiswa WHERE dosen1 = '$nama' && status_dosen1 = 0 && notif = 0
-                    UNION SELECT * FROM bimbingan WHERE dosen1 = '$nama' && status_dosen1 = 0 && notif = 0 ORDER BY tanggal DESC");
-                    $data_pemb2 = mysqli_num_rows($query_pemb2); ?>
-                    <i class="fa fa-bell cursor-pointer" <?php if($data_pemb2 > 0) { echo 'style="color:#63B3ED"'; } ?>></i>
-                    <span class="primary"><?php echo $data_pemb2 ?></span>
-                    <?php } 
-                    // notif dosen pemb, koor pbl dan bimbingan proposal
-                    else if (($_SESSION['status'] == 2 && $tujuan == $nama) || 
-                    ($_SESSION['status'] == 2 && $_SESSION['status3'] == 2 && $tujuan2 == $nama)) {
-                    $query_koor = mysqli_query($koneksi, 
-                    "SELECT * FROM suratmahasiswa WHERE (dosen1 = '$nama' && status_dosen1 = 0 && notif = 0) || 
-                    (dosen2 = '$nama' && status_dosen1 = 2 && status_dosen2 = 0 && notif = 1) 
-                    UNION SELECT * FROM bimbingan WHERE dosen1 = '$nama' && status_dosen1 = 0 && notif = 0 ORDER BY tanggal DESC");
-                    $data_koor = mysqli_num_rows($query_koor); ?>
-                    <i class="fa fa-bell cursor-pointer" <?php if($data_koor > 0) { echo 'style="color:#63B3ED"'; } ?>></i>
-                    <span class="primary"><?php echo $data_koor ?></span>
-                    <?php } 
-                    // notif dosen tkk 
-                    else if (($_SESSION['status'] == 2 && $tujuan == $nama ) ||
-                    ($_SESSION['status2'] == 1 && $_SESSION['status'] == 2 && $tujuan3 == $nama) || 
-                    ($_SESSION['status'] == 2 && $_SESSION['status3'] == 2 && $tujuan2 == $nama)) {
-                    $query_tkk = mysqli_query($koneksi, 
-                    "SELECT * FROM suratmahasiswa WHERE (dosen1 = '$nama' && status_dosen1 = 0 && notif = 0) || 
-                    (dosen2 = '$nama' && status_dosen2 = 9 && status_dosen2 = 0 && notif = 1) || 
-                    (dosen_tkk = '$nama' && notif = 1)
-                    UNION SELECT * FROM bimbingan WHERE dosen_tkk = '$nama' && status_dosentkk = 0 && notif = 1 ORDER BY tanggal DESC");
-                    $data_tkk = mysqli_num_rows($query_tkk); ?>
-                    <i class="fa fa-bell cursor-pointer" <?php if($data_tkk > 0) { echo 'style="color:#63B3ED"'; } ?>></i>
-                    <span class="primary"><?php echo $data_tkk ?></span>
-                    <?php } } ?>
+                    
                   </a>
 
                   <!-- dropdown surat masuk -->
