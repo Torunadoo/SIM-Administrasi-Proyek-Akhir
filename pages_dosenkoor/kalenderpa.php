@@ -497,17 +497,7 @@ if (isset($_POST['update2'])) {
 </script><script type="text/javascript">
 	$(document).ready(function () {
     var calendar = $('#calendar').fullCalendar({
-        editable: true,
-        events: "../fetch-event.php",
-        displayEventTime: false,
-        eventRender: function (event, element, view) {
-            if (event.allDay === 'true') {
-                event.allDay = true;
-            } else {
-                event.allDay = false;
-            }
-        },
-	    })
+        
 	});
 </script>
 </body>
