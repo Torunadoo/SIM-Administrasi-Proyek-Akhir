@@ -54,7 +54,7 @@ else if (move_uploaded_file($_FILES['fl']['tmp_name'], $url))
     {
       $nrp_id=$_GET['nrp'];
       ?><script><?php $_SESSION['sukses'] = true;?></script> 
-      <?php header("location:filepa.php?nrp=$nrp_id"); 
+      <?php header("location:update_status.php?nrp=$nrp_id"); 
     }
     // notif gagal input
     else
@@ -327,11 +327,7 @@ else
                         <div class="row">
                         <div class="form-group col-md-6">
                             <label for="formFile" class="form-label">Jenis File</label>
-                              <select name="jenis_file" class="form-control" aria-placeholder="Pilih Jenis File"  name aria-label="Default input example" required>
-                                <option selected>Pilih Jenis File</option>
-                                <option value="Proposal Proyek Akhir">Proposal Proyek Akhir</option>
-                                <option value="Laporan Proyek Akhir">Laporan Proyek Akhir</option>
-                              </select>
+                            <label name="jenis_file" class="form-control" aria-label="default input example"><?php echo $row['jenis_file']?></label>
                           </div>
                           <div class="form-group col-md-6">
                             <label for="formFile" class="form-label">Keterangan</label>
@@ -364,7 +360,7 @@ else
               
                   <div class = "mx-4">
                     <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
-                    <button type="submit" class="btn btn-primary" name="input" onClink="location.href='../pages_dosen/update_status.php?nrp=<?php echo $row['nrp']?>'">OK</button>
+                    <button type="submit" name="input" class="btn btn-primary">OK</button> 
                     <?php }?> 
                   </div>
               </form>
