@@ -607,8 +607,6 @@
                       <th class = "text-center">Judul Proyek Akhir</th>
                       <th class = "text-center">Jenis Evaluasi</th>
                       <th class = "text-center">Jadwal Evaluasi</th>
-                      <th class = "text-center">Status</th>
-                      <th class = "text-center">Tanggal Pelaksanaan</th>
                       <th class = "text-center">Pembimbing 1</th>
                       <th class = "text-center">Pembimbing 2</th>
                     </tr>
@@ -618,18 +616,16 @@
                       include "../_database/config.php";
                       $nama=$_SESSION['user'];
                       $no = 1;
-                      $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE pembimbing='$nama' OR pembimbing_2='$nama' ");
+                      $query = mysqli_query($koneksi, "SELECT  pendaftareval.nrp, pendaftareval.nama, pendaftareval.judul_pa, pendaftareval.jenis_eval, pendaftareval.pembimbing, pendaftareval.pembimbing_2, form_penjadwalan.tanggal FROM pendaftareval INNER JOIN form_penjadwalan WHERE (pendaftareval.pembimbing='$nama' AND form_penjadwalan.status_jadwal='1') OR (pendaftareval.pembimbing_2='$nama' AND form_penjadwalan.status_jadwal='1') ");
                       while($row = mysqli_fetch_assoc($query)){
                         ?>
                     <tr>
                       <th class="text-center"><?php echo $no++ ?></th>
-                      <th class = "text-center"><button class="btn btn-light"><a href="../pages_dosen/form_eval.php?id=<?php echo $row['id']; ?>"><?php echo $row['nama']?></a></button></th>
+                      <th class = "text-center"><button class="btn btn-light"><a href="../pages_dosen/form_eval.php?nrp=<?php echo $row['nrp']; ?>"><?php echo $row['nama']?></a></button></th>
                       <th class = "text-center"><?php echo $row['nrp']?></th>
                       <th class = "text-center"><?php echo $row['judul_pa']?></th>
                       <th class = "text-center"><?php echo $row['jenis_eval']?></th>
-                      <th class = "text-center">-</th>
-                      <th class = "text-center"></th>
-                      <th class = "text-center">-</th>
+                      <th class = "text-center"><?php echo $row['tanggal']?></th>
                       <th class = "text-center"><?php echo $row['pembimbing']?></th>
                       <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
                     </tr>

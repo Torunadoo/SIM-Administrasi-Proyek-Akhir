@@ -24,7 +24,7 @@ if(isset($_POST['input']))
   $tempat = $_POST['tempat'];
 
 
-  $query = mysqli_query($koneksi, "INSERT into form_penjadwalan VALUES('','$nama','$nrp','$jenis_eval','$prodi','$judul_pa','$dosbing1','$dosbing2','$dosji', '$tanggal', '$waktu', '$tempat')");
+  $query = mysqli_query($koneksi, "INSERT into form_penjadwalan VALUES('','','$nama','$nrp','$jenis_eval','$prodi','$judul_pa','$dosbing1','$dosbing2','$dosji', '$tanggal', '$waktu', '$tempat')");
 
     if($query)
     {
@@ -141,19 +141,7 @@ if(isset($_POST['input']))
 
                               
 
-            <!-- DATA MAGANG -->
-            <?php if($_SESSION['status2'] == '2'){ ?>
-            <li class="nav-item"> 
-              <a class="nav-link  " href="./datamagang.php">
-                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
-                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
-                  </svg>
-                </div>
-                <span class="nav-link-text ms-1">Data Magang</span>
-              </a>
-            </li>  
-            <?php } ?>
+           
           
             <!-- GANTI PASSWORD -->
             <li class="nav-item mt-3">
@@ -193,7 +181,7 @@ if(isset($_POST['input']))
             <li class="nav-item d-flex align-items-center">
               <a href="../profile.php" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php echo $_SESSION['user'] ?></span>
+                <span class="d-sm-inline d-none">Lucky Putri Rahayu, S.Si., M.Si</span>
               </a>
             </li>
             <!--li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -214,28 +202,7 @@ if(isset($_POST['input']))
             <!-- notif -->
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <!-- <i class="fa fa-bell cursor-pointer"></i> -->
-                <!-- angka pesan masuk -->
-                <?php 
-                include "../_database/config.php";
-                $nama = $_SESSION['user'];
-                $query_mhsw = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE nama = '$nama'");
-                $data_mhsw = mysqli_fetch_assoc($query_mhsw);
-
-                if ($nama) {
-                  $query1 = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE (status_dosen1 = 1 || status_dosen1 = 2) & (notif = 1 || notif = 2) ORDER BY id_no DESC");
-                  $data1 = mysqli_num_rows($query1); ?>
-
-                <i class="fa fa-bell cursor-pointer" <?php if($data1 > 0){echo 'style="color:#63B3ED"';} ?>></i>
-                <span class="primary"><?php echo $data1 ?></span>
-                <?php } else if ($_SESSION["status2"] == 3) {
-                  $query2 = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE ((status_dosen1 = 1 || status_dosen1 = 2) & (notif = 1 || notif = 2)) || ((status_dosentkk = 1 || status_dosentkk = 2) & (notif = 1 || notif = 2)) ORDER BY id_no DESC");
-                  $data2 = mysqli_num_rows($query2); ?>
-
-                <i class="fa fa-bell cursor-pointer" <?php if($data2 > 0){echo 'style="color:#63B3ED"';} ?>></i>
-                <span class="primary"><?php echo $data2 ?></span>
                 
-                <?php } ?>
               </a>
               <!-- dropdown surat masuk -->
               <ul class="dropdown-menu  dropdown-menu-end  px-1 py-1 me-sm-n3" aria-labelledby="dropdownMenuButton">

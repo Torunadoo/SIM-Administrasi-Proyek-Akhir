@@ -230,21 +230,7 @@ if (isset($_POST['selesai'])) {
             <!-- notif -->
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <!-- angka pesan masuk -->
-                <?php 
-                include "../_database/config.php";
-                $nama = $_SESSION['user'];
-                $query_mhsw = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE nama = '$nama'");
-                $data_mhsw = mysqli_fetch_assoc($query_mhsw);
-
-                // untuk mahasiswa 
-                if ($nama) {
-                  $query1 = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE (status_dosen1 = 1 || status_dosen1 = 2) & (notif = 1 || notif = 2) ORDER BY id_no DESC");
-                  $data1 = mysqli_num_rows($query1); ?>
-
-                <i class="fa fa-bell cursor-pointer" <?php if($data1 > 0){echo 'style="color:#63B3ED"';} ?>></i>
-                <span class="primary"><?php echo $data1 ?></span>
-                <?php } ?>
+              
               </a>
               <!-- dropdown surat masuk -->
               <ul class="dropdown-menu  dropdown-menu-end  px-1 py-1 me-sm-n3" aria-labelledby="dropdownMenuButton">

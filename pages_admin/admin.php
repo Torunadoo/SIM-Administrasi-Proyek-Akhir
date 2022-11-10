@@ -711,7 +711,7 @@
                <?php } ?>
 
                <?php if ($no == 1) { ?>
-              <h6 class = "text-center"><br><br><br><br><br><br><br><br><br>BELUM ADA SURAT YANG DITOLAK</h6>
+              
 
               <?php } ?>
 
@@ -787,17 +787,17 @@
                         </span>
                       </a>-->
                    </div>
-                    <!--<span class="text-xs"><?php echo $data['tanggal'] ?></span>
+                    <!--<span class="text-xs"><?php echo $data['tanggal'] ?></span>-->
                         <?php } } ?>
                       </li>
-                      <?php if ($no == 1) { ?>-->
+                      <?php if ($no == 1) { ?>
                         
               <h6 class = "text-center"><br><br><br><br><br><br><br><br><br></h6>
 
               <?php } ?>
                   </ul>
               </div>
-            </div>iv>
+            </div>
           </div>
           
         </div>

@@ -1,7 +1,7 @@
 <?php
 include "../_database/config.php";
 session_start();
-if($_SESSION['user']=='' || $_SESSION['status'] != 2)
+if($_SESSION['user']=='')
 {
       header("location:../index.php");
   }

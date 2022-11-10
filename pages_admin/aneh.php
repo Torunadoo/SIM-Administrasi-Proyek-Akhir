@@ -182,7 +182,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="">
-        <span class="ms-1 font-weight-bold">Dashboard Dosen Koordinator</span>
+        <span class="ms-1 font-weight-bold">Dashboard Admin</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -191,7 +191,7 @@
 
         <!-- HOME  -->
         <li class="nav-item">
-          <a class="nav-link  " href="./dosenkoor.php">
+          <a class="nav-link  " href="./admin.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                   <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
@@ -201,9 +201,24 @@
           </a>
         </li>
 
+        
+        
+        <!-- Mahasiswa Pendaftar Proyek Akhir
+            <li class="nav-item">
+              <a class="nav-link  " href="./pendaftarpa_min.php">
+                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  </svg>
+                </div>
+                <span class="nav-link-text ms-1">Pendaftar Proyek Akhir</span>
+              </a>
+            </li> -->
+
             <!--Mahasiswa Proyek Akhir terverifikasi-->
             <li class="nav-item">
-              <a class="nav-link  " href="./mahasiswapa.php">
+              <a class="nav-link  active" href="./mahasiswapa_min.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -216,7 +231,7 @@
 
             <!--Kalender Proyek Akhir-->
             <li class="nav-item">
-              <a class="nav-link  " href="./kalenderpa.php">
+              <a class="nav-link  " href="./jadwalpa_min.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -229,7 +244,7 @@
 
               <!-- Nilai Akhir Proyek Akhir -->
               <li class="nav-item"> 
-              <a class="nav-link  " href="./nilaisempro.php">
+              <a class="nav-link  " href="./nilaipa_min.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
@@ -239,17 +254,8 @@
               </a>
             </li>
              
-            <!-- File Proyek Akhir -->
-            <li class="nav-item">
-                <a class="nav-link  active" href="./laporanpa.php">
-                  <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
-                      <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
-                    </svg>
-                  </div>
-                  <span class="nav-link-text ms-1">Laporan Akhir Proyek Akhir</span>
-                </a>
-              </li>
+         
+        
 
         <!--Ganti Password-->
         <li class="nav-item mt-3">
@@ -275,10 +281,10 @@
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Koordinator</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Laporan Akhir Proyek Akhir</li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Admin</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Mahasiswa Proyek Akhir</li>
           </ol>
-          <h5 class="font-weight-bolder mb-0">Laporan Akhir Proyek Akhir</h5>
+          <h5 class="font-weight-bolder mb-0">Mahasiswa Proyek Akhir</h5>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -288,7 +294,7 @@
             <li class="nav-item d-flex align-items-center">
               <a href="../profile.php" href="javascript:;" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Lucky Putri Rahayu, S.Si., M.Si</span>
+                <span class="d-sm-inline d-none"><?php echo $_SESSION['user']?></span>
               </a>
             </li>
             <!--li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -309,7 +315,7 @@
            <li class="nav-item dropdown pe-2 d-flex align-items-center">
                   <!-- icon lonceng/bel -->
                   <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    
+  
                   </a>
 
                   <!-- dropdown surat masuk -->
@@ -540,163 +546,99 @@
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
-                  <!-- dropdown jenis surat -->
             <div class="card-header pb-0 p-3">
               <div class="row">
                 <div class="col-6 d-flex align-items-center">
-                  <h6 class="mb-0">Pilih Semester:</h6>
-                  <li class="nav-item dropdown pe-3 pt-3 d-flex text-right ps-4">
-                    <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                      <button type="button" class="btn btn-outline-dark btn-sm px-5 text-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Pilih Semester
-                      </button>
-                    </a>
-                    <ul style = "height:200px" class="dropdown-menu dropdown-menu-end pt-2  px-0 py-3 me-sm-n1 " aria-labelledby="dropdownMenuButton">
-                      <div class="card example-1 scrollbar-deep-purple bordered-deep-purple thin" style = "height:200px">  
-                        <li>
-                          <a class="dropdown-item border-radius-md">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1" >
-                                  <span class="font-weight-bold">Gasal 2021/2022</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                        <li >
-                          <a class="dropdown-item border-radius-md">
-                            <div class="d-flex py-1">
-                              <div class="my-auto">
-                                <h6 class="text-sm font-weight-normal mb-1">
-                                  <span class="font-weight-bold">Genap 2021/2022</span>
-                                </h6>
-                            </div>
-                          </a>
-                        </li>
-                      </div>
-                    </ul>
-                  </li> 
+                  <h6 class="mb-0">Validasi Data</h6>
                 </div>
               </div>
             </div>
-            <!-- and dropdown jenis surat -->
-          <!--<div class="form-group d-flex justify-content-around mt-4 my-0 md-0">
-          <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "12">
-                <?php if ($_POST['filterid'] == 0 || $_POST['filterid'] == 2 || $_POST['filterid'] == 1 ) { ?>
-               <button type = "submit" name = "filterall" class = "btn btn-outline-info">Lihat Semua</button>
-               <?php } 
-               else { ?>
-               <button type = "submit" name = "filterall" class = "btn btn-info">Lihat Semua</button>
-             <?php } ?>
-               </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "0">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 2 || $_POST['filterid'] == 1 || $_POST['filterid'] == NULL  ) { ?>
-               <button type = "submit" name = "filter0" class = "btn btn-outline-info">Belum Diproses</button>
-               <?php } 
-               else { ?>
-             <button type = "submit" name = "filter0" class = "btn btn-info">Belum Diproses</button>
-             <?php } ?>
-            </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "1">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 2 || $_POST['filterid'] == 0 || $_POST['filterid'] == NULL  ) { ?>
-               <button type = "submit" name = "filter1" class = "btn btn-outline-info">Ditolak</button>
-               <?php } 
-               else { ?>
-              <button type = "submit" name = "filter1" class = "btn btn-info">Ditolak</button>
-             <?php } ?>
-            </form>
-            <form action = "" method = "post">
-                <input type="hidden" name = "filterid" value = "2">
-                <?php if ($_POST['filterid'] == 12 || $_POST['filterid'] == 1 || $_POST['filterid'] == 0 || $_POST['filterid'] == NULL  ) { ?>
-               <button type = "submit" name = "filter2" class = "btn btn-outline-info">Disetujui</button>
-               <?php } 
-               else { ?>
-              <button type = "submit" name = "filter2" class = "btn btn-info">Disetujui</button>
-             <?php } ?>
-            </form>
-        </div>-->
-                        <br>
-          <div class="card-body px-0 pt-0 mt-0 py-0 my-0 pb-2">
-            <div class="table-responsive scrollbar-deep-purple bordered-deep-purple thin mt-0 pt-0" style = "height:440px" >
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th class ="text-center"><strong>Nama</th>
-                      <th class ="text-center"><strong>NRP</th>
-                      <th class ="text-center"><strong>Semester</th>
-                      <th class ="text-center"><strong>Judul Proyek Akhir</th>
-                      <th class ="text-center"><strong>Tanggal Pelaksanaan</th>
-                      <th class ="text-center"><strong>Pembimbing 1</th>
-                      <th class ="text-center"><strong>Pembimbing 2</th>
-                      <th class ="text-center"><strong>Nilai Akhir</th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <?php
-                    include "../_database/config.php";
-                      $user=$_SESSION['user'];
-                      $no = 1;
-                      
-                      
-                      $query = mysqli_query($koneksi,"SELECT pendaftareval.nrp, pendaftareval.pembimbing, pendaftareval.pembimbing_2, pendaftareval.nama, pendaftareval.judul_pa, pendaftareval.semester, nilai_sidang.nilai_sid, nilai_sidang.nilai_sid2, nilai_sidang.nilai_sid3, nilai_sidang.tanggal FROM pendaftareval INNER JOIN nilai_sidang ON pendaftareval.nrp=nilai_sidang.nrp WHERE nilai_sidang.tampil_nilai='1'");
-                      while($row = mysqli_fetch_assoc($query)){
 
-                      $nilai1=$row['nilai_sid'];
-                      $nilai2=$row['nilai_sid2'];
-                      $nilai3=$row['nilai_sid3'];
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
 
-                      $total= ($nilai1 + $nilai2 + $nilai3)/3;
-                      if($total >= 85.60){
-                          $tampil= 'A';
-                      }
-                      else if($total >= 75.60 && $total <= 85.59 ){
-                          $tampil= 'AB';
-                      }
-                      else if($total >= 65.60 && $total <= 75.59){
-                          $tampil= 'B';
-                      }
-                      else if($total >= 60.60 && $total <= 65.59){
-                          $tampil= 'BC';
-                      }
-                      else if($total >= 55.60 && $total <= 60.59){
-                          $tampil= 'C';
-                      }
-                      else if($total >= 40.60 && $total <= 55.59){
-                          $tampil= 'D';
-                      }
-                      else if($total >= 0 && $total <= 40.59){
-                          $tampil= 'E';
-                      }
-                      else{
-                        echo 'Tidak ada nilai';
-                      }
-                      ?>
-                    <tr>
-                      <td class ="text-center"><?php echo $no++?></td>
-                      <td class ="text-center"><?php echo $row['nama']?></td>
-                      <td class ="text-center"><?php echo $row['nrp']?></td>
-                      <td class ="text-center"><?php echo $row['semester']?></td>
-                      <td class ="text-center"><?php echo $row['judul_pa']?></td>
-                      <td class ="text-center"><?php echo $row['tanggal']?></td>
-                      <td class ="text-center"><?php echo $row['pembimbing']?></td>
-                      <td class ="text-center"><?php echo $row['pembimbing_2']?></td>
-                      <td class ="text-center"><?php echo $tampil?></td>
-                      
-                    </tr>
-                    <?php }?>
-                  </tbody>
-                </table>
+                
+
+                <form action="" method="post">
+                  <div class="card-header pb-0 p-3">
+                    <div class="row">
+                      <div class="mb-3">
+                        <div class="row">
+                                <?php
+                            include "../_database/config.php";
+                            $id=$_GET['id'];
+                            $query = mysqli_query($koneksi, "SELECT * FROM pendaftareval WHERE id='$id'");
+                            while($row = mysqli_fetch_assoc($query)){
+                    
+                            ?>
+
+                            <div class="form-group col-md-6">
+                              <label for="formFile" class="form-label">Nama Mahasiswa</label>
+                              <label name="nama" class="form-control" aria-label="default input example"><?php echo $row['nama']?></label>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="formFile" class="form-label">NRP Mahasiswa</label>
+                              <label name="nrp" class="form-control" aria-label="default input example"><?php echo $row['nrp']?></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                              <label for="formFile" class="form-label">Jenis Evaluasi</label>
+                              <label name="jenis_eval" class="form-control" aria-label="default input example"><?php echo $row['jenis_eval']?></label>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <!-- Keterangan Tambahan -->
+                              <label for="formFile" class="form-label">Judul Proyek Akhir</label>
+                              <label name="judul_pa" class="form-control" aria-label="default input example"><?php echo $row['judul_pa']?></label>
+                            </div>
+                        </div>
+                        <!-- file surat -->
+                        <label for="formFile" class="form-label">Lihat File</label>
+                        <a href="../pages_mahasiswaa/" target="_blank">
+                          <p class="modal-title" name="fl" id="edit">
+                          <button type="button" class="btn btn-link">
+                            <em></em>
+                          </button>
+                        </p>
+                        </a>
+                        <!-- Menginput id surat -->
+                        <input name="id" value= "" type="hidden">
+                        <input type="hidden" name = "lokasi" value = "">
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- button upload close -->
+              </div>
+              <div class = "mx-4">
+                <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
+              
+                <a class="btn btn-primary" name="update_validasi" href="../pages_dosenkoor/update.php?id=<?php echo $row['id']; ?>" role="button">OK</a>
+                <?php }?>
+              </form>
               </div>
             </div>
           </div>
         </div>
-      </div>      
+        <!-- and popup ajuan surat mahasiswa -->
 
+
+        <!-- and php tabel -->
+        <!-- and modal-->
+
+
+        </tr>
+        <!-- php update surat -->
+       
+
+        <!-- php update catatan dosen -->
+
+        <!-- update catatan kadep -->
+        
+
+        </tbody>
+        </table>
+      </div>
     </div>
 
   </main>
@@ -725,7 +667,7 @@
             Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Berhasil',
+            title: 'Berhasil ',
             showConfirmButton: false,
             timer: 2000
           })

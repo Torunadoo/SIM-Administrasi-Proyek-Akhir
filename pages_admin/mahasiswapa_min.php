@@ -595,7 +595,7 @@
                       <th class ="text-center"><strong>Nrp</th>
                       <th class ="text-center"><strong>Judul Proyek Akhir</th>
                       <th class ="text-center"><strong>Jenis Evaluasi</th>
-                      <th class ="text-center"><strong>Tanggal Terverifikasi</th>
+                      <th class ="text-center"><strong>Tanggal Pengajuan</th>
                       <th class ="text-center"><strong>Pembimbing 1</th>
                       <th class ="text-center"><strong>Pembimbing 2</th>
                       <th class ="text-center"><strong>Status</th>
@@ -629,7 +629,7 @@
                       <th class = "text-center"><?php echo $row['tanggal']?></th>
                       <th class = "text-center"><?php echo $row['pembimbing']?></th>
                       <th class = "text-center"><?php echo $row['pembimbing_2']?></th>
-                      <th class = "text-center"><a class="btn btn-primary" href="../pages_admin/validasipa.php?nrp=<?php echo $row['nrp']; ?>" role="button"><?php echo $tampil ?></a></th>
+                      <th class = "text-center"><a class="btn btn-primary" href="../pages_admin/validasipa.php?nrp=<?php echo $row['nrp'] ?>" role="button"><?php echo $tampil ?></a></th>
                     </tr> 
                       <?php }?>
                     

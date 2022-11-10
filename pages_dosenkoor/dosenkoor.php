@@ -282,22 +282,6 @@
                   <span class="nav-link-text ms-1">Laporan Akhir Proyek Akhir</span>
                 </a>
               </li>
-
-                              
-
-            <!-- DATA MAGANG -->
-            <?php if($_SESSION['status2'] == '2'){ ?>
-            <li class="nav-item"> 
-              <a class="nav-link  " href="./datamagang.php">
-                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
-                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
-                  </svg>
-                </div>
-                <span class="nav-link-text ms-1">Data Magang</span>
-              </a>
-            </li>  
-            <?php } ?>
           
             <!-- GANTI PASSWORD -->
             <li class="nav-item mt-3">
@@ -337,7 +321,7 @@
                 <li class="nav-item d-flex align-items-center">
                   <a href="../profile.php" class="nav-link text-body font-weight-bold px-0">
                     <i class="fa fa-user me-sm-1"></i>
-                    <span class="d-sm-inline d-none"><?php echo $_SESSION['user']?></span>
+                    <span class="d-sm-inline d-none"><?php echo 'Lucky Putri Rahayu, S.Si., M.Si'?></span>
                   </a>
                 </li>
                 <!-- <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -856,10 +840,7 @@
                 
                <?php } ?>
 
-               <?php if ($no == 1) { ?>
-              <h6 class = "text-center"><br><br><br><br><br><br><br><br><br>BELUM ADA SURAT YANG DITOLAK</h6>
-
-              <?php } ?>
+        
 
 
               </ul>
@@ -933,17 +914,17 @@
                         </span>
                       </a>-->
                    </div>
-                    <!--<span class="text-xs"><?php echo $data['tanggal'] ?></span>
+                    <!--<span class="text-xs"><?php echo $data['tanggal'] ?></span>-->
                         <?php } } ?>
                       </li>
-                      <?php if ($no == 1) { ?>-->
+                      <?php if ($no == 1) { ?>
                         
               <h6 class = "text-center"><br><br><br><br><br><br><br><br><br></h6>
 
               <?php } ?>
                   </ul>
               </div>
-            </div>iv>
+            </div>
           </div>
           
         </div>

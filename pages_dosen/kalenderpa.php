@@ -551,17 +551,20 @@ if (isset($_POST['update2'])) {
     </nav>
 
     <!-- End Navbar -->
-    <div class="wrapper">
-    <div class="content-wrapper">
-      <div class="container">
-        <div class="col-md-12">
+
+<div class="wrapper">
           <div class="box box-solid">
             <div id="calendar">
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            <br>
+            <div class="container" style="text-align: center">
+            <a href="../pages_dosen/detail_jadwaldos.php">
+						<button class="btn bg-gradient-info">
+							 Lihat Detail Penjadwalan
+						</button>
+            </a>
+					</div>
+          <br>
   </div>
 </main>
 <script src="../fullcalendar/jquery.min.js"></script>

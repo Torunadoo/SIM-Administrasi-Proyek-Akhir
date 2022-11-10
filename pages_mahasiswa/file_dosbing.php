@@ -224,28 +224,7 @@ if (isset($_POST['selesai'])) {
             <!-- notif -->
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <!-- <i class="fa fa-bell cursor-pointer"></i> -->
-                <!-- angka pesan masuk -->
-                <?php 
-                include "../_database/config.php";
-                $nama = $_SESSION['user'];
-                $query_mhsw = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE nama = '$nama'");
-                $data_mhsw = mysqli_fetch_assoc($query_mhsw);
-
-                if ($nama) {
-                  $query1 = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE (status_dosen1 = 1 || status_dosen1 = 2) & (notif = 1 || notif = 2) ORDER BY id_no DESC");
-                  $data1 = mysqli_num_rows($query1); ?>
-
-                <i class="fa fa-bell cursor-pointer" <?php if($data1 > 0){echo 'style="color:#63B3ED"';} ?>></i>
-                <span class="primary"><?php echo $data1 ?></span>
-                <?php } else if ($_SESSION["status2"] == 3) {
-                  $query2 = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE ((status_dosen1 = 1 || status_dosen1 = 2) & (notif = 1 || notif = 2)) || ((status_dosentkk = 1 || status_dosentkk = 2) & (notif = 1 || notif = 2)) ORDER BY id_no DESC");
-                  $data2 = mysqli_num_rows($query2); ?>
-
-                <i class="fa fa-bell cursor-pointer" <?php if($data2 > 0){echo 'style="color:#63B3ED"';} ?>></i>
-                <span class="primary"><?php echo $data2 ?></span>
                 
-                <?php } ?>
               </a>
               <!-- dropdown surat masuk -->
               <ul class="dropdown-menu  dropdown-menu-end  px-1 py-1 me-sm-n3" aria-labelledby="dropdownMenuButton">
@@ -435,44 +414,14 @@ if (isset($_POST['selesai'])) {
                         <th class="text-center"><?php echo $row['file']?></th>
                         <th class="text-center"><?php echo $row['keterangan']?></th>
                         <th class="text-center"><?php echo $row['waktu'] ?></th>
-                        <th class="text-center"><button class="btn btn-light"><a href="../pages_mahasiswa/catatan_dosen.php?nrp=<?php echo $row['nrp']; ?>">Lihat Catatan</a></button></th>
+                        <th class="text-center"><button class="btn btn-light"><a href="../pages_mahasiswa/catatan_dosen.php?file=<?php echo $row['file']; ?>">Lihat Catatan</a></button></th>
                         
                       </tr>
                       <?php }?>
                     </tbody> 
                   </table>
 
-                  <!-- php update surat -->
-                  <?php
-                include "../_database/config.php";
-                if (isset($_POST['hapus'])) {
-                  $id6 = $_POST['id'];
-                  $query = mysqli_query($koneksi, "SELECT * FROM suratmahasiswa WHERE id_no = '$id6'");
-                  $data = mysqli_fetch_assoc($query);
-                  $nama_file = $data['file']; 
-                  $target_file = "./$nama_file";
-                 
-
-                  unlink("$target_file");
-                  $query6 = mysqli_query($koneksi, "DELETE FROM suratmahasiswa  WHERE id_no = '$id6' ");
-                 
-                  if ($query6) {
-                ?><script>
-                      <?php $_SESSION['sukseshps'] = true; ?>
-                    </script>
-                    <script>
-                      history.pushState({}, "", "")
-                    </script><?php
-                              ?> <script>
-                      history.pushState({}, "", "")
-                    </script>
-                <?php } else {
-                    echo '<script> alert ("gagal di ajukan")</script></a>';
-                  }
-                }
-
-
-                ?>
+                  
                 </div>
               </div>
             </div>

@@ -457,11 +457,11 @@ if(isset($_POST['input']))
                     include "../_database/config.php";
                     
                     $no = 1;
-                    $query = mysqli_query($koneksi, 'SELECT * FROM pendaftareval');
+                    $query = mysqli_query($koneksi, 'SELECT * FROM form_penjadwalan');
                     while($row = mysqli_fetch_assoc($query)){
 
-                      if(isset($row['status_penjadwalan'])){
-                        $status=$row['status_penjadwalan'];
+                      if(isset($row['status_jadwal'])){
+                        $status=$row['status_jadwal'];
   
                         if($status==0){
                           $tampil='Belum Terjadwal';
@@ -477,8 +477,8 @@ if(isset($_POST['input']))
                       <td class = "text-center"><?php echo $row['nrp']?></td>
                       <td class = "text-center"><?php echo $row['judul_pa']?></td>
                       <td class = "text-center"><?php echo $row['jenis_eval']?></td>
-                      <td class = "text-center"><?php echo $row['pembimbing']?></td>
-                      <td class = "text-center"><?php echo $row['pembimbing_2']?></td>
+                      <td class = "text-center"><?php echo $row['dosbing1']?></td>
+                      <td class = "text-center"><?php echo $row['dosbing2']?></td>
                       <td class = "text-center"><a class="btn btn-primary" href="../pages_admin/detail_jadwal.php?nrp=<?php echo $row['nrp'] ?>" role="button"><?php echo $tampil ?></a></td>
                     </tr> 
                       <?php }?>

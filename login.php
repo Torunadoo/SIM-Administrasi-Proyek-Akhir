@@ -10,7 +10,7 @@ $tambah = mysqli_query($koneksi, "SELECT * FROM masuk WHERE user='$user' and pas
 
 $cek = mysqli_num_rows($tambah);
 
-if ($ntiinject != false || $antiinject2 != false || $user == NULL || $pass == NULL)
+if ($antiinject != false || $antiinject2 != false || $user == NULL || $pass == NULL)
 {    $_SESSION['alert'] = true;
     header("location:index.php");  }
 
@@ -30,14 +30,13 @@ if($cek > 0){
             $_SESSION['alert'] = true;}  //memberikan notifikasi berhasil masuk
         header("location:./pages_mahasiswa/mahasiswa.php"); //jika user adalah mahasiswa maka akan masuk dashboard mahasiswa
    }
-   else if($data['status2'] == '10'){
+   else if($data['status'] == '10'){
         session_start();
-            $tambah2 = mysqli_query($koneksi, "SELECT * FROM data_dosenb WHERE id_npp ='$user' "); //mencari tau apakah username yang masuk ada di dalam database
-            $data2 = mysqli_fetch_assoc($tambah2);{
-            $_SESSION['user'] =$data2['nama_anggota']; //Membuat data nama menjadi session
-            $_SESSION['NIP'] = $data2['id_npp']; //Membuat data nomor civitas its menjadi session
-            $_SESSION['status2'] = $data['status2']; //Membuat data status menjadi session
-            $_SESSION['alert'] = true;}  //memberikan notifikasi berhasil masuk
+            $data2 = mysqli_fetch_array($tambah);
+            $_SESSION['user'] = "dosenkoor";
+            $_SESSION['NIP'] = "dosenkoor";
+            $_SESSION['status'] = $data2['status'];
+            $_SESSION['alert'] = true; //memberikan notifikasi berhasil masuk
         header("location:./pages_dosenkoor/dosenkoor.php"); //jika user adalah dosen maka akan masuk dashboard dosen
 }
    else if($data['status'] == '2'){
@@ -52,10 +51,10 @@ if($cek > 0){
    }
    else if($data['status'] == '99'){
         session_start();
-        $data = mysqli_fetch_array($tambah);
+        $data2 = mysqli_fetch_array($tambah);
         $_SESSION['user'] = "admin";
         $_SESSION['NIP'] = "admin";
-        $_SESSION['status'] = $data['status'];
+        $_SESSION['status'] = $data2['status'];
         $_SESSION['alert'] = true;
         header("location:pages_admin/admin.php");
    }

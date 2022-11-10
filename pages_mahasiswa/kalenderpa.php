@@ -314,28 +314,7 @@ if (isset($_POST['update2'])) {
             <!-- notif -->
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <!-- <i class="fa fa-bell cursor-pointer"></i> -->
-                <!-- angka pesan masuk -->
-                <?php 
-                include "../_database/config.php";
-                $nama = $_SESSION['user'];
-                $query_mhsw = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE nama = '$nama'");
-                $data_mhsw = mysqli_fetch_assoc($query_mhsw);
-
-                if ($nama) {
-                  $query1 = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE (status_dosen1 = 1 || status_dosen1 = 2) & (notif = 1 || notif = 2) ORDER BY id_no DESC");
-                  $data1 = mysqli_num_rows($query1); ?>
-
-                <i class="fa fa-bell cursor-pointer" <?php if($data1 > 0){echo 'style="color:#63B3ED"';} ?>></i>
-                <span class="primary"><?php echo $data1 ?></span>
-                <?php } else if ($_SESSION["status2"] == 3) {
-                  $query2 = mysqli_query($koneksi, "SELECT * FROM bimbingan WHERE ((status_dosen1 = 1 || status_dosen1 = 2) & (notif = 1 || notif = 2)) || ((status_dosentkk = 1 || status_dosentkk = 2) & (notif = 1 || notif = 2)) ORDER BY id_no DESC");
-                  $data2 = mysqli_num_rows($query2); ?>
-
-                <i class="fa fa-bell cursor-pointer" <?php if($data2 > 0){echo 'style="color:#63B3ED"';} ?>></i>
-                <span class="primary"><?php echo $data2 ?></span>
                 
-                <?php } ?>
               </a>
               <!-- dropdown surat masuk -->
               <ul class="dropdown-menu  dropdown-menu-end  px-1 py-1 me-sm-n3" aria-labelledby="dropdownMenuButton">
@@ -455,17 +434,19 @@ if (isset($_POST['update2'])) {
 
     <!-- End Navbar -->
 <main>
-  <div class="wrapper">
-    <div class="content-wrapper">
-      <div class="container">
-        <div class="col-md-12">
+<div class="wrapper">
           <div class="box box-solid">
             <div id="calendar">
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            <br>
+            <div class="container" style="text-align: center">
+            <a href="detail_jadwal.php">
+						<button class="btn bg-gradient-info">
+							 Lihat Detail Penjadwalan
+						</button>
+            </a>
+					</div>
+          <br>
   </div>
 </main>
 <script src="../fullcalendar/jquery.min.js"></script>

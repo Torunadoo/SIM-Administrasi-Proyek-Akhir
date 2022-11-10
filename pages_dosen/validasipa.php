@@ -4,79 +4,92 @@ if ($_SESSION['user'] == '' || $_SESSION['status'] != 2) {
   header("location:../index.php");
 }
 ?>
+<?php
+$lokasi = $_POST['lokasi'];
+$id = $_POST['id'];
+include '../_database/config.php'; //panggil setiap ingin koneksi ke data
+$nama = $_SESSION['user'];
+$query = mysqli_query($koneksi, "SELECT * FROM suratmahasiswa WHERE id_no = '$id' ");
+$data = mysqli_fetch_array($query);
+$tujuan = $data['dosen1'];
+$tujuan2 = $data['dosen2'];
+$tujuan3 = $data['dosen_tkk'];
 
+?>
+<!-- Backend validasi mahasiswa untuk dosen -->
+ <?php
+        include "../_database/config.php";
+        if (isset($_POST['update'])) {
+          $status = $_POST['ss'];
+          $id = $_POST['id'];
+          $catatan = $_POST['catatan2'];
+          $lokasi = $_POST['lokasi'];
+          
+          if ($data['status_dosen1'] == 0){
+            if ($data['dosen1'] == $data['dosen2']){
+              $query = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `status_dosen1` = '$status' WHERE id_no = '$id' ");
+              $query2 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `catatan_pmb`='$catatan' WHERE id_no = '$id' ");
+              $query3 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `status_dosen2` = '$status' WHERE id_no = '$id' ");
+              $query4 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `catatan_koor`='$catatan' WHERE id_no = '$id' ");
+            }
+            else {
+              $query = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `status_dosen1` = '$status' WHERE id_no = '$id' ");
+              $query2 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `catatan_pmb`='$catatan' WHERE id_no = '$id' ");
+            }
+         
+          }
+          else if ($data['status_dosen2'] == 0){
+            $query = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `status_dosen2` = '$status' WHERE id_no = '$id' ");  
+            $query2 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `catatan_koor`='$catatan' WHERE id_no = '$id' ");
+          }
+          else if ($data['status_dosentkk'] == 0 && $_SESSION['status2'] == 1) {
+            $query = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `status_dosentkk` = '$status' WHERE id_no = '$id' ");  
+            $query2 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `catatan_tkk`='$catatan' WHERE id_no = '$id' ");
+          }
+          
+          if ($query && $query2) {
+            if ($lokasi == "home"){
+            ?><script><?php $_SESSION['sukses'] = true;?></script> 
+            <?php header("location:dosen.php");
+            }
+            else {
+             ?><script><?php $_SESSION['sukses'] = true;?></script> 
+            <?php header("location:bimbinganpa.php");
+             } 
+          } else {
+            ?><script><?php $_SESSION['input'] = true;?></script> 
+            <script>history.pushState({}, "", "")</script><?php
+          }
+        } ?>
+
+    <!-- Backend validasi mahasiswa untuk kadep -->
+        <?php
+        include "../_database/config.php";
+        if (isset($_POST['updatekdp'])) {
+          $catatan2 = $_POST['catatan2'];
+          $id = $_POST['id'];
+          $status = $_POST['ss'];
+          
+          $query = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `catatan_kadep`='$catatan2' WHERE id_no = '$id' ");
+          $query2 = mysqli_query($koneksi, "UPDATE suratmahasiswa SET `status_kadep`='$status' WHERE id_no = '$id' ");
+
+          if ($query && $query2) {
+            if ($lokasi == "home"){
+              ?><script><?php $_SESSION['sukses'] = true;?></script> 
+              <?php header("location:dosen.php");
+              }
+              else {
+               ?><script><?php $_SESSION['sukses'] = true;?></script> 
+              <?php header("location:validasisurat2.php");
+               } 
+          } else {
+            ?><script><?php $_SESSION['input'] = true;?></script> 
+            <script>history.pushState({}, "", "")</script><?php
+          }
+        } ?>
 <?php
 include "../_database/config.php";
-// Backend Pendaftaran Evaluasi
-if(isset($_POST['input']))
-{
-  $nama = $_POST['nama'];
-  $nrp = $_POST['nrp'];
-  $catatan = $_POST['catatan'];
-  $dosbing = $_POST['dosbing'];
-  $jenis_file = $_POST['jenis_file'];
-  $keterangan = $_POST['keterangan'];
-  $file = basename($_FILES['fl']['name']);
-  $ukuran = $_FILES['fl']['size'];
-  $tipe = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-  
-  $max = 1024 * 5000;
-  $ekstensi = "pdf";
-
-// file
-$url = $nrp.'_'.$file;
-
-// ukuran dan tipe tidak sesuai
-if ($ukuran > $max && $tipe !== $ekstensi)
-{
-?><script><?php $_SESSION["pdfuk"] = true;?></script> 
-<script>history.pushState({}, "", "")</script><?php 
-}
-// ukuran tidak sesuai
-else if ($ukuran > $max)
-{
-echo '<script> alert("Gagal mengajukan permohonan surat ! Ukuran file tidak boleh melebihi 20 mb")</script>' ;
-}
-// tipe tidak sesuai pdf
-else if ($tipe != $ekstensi && $tipe != NULL)
-{ 
-?><script><?php $_SESSION['pdf'] = true?></script> 
-<script>history.pushState({}, "", "")</script><?php
-}  
-// upload file
-else if (move_uploaded_file($_FILES['fl']['tmp_name'], $url)) 
-{
-  // upload file dosen pemb dan koor
-  if ($jenis_file == "Proposal Proyek Akhir" || $jenis_file == "Laporan Proyek Akhir") { 
-    $query = mysqli_query($koneksi,"INSERT into proses_bimbingan values('', '$nama','$nrp','$dosbing','$catatan','$jenis_file','$keterangan', '$url', '$tipe', '$ukuran', sysdate())");
-    if($query)
-    // notif dan header sukses upload file
-    {
-      $nrp_id=$_GET['nrp'];
-      ?><script><?php $_SESSION['sukses'] = true;?></script> 
-      <?php header("location:filepa.php?nrp=$nrp_id"); 
-    }
-    // notif gagal input
-    else
-    {
-    ?><script><?php $_SESSION['input'] = true;?></script> 
-    <script>history.pushState({}, "", "")</script><?php
-    }
-  }
-  
-// gagal upload
-else
-{
-    
-  echo 'Gagal Upload';
-}
-
-} }
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -126,10 +139,79 @@ else
       </a>
     </li>
 
-    
+    <?php if ($_SESSION['status2'] == 5) { ?>
+        <!-- membuat satu bar navigasi khusus kadep -->
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Navigasi Kadep</h6>
+        </li>
+
+         <!-- Pemberian mandat kadep -->
+  <?php if($_SESSION['status2'] == '5'){ ?>
+          <li class="nav-item">
+            <a class="nav-link  " href="./kirimkadep.php">
+              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
+                  <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1h-4z"/>
+                </svg>
+              </div>
+              <span class="nav-link-text ms-1">Pengajuan Mandat </span>
+            </a>
+          </li>
+          <?php } ?>
+
+        
+          
+          <!--Validasi Surat-->
+          <?php if ($_SESSION['status2'] == '5') {?>
+            <li class="nav-item">
+            <a class="nav-link  " href="./validasisurat2.php">
+              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                </svg>
+              </div>
+            <span class="nav-link-text ms-1">Validasi Surat Mahasiswa</span>
+          </a>
+        </li>
+          <?php } ?>
+
+          <!-- Validasi Surat Dosen -->
+          <?php if ($_SESSION['status2'] == '5') {?>
+          <li class="nav-item">
+            <a class="nav-link  " href="./validasidsn.php">
+              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                </svg>
+              </div>
+              <span class="nav-link-text ms-1">Validasi Surat Dosen</span>
+            </a>
+          </li>
+          <?php } ?>
+
+                   <!-- Validasi Surat Tendik -->
+                   <?php if ($_SESSION['status2'] == '5') {?>
+          <li class="nav-item">
+            <a class="nav-link  " href="./validasitndk.php">
+              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                </svg>
+              </div>
+              <span class="nav-link-text ms-1">Validasi Surat Tendik</span>
+            </a>
+          </li>
+
+          <?php } ?>
+
+
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Navigasi Dosen</h6>
+        </li>
+        <?php } ?>
                 <!--Mahasiswa Bimbingan-->
                 <li class="nav-item">
-              <a class="nav-link" href="./bimbinganpa.php">
+              <a class="nav-link  active" href="./bimbinganpa.php">
                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -155,7 +237,7 @@ else
 
             <!-- File Proyek Akhir -->
             <li class="nav-item">
-                <a class="nav-link  active" href="./daftar_bimbingan.php">
+                <a class="nav-link  " href="./filepa.php">
                   <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up-fill" viewBox="0 0 16 16">
                       <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707L6.354 9.854z"/>
@@ -176,7 +258,19 @@ else
                 <span class="nav-link-text ms-1">Nilai Proyek Akhir</span>
               </a>
             </li>
-          
+          <!-- REKAP SURAT -->
+          <?php if($_SESSION['status2'] == '2'){ ?>
+          <li class="nav-item"> 
+            <a class="nav-link  " href="./datamagang.php">
+              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
+                  <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
+                </svg>
+              </div>
+              <span class="nav-link-text ms-1">Data Magang</span>
+            </a>
+          </li>  
+          <?php } ?>
 
 <!-- profil-->
 <li class="nav-item mt-3">
@@ -203,9 +297,9 @@ else
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard Dosen Pembimbing</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">File Proyek Akhir</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Validasi Proyek Akhir Mahasiswa</li>
           </ol>
-          <h5 class="font-weight-bolder mb-0">Unggah File Proyek Akhir</h5>
+          <h5 class="font-weight-bolder mb-0">Validasi Proyek Akhir Mahasiswa</h5>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -253,7 +347,7 @@ else
             <div class="card-header pb-0 p-3">
               <div class="row">
                 <div class="col-6 d-flex align-items-center">
-                  <h6 class="mb-0">Unduh File</h6>
+                  <h6 class="mb-0">Validasi Surat</h6>
                 </div>
               </div>
             </div>
@@ -262,117 +356,86 @@ else
               <div class="table-responsive p-0">
 
                 
-              <?php
-                            include "../_database/config.php";
-                            $id=$_GET['nrp'];?>
-                <form action="" method="post" enctype="multipart/form-data">
+
+                <form action="" method="post">
                   <div class="card-header pb-0 p-3">
                     <div class="row">
                       <div class="mb-3">
                         <div class="row">
-                                <?php
-                            include "../_database/config.php";
-                            $user=$_SESSION['user'];
-                            $id=$_GET['nrp'];
-                            $query = mysqli_query($koneksi, "SELECT * FROM bimbingan_pa WHERE nrp='$id'");
-                            while($row = mysqli_fetch_assoc($query)){
-                            ?>
-
                             <div class="form-group col-md-6">
                               <label for="formFile" class="form-label">Nama Mahasiswa</label>
-                              <input name="nama" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nama']?>" required>
-                              <label name="nama" class="form-control" aria-label="default input example"><?php echo $row['nama']?></label>
+                              <label name="nm" class="form-control" aria-label="default input example"></label>
                             </div>
                             <div class="form-group col-md-6">
                               <label for="formFile" class="form-label">NRP Mahasiswa</label>
-                              <input name="nrp" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['nrp']?>" required>
-                              <label name="nrp" class="form-control" aria-label="default input example"><?php echo $row['nrp']?></label>
-                            </div>
-                            <input name="dosbing" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $user?>" required>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                              <label for="formFile" class="form-label">Keterangan</label>
-                              <input name="keterangan" class="form-control" type="hidden" aria-label="default input example"  value = "<?php echo $row['keterangan']?>" required>
-                              <label name="keterangan" class="form-control" aria-label="default input example"><?php echo $row['keterangan']?></label>
-                            </div>
-                            <div class="form-group col-md-6">
-                              <label for="formFile" class="form-label">Nama File</label>
-                              <label name="nama_file" class="form-control" aria-label="default input example"><?php echo $row['file']?></label>
+                              <label name="nrp" class="form-control" aria-label="default input example"></label>
                             </div>
                         </div>
+
+                        <!-- Keterangan tiap Perihal -->
+                        <?php if ($data['perihal'] == "Proposal Proyek Akhir") { ?>
+                          <div class="row">
+                            <div class="form-group col-md-6">
+                              <label for="formFile" class="form-label">Perihal</label>
+                              <label name="sr" class="form-control" aria-label="default input example"></label>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <!-- Keterangan Tambahan -->
+                              <label for="formFile" class="form-label">Judul Proyek Akhir</label>
+                              <label name="sr" class="form-control" aria-label="default input example"></label>
+                            </div>
+                          </div>
+                        <?php }
+                        else { ?><?php } ?>
+
                         <!-- file surat -->
                         <label for="formFile" class="form-label">Lihat File</label>
                         <a href="../pages_mahasiswaa/" target="_blank">
-                          <p class="modal-title" name="file_mbuh" id="edit">
+                          <p class="modal-title" name="fl" id="edit">
                           <button type="button" class="btn btn-link">
                             <em></em>
                           </button>
-                          </p>
+                        </p>
                         </a>
-                        <br>
-                        <div class="row">
-                          <div class="col-6 d-flex align-items-center">
-                            <h6 class="mb-0">Unggah File</h6>
-                          </div>
-                        </div>
-                  
-                        <br>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                              <label for="formFile" class="form-label">Catatan Dosen</label>
-                              <input name="catatan" class="form-control" type="text" aria-label="default input example" placeholder="Ketik Catatan" >
-                            </div>
-                        </div>
-                        <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="formFile" class="form-label">Jenis File</label>
-                              <select name="jenis_file" class="form-control" aria-placeholder="Pilih Jenis File"  name aria-label="Default input example" required>
-                                <option selected>Pilih Jenis File</option>
-                                <option value="Proposal Proyek Akhir">Proposal Proyek Akhir</option>
-                                <option value="Laporan Proyek Akhir">Laporan Proyek Akhir</option>
-                              </select>
-                          </div>
-                          <div class="form-group col-md-6">
-                            <label for="formFile" class="form-label">Keterangan</label>
-                              <select name="keterangan" class="form-control" aria-placeholder="Pilih Jenis File"  name aria-label="Default input example" required>
-                                <option selected>Pilih Keterangan</option>
-                                <option value="Revisi 1">Revisi 1</option>
-                                <option value="Revisi 2">Revisi 2</option>
-                                <option value="Revisi 3">Revisi 3</option>
-                                <option value="Revisi 4">Revisi 4</option>
-                                <option value="Revisi 5">Revisi 5</option>
-                                <option value="Final">Final</option>
-                              </select>
-                          </div>
-                          
-                        </div>
-                        <div class="row">
-                          <div class="mb-3">
-                            <label id="label-file" for="formFile" class="form-label">Unggah File (Ekstensi File .PDF)</label>
-                            <input type="file" id="file" name="fl" class="form-control" aria-label="file example">
-                            <div class="invalid-feedback">Example invalid form file feedback</div>
-                          </div>
-                        </div>
                         <!-- Menginput id surat -->
-                        
+                        <input name="id" value= "" type="hidden">
+                        <input type="hidden" name = "lokasi" value = "">
 
                       </div>
                     </div>
                   </div>
                   <!-- button upload close -->
+              </div>
+              <div class = "mx-4">
+            <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
               
-                  <div class = "mx-4">
-                    <button type="button" class="btn bg-gradient-secondary" onclick = "goBack()">Kembali</button>
-                    <button type="submit" class="btn btn-primary" name="input" onClink="location.href='../pages_dosen/update_status.php?nrp=<?php echo $row['nrp']?>'">OK</button>
-                    <?php }?> 
-                  </div>
+              <?php if ($_SESSION['status'] == 2 && $_SESSION['status2'] != 5 ) { ?>
+                <button type="submite" name="update" class="btn bg-gradient-info">OK</button>
+              
+              <?php } ?>
               </form>
+              </div>
             </div>
-          </div> 
+          </div>
         </div>
         <!-- and popup ajuan surat mahasiswa -->
+
+
+        <!-- and php tabel -->
+        <!-- and modal-->
+
+
+        </tr>
+        <!-- php update surat -->
+       
+
+        <!-- php update catatan dosen -->
+
+        <!-- update catatan kadep -->
         
+
+        </tbody>
+        </table>
       </div>
     </div>
 
@@ -411,7 +474,7 @@ function goBack() {
             Swal.fire({
             position: 'center',
             icon: 'error',
-            title: 'Gagal',
+            title: 'Gagal Di Ajukan',
             showConfirmButton: false,
             timer: 2000
           })
